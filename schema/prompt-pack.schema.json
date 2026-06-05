@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tastecraft-decks.local/schema/prompt-pack.schema.json",
+  "title": "TasteCraft Prompt Pack",
+  "type": "object",
+  "required": ["schema_version", "deck_id", "export_policy", "global_image_policy", "prompts"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "deck_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "export_policy": {
+      "type": "string",
+      "const": "confirmed_prompts_only"
+    },
+    "global_image_policy": {
+      "type": "object",
+      "required": ["style_direction", "brand_constraints", "forbidden_elements"],
+      "additionalProperties": false,
+      "properties": {
+        "style_direction": { "type": "string" },
+        "brand_constraints": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "forbidden_elements": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "prompts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "prompt_id",
+          "page_id",
+          "page_type",
+          "purpose",
+          "aspect_ratio",
+          "positive_prompt",
+          "negative_prompt",
+          "reference_notes",
+          "generation_params",
+          "confirmation"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "prompt_id": { "type": "string", "minLength": 1 },
+          "page_id": { "type": "string", "minLength": 1 },
+          "page_type": {
+            "type": "string",
+            "enum": ["cover", "agenda", "chapter", "content", "data", "visual", "closing"]
+          },
+          "purpose": { "type": "string" },
+          "aspect_ratio": {
+            "type": "string",
+            "enum": ["16:9", "4:3", "custom"]
+          },
+          "positive_prompt": { "type": "string", "minLength": 1 },
+          "negative_prompt": { "type": "string" },
+          "reference_notes": { "type": "string" },
+          "generation_params": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "model_hint": { "type": "string" },
+              "size": { "type": "string" },
+              "seed": { "type": ["integer", "null"] }
+            }
+          },
+          "confirmation": {
+            "type": "object",
+            "required": ["status", "confirmed_at"],
+            "additionalProperties": false,
+            "properties": {
+              "status": { "type": "string", "const": "confirmed" },
+              "confirmed_at": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+name: Documentation task
+description: Improve README, docs, governance, roadmap, demo notes, or knowledge files.
+title: "[Docs]: "
+labels: ["documentation", "needs-triage"]
+body:
+  - type: textarea
+    id: doc_gap
+    attributes:
+      label: Documentation gap
+      description: What is unclear, missing, stale, or misleading?
+    validations:
+      required: true
+  - type: input
+    id: paths
+    attributes:
+      label: Relevant paths
+      placeholder: README.md, docs/roadmap.md
+    validations:
+      required: false
+  - type: textarea
+    id: suggested_fix
+    attributes:
+      label: Suggested fix
+      description: What should the docs say?
+    validations:
+      required: false
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety confirmation
+      options:
+        - label: Any example content in this issue is synthetic.
+          required: true

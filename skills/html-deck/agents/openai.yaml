@@ -1,0 +1,4 @@
+interface:
+  display_name: "HTML Deck"
+  short_description: "Build browser-native TasteCraft decks"
+  default_prompt: "Use $html-deck to build a browser-native presentation from my TasteCraft brief or spec."

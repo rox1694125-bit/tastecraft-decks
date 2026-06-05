@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "deck_id": "demo-growth-roadshow",
+  "export_policy": "confirmed_prompts_only",
+  "global_image_policy": {
+    "style_direction": "Bright editorial product photography with minimal abstract overlays",
+    "brand_constraints": [
+      "No logo placement.",
+      "Use the market-slate palette as color inspiration only."
+    ],
+    "forbidden_elements": [
+      "real customer faces",
+      "private office interiors",
+      "third-party trademarks"
+    ]
+  },
+  "prompts": [
+    {
+      "prompt_id": "cover-hero",
+      "page_id": "p001",
+      "page_type": "cover",
+      "purpose": "Cover image for a deck about presentation quality control.",
+      "aspect_ratio": "16:9",
+      "positive_prompt": "A clean studio scene showing presentation boards, color swatches, and a laptop with abstract dashboard shapes, bright editorial lighting, premium product photography, no visible brand marks.",
+      "negative_prompt": "No real people, no readable brand logos, no private documents, no cluttered office background.",
+      "reference_notes": "Use as a full-bleed cover visual with enough quiet space for headline text.",
+      "generation_params": {
+        "model_hint": "image-generation",
+        "size": "1792x1024",
+        "seed": null
+      },
+      "confirmation": {
+        "status": "confirmed",
+        "confirmed_at": "2026-06-06T09:00:00+08:00"
+      }
+    }
+  ]
+}

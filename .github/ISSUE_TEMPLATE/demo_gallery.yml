@@ -1,0 +1,52 @@
+name: Synthetic demo gallery entry
+description: Propose a fictional demo entry for the public gallery.
+title: "[Demo]: "
+labels: ["demo", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Public gallery entries must be synthetic. Do not submit real logos, customer decks, private brand assets, personal data, or screenshots from real systems.
+  - type: input
+    id: fictional_name
+    attributes:
+      label: Fictional organization name
+      placeholder: Fictional Harbor Foods
+    validations:
+      required: true
+  - type: dropdown
+    id: deck_type
+    attributes:
+      label: Deck type
+      options:
+        - Investor roadshow
+        - Board review
+        - Product demo
+        - Technical brief
+        - Training
+        - Keynote
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: brief
+    attributes:
+      label: Synthetic brief
+      description: Include audience, goal, tone, format, and constraints.
+    validations:
+      required: true
+  - type: textarea
+    id: visual_direction
+    attributes:
+      label: Visual direction
+      description: Describe palette, density, imagery, and logo policy without copying a real brand.
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety confirmation
+      options:
+        - label: This proposal is fictional and includes no real logo, client data, or private material.
+          required: true
+

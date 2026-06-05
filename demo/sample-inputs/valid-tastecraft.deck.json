@@ -1,0 +1,125 @@
+{
+  "schema_version": "1.0",
+  "project": {
+    "deck_id": "demo-growth-roadshow",
+    "name": "Synthetic Growth Roadshow",
+    "locale": "en-US",
+    "created_at": "2026-06-06T09:00:00+08:00",
+    "updated_at": "2026-06-06T09:00:00+08:00"
+  },
+  "brief": {
+    "topic": "AI-assisted presentation quality control",
+    "audience": "Product and design leadership",
+    "scenario": "internal-report",
+    "goal": "Show how TasteCraft turns deck aesthetics into a repeatable workflow.",
+    "tone": "Precise, calm, and executive-ready",
+    "constraints": [
+      "Use only synthetic business examples.",
+      "Avoid private logos and customer data."
+    ]
+  },
+  "output": {
+    "target_format": "auto",
+    "aspect_ratio": "16:9",
+    "slide_count": 6,
+    "mode": "batch_with_single_page_experiments",
+    "model_capabilities": {
+      "image_generation": true,
+      "pptx_export": true,
+      "browser_preview": true
+    }
+  },
+  "theme": {
+    "palette": {
+      "preset_id": "market-slate",
+      "custom": false,
+      "colors": {
+        "background": "#F7F8FA",
+        "surface": "#FFFFFF",
+        "text": "#18202A",
+        "muted_text": "#5D6B7A",
+        "primary": "#205B73",
+        "secondary": "#2F855A",
+        "accent": "#E76F51"
+      }
+    },
+    "typography": {
+      "heading_style": "Modern geometric sans with compact hierarchy",
+      "body_style": "Readable sans with clear numeric tables",
+      "density": "balanced"
+    },
+    "logo": {
+      "enabled": false,
+      "source": "none",
+      "placement": "none",
+      "reverse_version_allowed": false,
+      "brand_mode": "none"
+    },
+    "imagery": {
+      "ai_image_enabled": true,
+      "style_direction": "Bright editorial product photography with minimal abstract overlays",
+      "forbidden_elements": [
+        "real customer faces",
+        "private office interiors",
+        "third-party trademarks"
+      ]
+    }
+  },
+  "pages": [
+    {
+      "page_id": "p001",
+      "index": 1,
+      "type": "cover",
+      "title": "TasteCraft Decks",
+      "objective": "Frame the workflow and quality promise.",
+      "density": "speaker-led",
+      "content_inputs": {
+        "subtitle": "Inspectable design control for presentation work"
+      },
+      "layout_variant": "full-bleed-hero",
+      "visual_role": "hero image",
+      "logo_policy": "none",
+      "image_prompt_refs": [
+        "cover-hero"
+      ],
+      "status": "prompt_confirmed"
+    },
+    {
+      "page_id": "p002",
+      "index": 2,
+      "type": "content",
+      "title": "Workflow Control Points",
+      "objective": "Explain how the console, schema, router, and QA checklist connect.",
+      "density": "balanced",
+      "content_inputs": {
+        "bullets": [
+          "Capture the presentation brief.",
+          "Select output mode and theme rules.",
+          "Export JSON for skill routing.",
+          "Validate output before delivery."
+        ]
+      },
+      "layout_variant": "two-column-process",
+      "visual_role": "process diagram",
+      "logo_policy": "none",
+      "image_prompt_refs": [],
+      "status": "valid"
+    }
+  ],
+  "experiments": [
+    {
+      "experiment_id": "exp-cover-contrast",
+      "page_id": "p001",
+      "changes": {
+        "palette": "darker image overlay"
+      },
+      "result": "sandbox"
+    }
+  ],
+  "qa": {
+    "required_fields_complete": true,
+    "all_required_prompts_confirmed": true,
+    "contrast_warnings": [],
+    "export_ready": true
+  }
+}

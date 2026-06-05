@@ -1,0 +1,4 @@
+interface:
+  display_name: "Image Enhanced Deck"
+  short_description: "Prepare visual prompts and image-enhanced decks"
+  default_prompt: "Use $image-enhanced-deck to prepare confirmed visual prompts and an image-enhanced deck from my TasteCraft spec."

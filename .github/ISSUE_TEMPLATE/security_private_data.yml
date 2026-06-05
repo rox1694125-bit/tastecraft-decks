@@ -1,0 +1,42 @@
+name: Security or private-data concern
+description: Open a minimal public report without exposing sensitive details.
+title: "[Security/Data]: "
+labels: ["security", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not paste secrets, private customer material, real logos, personal data, or proprietary screenshots into this issue. If a private maintainer channel exists, use it first. If not, file a minimal public issue with affected paths only.
+  - type: dropdown
+    id: concern_type
+    attributes:
+      label: Concern type
+      options:
+        - Private data in repository
+        - Real logo or brand asset in public path
+        - Packaging includes restricted files
+        - Misleading data or brand policy
+        - Other security concern
+    validations:
+      required: true
+  - type: input
+    id: affected_path
+    attributes:
+      label: Affected path or area
+      placeholder: demo/gallery/README.md
+    validations:
+      required: false
+  - type: textarea
+    id: minimal_summary
+    attributes:
+      label: Minimal summary
+      description: Keep this high-level. Do not include private content.
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety confirmation
+      options:
+        - label: I did not paste sensitive or private material into this public issue.
+          required: true

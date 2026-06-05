@@ -1,0 +1,10 @@
+[project]
+name = "tastecraft-decks-tooling"
+version = "0.1.0"
+description = "Standard-library validation and packaging tooling for TasteCraft Decks."
+requires-python = ">=3.9"
+dependencies = []
+
+[tool.tastecraft]
+sample_inputs = "demo/sample-inputs"
+dist_dir = "dist/skills"

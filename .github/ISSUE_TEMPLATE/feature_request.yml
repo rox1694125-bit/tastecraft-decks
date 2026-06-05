@@ -1,0 +1,52 @@
+name: Feature request
+description: Propose a new capability, workflow, output mode, or quality improvement.
+title: "[Feature]: "
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What user or contributor problem would this solve?
+      placeholder: Contributors need a clearer way to validate synthetic deck examples.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: What should change?
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Router skill
+        - Editable PPTX skill
+        - HTML deck skill
+        - Image-enhanced deck skill
+        - Schema
+        - Demo gallery
+        - Knowledge base
+        - Release or packaging
+        - Governance
+        - Other
+    validations:
+      required: true
+  - type: checkboxes
+    id: adr
+    attributes:
+      label: Decision impact
+      options:
+        - label: This may require an ADR because it affects schema, output formats, release policy, or governance.
+          required: false
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Optional but useful for larger changes.
+    validations:
+      required: false
+

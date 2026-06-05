@@ -1,0 +1,4 @@
+interface:
+  display_name: "Presentation Router"
+  short_description: "Route TasteCraft decks to the right workflow"
+  default_prompt: "Use $presentation-router to choose the right TasteCraft deck workflow for my presentation brief."

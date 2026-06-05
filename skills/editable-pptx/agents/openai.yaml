@@ -1,0 +1,4 @@
+interface:
+  display_name: "Editable PPTX"
+  short_description: "Create editable TasteCraft PowerPoint decks"
+  default_prompt: "Use $editable-pptx to create an editable PowerPoint deck from my TasteCraft brief or spec."

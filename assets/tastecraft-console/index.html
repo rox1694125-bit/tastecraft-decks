@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TasteCraft Decks Console</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Console panels">
+        <div class="brand-block">
+          <div class="brand-mark">TC</div>
+          <div>
+            <h1>TasteCraft Decks</h1>
+            <p>Design-control console</p>
+          </div>
+        </div>
+        <nav class="panel-nav">
+          <button type="button" class="nav-item active" data-panel="project">Project Setup</button>
+          <button type="button" class="nav-item" data-panel="planner">Batch Planner</button>
+          <button type="button" class="nav-item" data-panel="map">Page Map</button>
+          <button type="button" class="nav-item" data-panel="visual">Visual System</button>
+          <button type="button" class="nav-item" data-panel="lab">Single-Slide Lab</button>
+          <button type="button" class="nav-item" data-panel="prompts">Prompt Review</button>
+          <button type="button" class="nav-item" data-panel="export">Export / QA</button>
+        </nav>
+        <div class="sidebar-meta">
+          <span id="navDeckId">tastecraft-demo</span>
+          <strong id="navReadyState">Draft</strong>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="workspace-header">
+          <div>
+            <p class="eyebrow">Static local console</p>
+            <h2 id="workspaceTitle">Project Setup</h2>
+          </div>
+          <div class="header-actions">
+            <button type="button" class="secondary-button" id="loadSampleBtn">Load Sample</button>
+            <button type="button" class="primary-button" id="exportDeckTopBtn">Export Deck JSON</button>
+          </div>
+        </header>
+
+        <section class="panel active" id="panel-project" aria-labelledby="project-title">
+          <div class="section-heading">
+            <h3 id="project-title">Project Setup</h3>
+            <span class="status-pill" id="projectStatusPill">Draft</span>
+          </div>
+          <div class="form-grid three">
+            <label>
+              Deck ID
+              <input id="deckId" data-bind="project.deck_id" autocomplete="off">
+            </label>
+            <label>
+              Project Name
+              <input id="projectName" data-bind="project.name" autocomplete="off">
+            </label>
+            <label>
+              Locale
+              <input id="projectLocale" data-bind="project.locale" autocomplete="off">
+            </label>
+          </div>
+          <div class="form-grid two">
+            <label>
+              Topic
+              <input id="briefTopic" data-bind="brief.topic" autocomplete="off">
+            </label>
+            <label>
+              Audience
+              <input id="briefAudience" data-bind="brief.audience" autocomplete="off">
+            </label>
+            <label>
+              Scenario
+              <select id="briefScenario" data-bind="brief.scenario">
+                <option value="keynote">Keynote</option>
+                <option value="investor-roadshow">Investor Roadshow</option>
+                <option value="internal-report">Internal Report</option>
+                <option value="board-review">Board Review</option>
+                <option value="product-demo">Product Demo</option>
+                <option value="technical-brief">Technical Brief</option>
+                <option value="training">Training</option>
+                <option value="other">Other</option>
+              </select>
+            </label>
+            <label>
+              Tone
+              <input id="briefTone" data-bind="brief.tone" autocomplete="off">
+            </label>
+          </div>
+          <label class="wide-field">
+            Goal
+            <textarea id="briefGoal" data-bind="brief.goal" rows="3"></textarea>
+          </label>
+          <label class="wide-field">
+            Constraints
+            <textarea id="briefConstraints" data-list-bind="brief.constraints" rows="3"></textarea>
+          </label>
+          <div class="form-grid three">
+            <label>
+              Target Format
+              <select id="targetFormat" data-bind="output.target_format">
+                <option value="auto">Auto</option>
+                <option value="editable-pptx">Editable PPTX</option>
+                <option value="html-deck">HTML Deck</option>
+                <option value="image-enhanced-pptx">Image-Enhanced PPTX</option>
+              </select>
+            </label>
+            <label>
+              Aspect Ratio
+              <select id="aspectRatio" data-bind="output.aspect_ratio">
+                <option value="16:9">16:9</option>
+                <option value="4:3">4:3</option>
+                <option value="custom">Custom</option>
+              </select>
+            </label>
+            <label>
+              Slide Count
+              <input id="slideCount" type="number" min="1" max="80" data-bind="output.slide_count">
+            </label>
+          </div>
+          <div class="form-grid four checkbox-grid">
+            <label>
+              <input id="modeBatchSingle" type="radio" name="mode" value="batch_with_single_page_experiments" data-radio-bind="output.mode">
+              Batch + Lab
+            </label>
+            <label>
+              <input type="radio" name="mode" value="batch" data-radio-bind="output.mode">
+              Batch
+            </label>
+            <label>
+              <input type="radio" name="mode" value="single" data-radio-bind="output.mode">
+              Single
+            </label>
+            <label>
+              <input id="capImage" type="checkbox" data-bind="output.model_capabilities.image_generation">
+              Image Generation
+            </label>
+            <label>
+              <input id="capPptx" type="checkbox" data-bind="output.model_capabilities.pptx_export">
+              PPTX Export
+            </label>
+            <label>
+              <input id="capBrowser" type="checkbox" data-bind="output.model_capabilities.browser_preview">
+              Browser Preview
+            </label>
+          </div>
+        </section>
+
+        <section class="panel" id="panel-planner" aria-labelledby="planner-title">
+          <div class="section-heading">
+            <h3 id="planner-title">Batch Planner</h3>
+            <span class="status-pill" id="plannerPageCount">0 pages</span>
+          </div>
+          <div class="planner-grid">
+            <div class="control-band">
+              <label>
+                Batch Size
+                <input id="plannerSlideCount" type="number" min="1" max="80">
+              </label>
+              <label>
+                Default Density
+                <select id="plannerDensity">
+                  <option value="speaker-led">Speaker Led</option>
+                  <option value="balanced">Balanced</option>
+                  <option value="reading-first">Reading First</option>
+                  <option value="appendix-heavy">Appendix Heavy</option>
+                </select>
+              </label>
+              <button type="button" class="primary-button" id="generateSevenBtn">Generate 7-Type Map</button>
+              <button type="button" class="secondary-button" id="regeneratePromptsBtn">Regenerate Prompts</button>
+            </div>
+            <div class="planner-summary" id="plannerSummary"></div>
+          </div>
+        </section>
+
+        <section class="panel" id="panel-map" aria-labelledby="map-title">
+          <div class="section-heading">
+            <h3 id="map-title">Page Map</h3>
+            <span class="status-pill" id="mapStatusPill">No pages</span>
+          </div>
+          <div class="split-layout">
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Type</th>
+                    <th>Title</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="pageTableBody"></tbody>
+              </table>
+            </div>
+            <div class="editor-panel">
+              <div class="editor-header">
+                <h4 id="pageEditorTitle">Page Editor</h4>
+                <button type="button" class="secondary-button" id="addPageBtn">Add Page</button>
+              </div>
+              <div class="form-grid two">
+                <label>
+                  Page Type
+                  <select id="pageType">
+                    <option value="cover">Cover</option>
+                    <option value="agenda">Agenda</option>
+                    <option value="chapter">Chapter</option>
+                    <option value="content">Content</option>
+                    <option value="data">Data</option>
+                    <option value="visual">Visual</option>
+                    <option value="closing">Closing</option>
+                  </select>
+                </label>
+                <label>
+                  Status
+                  <select id="pageStatus">
+                    <option value="draft">Draft</option>
+                    <option value="valid">Valid</option>
+                    <option value="locked">Locked</option>
+                    <option value="needs_prompt">Needs Prompt</option>
+                    <option value="prompt_confirmed">Prompt Confirmed</option>
+                    <option value="warning">Warning</option>
+                  </select>
+                </label>
+                <label>
+                  Density
+                  <select id="pageDensity">
+                    <option value="speaker-led">Speaker Led</option>
+                    <option value="balanced">Balanced</option>
+                    <option value="reading-first">Reading First</option>
+                    <option value="appendix-heavy">Appendix Heavy</option>
+                  </select>
+                </label>
+                <label>
+                  Logo Policy
+                  <input id="pageLogoPolicy" autocomplete="off">
+                </label>
+              </div>
+              <label class="wide-field">
+                Title
+                <input id="pageTitle" autocomplete="off">
+              </label>
+              <label class="wide-field">
+                Objective
+                <textarea id="pageObjective" rows="3"></textarea>
+              </label>
+              <div class="form-grid two">
+                <label>
+                  Layout Variant
+                  <input id="pageLayout" autocomplete="off">
+                </label>
+                <label>
+                  Visual Role
+                  <input id="pageVisualRole" autocomplete="off">
+                </label>
+              </div>
+              <label class="wide-field">
+                Content Inputs
+                <textarea id="pageContent" rows="4"></textarea>
+              </label>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel" id="panel-visual" aria-labelledby="visual-title">
+          <div class="section-heading">
+            <h3 id="visual-title">Visual System</h3>
+            <span class="status-pill" id="contrastStatusPill">Checking</span>
+          </div>
+          <div class="form-grid three">
+            <label>
+              Palette Preset
+              <select id="palettePreset">
+                <option value="citrus-editorial">Citrus Editorial</option>
+                <option value="market-slate">Market Slate</option>
+                <option value="atelier-rose">Atelier Rose</option>
+                <option value="harbor-mint">Harbor Mint</option>
+                <option value="ink-copper">Ink Copper</option>
+                <option value="orchard-lab">Orchard Lab</option>
+                <option value="custom">Custom</option>
+              </select>
+            </label>
+            <label>
+              Heading Style
+              <input id="headingStyle" data-bind="theme.typography.heading_style" autocomplete="off">
+            </label>
+            <label>
+              Body Style
+              <input id="bodyStyle" data-bind="theme.typography.body_style" autocomplete="off">
+            </label>
+          </div>
+          <div class="color-grid">
+            <label>Background<input type="color" id="colorBackground" data-color-key="background"></label>
+            <label>Surface<input type="color" id="colorSurface" data-color-key="surface"></label>
+            <label>Text<input type="color" id="colorText" data-color-key="text"></label>
+            <label>Muted Text<input type="color" id="colorMutedText" data-color-key="muted_text"></label>
+            <label>Primary<input type="color" id="colorPrimary" data-color-key="primary"></label>
+            <label>Secondary<input type="color" id="colorSecondary" data-color-key="secondary"></label>
+            <label>Accent<input type="color" id="colorAccent" data-color-key="accent"></label>
+          </div>
+          <div class="form-grid three">
+            <label>
+              Typography Density
+              <select id="themeDensity" data-bind="theme.typography.density">
+                <option value="speaker-led">Speaker Led</option>
+                <option value="balanced">Balanced</option>
+                <option value="reading-first">Reading First</option>
+                <option value="appendix-heavy">Appendix Heavy</option>
+              </select>
+            </label>
+            <label>
+              Logo Placement
+              <select id="logoPlacement" data-bind="theme.logo.placement">
+                <option value="none">None</option>
+                <option value="cover-only">Cover Only</option>
+                <option value="cover-and-closing">Cover and Closing</option>
+                <option value="footer-subtle">Footer Subtle</option>
+                <option value="section-only">Section Only</option>
+                <option value="all-pages">All Pages</option>
+              </select>
+            </label>
+            <label>
+              Brand Mode
+              <select id="brandMode" data-bind="theme.logo.brand_mode">
+                <option value="none">None</option>
+                <option value="light-brand">Light Brand</option>
+                <option value="strong-brand">Strong Brand</option>
+                <option value="white-label">White Label</option>
+              </select>
+            </label>
+            <label>
+              Logo Source
+              <input id="logoSource" data-bind="theme.logo.source" autocomplete="off">
+            </label>
+            <label>
+              Imagery Direction
+              <input id="imageryStyle" data-bind="theme.imagery.style_direction" autocomplete="off">
+            </label>
+          </div>
+          <div class="form-grid three checkbox-grid">
+            <label>
+              <input id="logoEnabled" type="checkbox" data-bind="theme.logo.enabled">
+              Logo Enabled
+            </label>
+            <label>
+              <input id="logoReverse" type="checkbox" data-bind="theme.logo.reverse_version_allowed">
+              Reverse Logo Allowed
+            </label>
+            <label>
+              <input id="aiImageEnabled" type="checkbox" data-bind="theme.imagery.ai_image_enabled">
+              AI Image Prompts
+            </label>
+          </div>
+          <label class="wide-field">
+            Forbidden Elements
+            <textarea id="forbiddenElements" data-list-bind="theme.imagery.forbidden_elements" rows="3"></textarea>
+          </label>
+          <div class="warning-list" id="contrastWarnings"></div>
+        </section>
+
+        <section class="panel" id="panel-lab" aria-labelledby="lab-title">
+          <div class="section-heading">
+            <h3 id="lab-title">Single-Slide Lab</h3>
+            <span class="status-pill" id="labStatusPill">Sandbox</span>
+          </div>
+          <div class="lab-layout">
+            <div class="editor-panel">
+              <label>
+                Lab Page
+                <select id="labPageSelect"></select>
+              </label>
+              <div class="form-grid two">
+                <label>
+                  Layout Variant
+                  <input id="labLayout" autocomplete="off">
+                </label>
+                <label>
+                  Visual Role
+                  <input id="labVisualRole" autocomplete="off">
+                </label>
+                <label>
+                  Density
+                  <select id="labDensity">
+                    <option value="speaker-led">Speaker Led</option>
+                    <option value="balanced">Balanced</option>
+                    <option value="reading-first">Reading First</option>
+                    <option value="appendix-heavy">Appendix Heavy</option>
+                  </select>
+                </label>
+                <label>
+                  Result
+                  <select id="labResult">
+                    <option value="sandbox">Sandbox</option>
+                    <option value="applied_to_page">Applied to Page</option>
+                    <option value="promoted_to_rule">Promoted to Rule</option>
+                    <option value="discarded">Discarded</option>
+                  </select>
+                </label>
+              </div>
+              <label class="wide-field">
+                Experiment Note
+                <textarea id="labNote" rows="4"></textarea>
+              </label>
+              <div class="button-row">
+                <button type="button" class="primary-button" id="applyLabBtn">Apply to Page</button>
+                <button type="button" class="secondary-button" id="recordExperimentBtn">Record Experiment</button>
+              </div>
+            </div>
+            <div class="slide-preview" id="slidePreview" aria-label="Slide preview"></div>
+          </div>
+        </section>
+
+        <section class="panel" id="panel-prompts" aria-labelledby="prompts-title">
+          <div class="section-heading">
+            <h3 id="prompts-title">Prompt Review</h3>
+            <span class="status-pill" id="promptCountPill">0 confirmed</span>
+          </div>
+          <div class="split-layout">
+            <div class="prompt-list" id="promptList"></div>
+            <div class="editor-panel">
+              <div class="editor-header">
+                <h4 id="promptEditorTitle">Prompt Editor</h4>
+                <button type="button" class="secondary-button" id="confirmSelectedPromptBtn">Confirm</button>
+              </div>
+              <label class="wide-field">
+                Purpose
+                <input id="promptPurpose" autocomplete="off">
+              </label>
+              <label class="wide-field">
+                Positive Prompt
+                <textarea id="promptPositive" rows="5"></textarea>
+              </label>
+              <label class="wide-field">
+                Negative Prompt
+                <textarea id="promptNegative" rows="3"></textarea>
+              </label>
+              <label class="wide-field">
+                Reference Notes
+                <textarea id="promptNotes" rows="3"></textarea>
+              </label>
+              <div class="form-grid three">
+                <label>
+                  Model Hint
+                  <input id="promptModelHint" autocomplete="off">
+                </label>
+                <label>
+                  Size
+                  <input id="promptSize" autocomplete="off">
+                </label>
+                <label>
+                  Seed
+                  <input id="promptSeed" type="number">
+                </label>
+              </div>
+              <div class="button-row status-actions">
+                <button type="button" data-prompt-status="draft">Draft</button>
+                <button type="button" data-prompt-status="review">Needs Review</button>
+                <button type="button" data-prompt-status="confirmed">Confirmed</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel" id="panel-export" aria-labelledby="export-title">
+          <div class="section-heading">
+            <h3 id="export-title">Export / QA</h3>
+            <span class="status-pill" id="exportReadyPill">Draft</span>
+          </div>
+          <div class="qa-grid">
+            <div class="qa-card">
+              <strong>Required Fields</strong>
+              <span id="qaFields">Pending</span>
+            </div>
+            <div class="qa-card">
+              <strong>Prompt Confirmations</strong>
+              <span id="qaPrompts">Pending</span>
+            </div>
+            <div class="qa-card">
+              <strong>Contrast</strong>
+              <span id="qaContrast">Pending</span>
+            </div>
+            <div class="qa-card">
+              <strong>Export Ready</strong>
+              <span id="qaReady">Pending</span>
+            </div>
+          </div>
+          <div class="button-row">
+            <button type="button" class="primary-button" id="downloadDeckBtn">Download tastecraft.deck.json</button>
+            <button type="button" class="primary-button" id="downloadPromptPackBtn">Download prompt-pack.json</button>
+          </div>
+          <div class="export-previews">
+            <label>
+              tastecraft.deck.json
+              <textarea id="deckJsonPreview" rows="14" readonly></textarea>
+            </label>
+            <label>
+              prompt-pack.json
+              <textarea id="promptPackPreview" rows="14" readonly></textarea>
+            </label>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

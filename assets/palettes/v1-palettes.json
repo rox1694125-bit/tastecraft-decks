@@ -1,0 +1,141 @@
+{
+  "schema_version": "1.0",
+  "updated_at": "2026-06-06",
+  "role_contract": [
+    "background",
+    "surface",
+    "text",
+    "muted_text",
+    "primary",
+    "secondary",
+    "accent"
+  ],
+  "palettes": [
+    {
+      "preset_id": "citrus-editorial",
+      "name": "Citrus Editorial",
+      "character": "Fresh, culinary, optimistic, and editorial.",
+      "best_for": ["consumer food", "product launch", "keynote", "brand story"],
+      "avoid_for": ["conservative board packet", "dense legal appendix"],
+      "colors": {
+        "background": "#FFF9F0",
+        "surface": "#FFFFFF",
+        "text": "#1F2328",
+        "muted_text": "#667085",
+        "primary": "#D9480F",
+        "secondary": "#0F766E",
+        "accent": "#F2B705"
+      },
+      "usage": {
+        "primary": "Use for major headings, section markers, and one key data series.",
+        "secondary": "Use for structure, comparison, and cool contrast.",
+        "accent": "Use for small highlights only; avoid long text on accent."
+      }
+    },
+    {
+      "preset_id": "market-slate",
+      "name": "Market Slate",
+      "character": "Crisp, analytical, confident, and restrained.",
+      "best_for": ["investor roadshow", "KPI review", "board review", "internal report"],
+      "avoid_for": ["playful training", "highly expressive lifestyle deck"],
+      "colors": {
+        "background": "#F7F8FA",
+        "surface": "#FFFFFF",
+        "text": "#18202A",
+        "muted_text": "#5D6B7A",
+        "primary": "#205B73",
+        "secondary": "#2F855A",
+        "accent": "#E76F51"
+      },
+      "usage": {
+        "primary": "Use for titles, chart lead series, and navigation.",
+        "secondary": "Use for positive movement, operating health, or supporting structure.",
+        "accent": "Use for risks, deltas, or single callout values."
+      }
+    },
+    {
+      "preset_id": "atelier-rose",
+      "name": "Atelier Rose",
+      "character": "Premium, human, editorial, and warm.",
+      "best_for": ["hospitality", "brand strategy", "lifestyle", "customer experience"],
+      "avoid_for": ["very dense financial appendix", "technical architecture"],
+      "colors": {
+        "background": "#FAF6F3",
+        "surface": "#FFFFFF",
+        "text": "#27211F",
+        "muted_text": "#7A6B64",
+        "primary": "#9F3A4A",
+        "secondary": "#406A5D",
+        "accent": "#D79A3D"
+      },
+      "usage": {
+        "primary": "Use for expressive headings and premium emphasis.",
+        "secondary": "Use for grounding blocks, process lines, and comparison.",
+        "accent": "Use for small editorial details and warm highlights."
+      }
+    },
+    {
+      "preset_id": "harbor-mint",
+      "name": "Harbor Mint",
+      "character": "Clean, calm, technical, and service-oriented.",
+      "best_for": ["product demo", "SaaS", "service design", "training"],
+      "avoid_for": ["luxury positioning", "dramatic keynote"],
+      "colors": {
+        "background": "#F4FBFA",
+        "surface": "#FFFFFF",
+        "text": "#172326",
+        "muted_text": "#617073",
+        "primary": "#007C89",
+        "secondary": "#5B8C5A",
+        "accent": "#FFB703"
+      },
+      "usage": {
+        "primary": "Use for interface structure, titles, and key path lines.",
+        "secondary": "Use for stable supporting labels and completed states.",
+        "accent": "Use for active state, one CTA, or a single metric highlight."
+      }
+    },
+    {
+      "preset_id": "ink-copper",
+      "name": "Ink Copper",
+      "character": "High contrast, premium, dramatic, and focused.",
+      "best_for": ["keynote", "closing", "executive narrative", "strong brand moment"],
+      "avoid_for": ["long reading-first deck", "dense appendix"],
+      "colors": {
+        "background": "#151A1E",
+        "surface": "#242A2F",
+        "text": "#F7F2EA",
+        "muted_text": "#B8C0C2",
+        "primary": "#C46A3A",
+        "secondary": "#66A6A0",
+        "accent": "#F0C75E"
+      },
+      "usage": {
+        "primary": "Use for warm emphasis, chapter numbers, and key lines.",
+        "secondary": "Use for contrast structure and secondary data series.",
+        "accent": "Use only for small highlights; large accent fields can feel theatrical."
+      }
+    },
+    {
+      "preset_id": "orchard-lab",
+      "name": "Orchard Lab",
+      "character": "Natural, precise, optimistic, and research-driven.",
+      "best_for": ["food innovation", "sustainability", "research summary", "operations improvement"],
+      "avoid_for": ["formal legal deck", "severe board escalation"],
+      "colors": {
+        "background": "#FBFCF5",
+        "surface": "#FFFFFF",
+        "text": "#20251D",
+        "muted_text": "#66705C",
+        "primary": "#4F7D24",
+        "secondary": "#1E6F78",
+        "accent": "#E0A100"
+      },
+      "usage": {
+        "primary": "Use for growth, freshness, and main conclusion markers.",
+        "secondary": "Use for analytical contrast, methods, and secondary series.",
+        "accent": "Use for experiment markers, thresholds, or small highlights."
+      }
+    }
+  ]
+}

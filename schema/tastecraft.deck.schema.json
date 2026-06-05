@@ -1,0 +1,237 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tastecraft-decks.local/schema/tastecraft.deck.schema.json",
+  "title": "TasteCraft Deck Spec",
+  "type": "object",
+  "required": ["schema_version", "project", "brief", "output", "theme", "pages", "qa"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "project": {
+      "type": "object",
+      "required": ["deck_id", "name", "locale"],
+      "additionalProperties": false,
+      "properties": {
+        "deck_id": { "type": "string", "minLength": 1 },
+        "name": { "type": "string" },
+        "locale": { "type": "string", "default": "zh-CN" },
+        "created_at": { "type": "string" },
+        "updated_at": { "type": "string" }
+      }
+    },
+    "brief": {
+      "type": "object",
+      "required": ["topic", "audience", "scenario", "goal", "tone", "constraints"],
+      "additionalProperties": false,
+      "properties": {
+        "topic": { "type": "string" },
+        "audience": { "type": "string" },
+        "scenario": {
+          "type": "string",
+          "enum": [
+            "keynote",
+            "investor-roadshow",
+            "internal-report",
+            "board-review",
+            "product-demo",
+            "technical-brief",
+            "training",
+            "other"
+          ]
+        },
+        "goal": { "type": "string" },
+        "tone": { "type": "string" },
+        "constraints": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "output": {
+      "type": "object",
+      "required": ["target_format", "aspect_ratio", "slide_count", "mode"],
+      "additionalProperties": false,
+      "properties": {
+        "target_format": {
+          "type": "string",
+          "enum": ["auto", "editable-pptx", "html-deck", "image-enhanced-pptx"]
+        },
+        "aspect_ratio": {
+          "type": "string",
+          "enum": ["16:9", "4:3", "custom"]
+        },
+        "slide_count": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 80
+        },
+        "mode": {
+          "type": "string",
+          "enum": ["batch_with_single_page_experiments", "batch", "single"]
+        },
+        "model_capabilities": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "image_generation": { "type": "boolean" },
+            "pptx_export": { "type": "boolean" },
+            "browser_preview": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "theme": {
+      "type": "object",
+      "required": ["palette", "typography", "logo", "imagery"],
+      "additionalProperties": false,
+      "properties": {
+        "palette": {
+          "type": "object",
+          "required": ["preset_id", "custom", "colors"],
+          "additionalProperties": false,
+          "properties": {
+            "preset_id": { "type": "string" },
+            "custom": { "type": "boolean" },
+            "colors": {
+              "type": "object",
+              "required": ["background", "surface", "text", "muted_text", "primary", "secondary", "accent"],
+              "additionalProperties": false,
+              "properties": {
+                "background": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+                "surface": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+                "text": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+                "muted_text": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+                "primary": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+                "secondary": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+                "accent": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" }
+              }
+            }
+          }
+        },
+        "typography": {
+          "type": "object",
+          "required": ["heading_style", "body_style", "density"],
+          "additionalProperties": false,
+          "properties": {
+            "heading_style": { "type": "string" },
+            "body_style": { "type": "string" },
+            "density": {
+              "type": "string",
+              "enum": ["speaker-led", "balanced", "reading-first", "appendix-heavy"]
+            }
+          }
+        },
+        "logo": {
+          "type": "object",
+          "required": ["enabled", "source", "placement", "reverse_version_allowed", "brand_mode"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "source": { "type": "string" },
+            "placement": {
+              "type": "string",
+              "enum": ["none", "cover-only", "cover-and-closing", "footer-subtle", "section-only", "all-pages"]
+            },
+            "reverse_version_allowed": { "type": "boolean" },
+            "brand_mode": {
+              "type": "string",
+              "enum": ["none", "light-brand", "strong-brand", "white-label"]
+            }
+          }
+        },
+        "imagery": {
+          "type": "object",
+          "required": ["ai_image_enabled", "style_direction", "forbidden_elements"],
+          "additionalProperties": false,
+          "properties": {
+            "ai_image_enabled": { "type": "boolean" },
+            "style_direction": { "type": "string" },
+            "forbidden_elements": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "pages": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["page_id", "index", "type", "title", "objective", "density", "layout_variant", "visual_role", "logo_policy", "image_prompt_refs", "status"],
+        "additionalProperties": false,
+        "properties": {
+          "page_id": { "type": "string", "minLength": 1 },
+          "index": { "type": "integer", "minimum": 1 },
+          "type": {
+            "type": "string",
+            "enum": ["cover", "agenda", "chapter", "content", "data", "visual", "closing"]
+          },
+          "title": { "type": "string" },
+          "objective": { "type": "string" },
+          "density": {
+            "type": "string",
+            "enum": ["speaker-led", "balanced", "reading-first", "appendix-heavy"]
+          },
+          "content_inputs": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "layout_variant": { "type": "string" },
+          "visual_role": { "type": "string" },
+          "logo_policy": { "type": "string" },
+          "image_prompt_refs": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "overrides": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "status": {
+            "type": "string",
+            "enum": ["draft", "valid", "locked", "needs_prompt", "prompt_confirmed", "warning"]
+          }
+        }
+      }
+    },
+    "experiments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["experiment_id", "page_id", "changes", "result"],
+        "additionalProperties": false,
+        "properties": {
+          "experiment_id": { "type": "string" },
+          "page_id": { "type": "string" },
+          "changes": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "result": {
+            "type": "string",
+            "enum": ["sandbox", "applied_to_page", "promoted_to_rule", "discarded"]
+          }
+        }
+      }
+    },
+    "qa": {
+      "type": "object",
+      "required": ["required_fields_complete", "all_required_prompts_confirmed", "contrast_warnings", "export_ready"],
+      "additionalProperties": false,
+      "properties": {
+        "required_fields_complete": { "type": "boolean" },
+        "all_required_prompts_confirmed": { "type": "boolean" },
+        "contrast_warnings": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "export_ready": { "type": "boolean" }
+      }
+    }
+  }
+}
