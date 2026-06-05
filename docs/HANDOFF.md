@@ -23,7 +23,7 @@
 - No SaaS, accounts, cloud sync, or collaboration layer in V1.
 - No Word report implementation in V1.
 - No real customer data, private logos, tokens, or generated binary outputs in the public repo.
-- `gh auth` needs reauthentication before remote creation and push.
+- GitHub remote is `https://github.com/rox1694125-bit/tastecraft-decks`.
 
 ## Validation Checklist
 
@@ -40,7 +40,8 @@
 - Full local validation chain passed after verifier fixes.
 - `scripts/smoke_test_console.py` now executes the console export functions through Node and verifies that unconfirmed prompts are excluded from `prompt-pack.json`.
 - Chrome headless screenshot verified the static console renders at `/assets/tastecraft-console/index.html`.
+- GitHub public repo and remote `main` were verified after push.
 
 ## Next Agent Task
 
-Create the public GitHub repository and push once authentication is fixed.
+Use the `v0.1.0` baseline for early synthetic testing, then improve prompt lint, demo gallery quality, and release packaging.

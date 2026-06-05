@@ -4,7 +4,7 @@
 
 - Repository bootstrapped locally with V1 baseline files.
 - V1 scope is locked to presentation and deck workflows.
-- GitHub publishing is pending because the local `gh` token must be refreshed.
+- GitHub public repository created and pushed: `https://github.com/rox1694125-bit/tastecraft-decks`.
 
 ## V1 Definition
 
@@ -17,10 +17,10 @@ TasteCraft Decks turns presentation aesthetics into an inspectable workflow:
 
 ## Current Risks
 
-- GitHub auth is not currently valid in this environment.
 - V1 must avoid expanding into a full SaaS, WYSIWYG editor, Word report generator, or generic website builder.
 - Demo assets must remain synthetic and safe for public release.
+- Future releases should keep generated binary outputs out of source control unless reviewed.
 
 ## Next Step
 
-Commit the validated baseline, refresh GitHub authentication, create the public `tastecraft-decks` repository, and push.
+Tag and maintain the `v0.1.0` baseline, then start early contributor testing with synthetic deck briefs.
