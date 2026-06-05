@@ -41,6 +41,7 @@
 - `scripts/smoke_test_console.py` now executes the console export functions through Node and verifies that unconfirmed prompts are excluded from `prompt-pack.json`.
 - Chrome headless screenshot verified the static console renders at `/assets/tastecraft-console/index.html`.
 - GitHub public repo and remote `main` were verified after push.
+- GitHub release `v0.1.0` was created at `https://github.com/rox1694125-bit/tastecraft-decks/releases/tag/v0.1.0`.
 
 ## Next Agent Task
 

@@ -5,6 +5,7 @@
 - Repository bootstrapped locally with V1 baseline files.
 - V1 scope is locked to presentation and deck workflows.
 - GitHub public repository created and pushed: `https://github.com/rox1694125-bit/tastecraft-decks`.
+- GitHub release created: `https://github.com/rox1694125-bit/tastecraft-decks/releases/tag/v0.1.0`.
 
 ## V1 Definition
 
@@ -23,4 +24,4 @@ TasteCraft Decks turns presentation aesthetics into an inspectable workflow:
 
 ## Next Step
 
-Tag and maintain the `v0.1.0` baseline, then start early contributor testing with synthetic deck briefs.
+Start early contributor testing with synthetic deck briefs and improve prompt lint / demo gallery quality for `v0.2`.
