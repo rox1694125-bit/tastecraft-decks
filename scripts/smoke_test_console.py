@@ -67,8 +67,21 @@ def check_console(root: Path, console_dir: Path) -> list[str]:
         if marker not in html:
             errors.append(f"index.html does not mention {marker}")
 
+    if '<html lang="zh-CN">' not in html:
+        errors.append("index.html must default to zh-CN")
+    if 'id="languageSelect"' not in html or 'value="zh-CN"' not in html or 'value="en"' not in html:
+        errors.append("index.html must expose zh-CN/en language switch options")
+
     if re.search(r"\b(localStorage|sessionStorage)\b", html):
         errors.append("index.html should not persist deck data in browser storage without an explicit policy")
+
+    app_path = console_dir / "app.js"
+    if app_path.exists():
+        app_text = app_path.read_text(encoding="utf-8")
+        if 'currentLanguage = "zh-CN"' not in app_text:
+            errors.append("app.js must default currentLanguage to zh-CN")
+        if '"zh-CN":' not in app_text or "en:" not in app_text:
+            errors.append("app.js must include both zh-CN and en translation dictionaries")
 
     return errors
 

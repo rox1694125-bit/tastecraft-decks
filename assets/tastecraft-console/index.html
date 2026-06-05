@@ -1,52 +1,59 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>TasteCraft Decks Console</title>
+    <title>TasteCraft Decks 控制台</title>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <div class="app-shell">
-      <aside class="sidebar" aria-label="Console panels">
+      <aside class="sidebar" aria-label="控制台面板">
         <div class="brand-block">
           <div class="brand-mark">TC</div>
           <div>
             <h1>TasteCraft Decks</h1>
-            <p>Design-control console</p>
+            <p id="brandSubtitle">审美主控台</p>
           </div>
         </div>
         <nav class="panel-nav">
-          <button type="button" class="nav-item active" data-panel="project">Project Setup</button>
-          <button type="button" class="nav-item" data-panel="planner">Batch Planner</button>
-          <button type="button" class="nav-item" data-panel="map">Page Map</button>
-          <button type="button" class="nav-item" data-panel="visual">Visual System</button>
-          <button type="button" class="nav-item" data-panel="lab">Single-Slide Lab</button>
-          <button type="button" class="nav-item" data-panel="prompts">Prompt Review</button>
-          <button type="button" class="nav-item" data-panel="export">Export / QA</button>
+          <button type="button" class="nav-item active" data-panel="project">项目设置</button>
+          <button type="button" class="nav-item" data-panel="planner">批量规划</button>
+          <button type="button" class="nav-item" data-panel="map">页面地图</button>
+          <button type="button" class="nav-item" data-panel="visual">视觉系统</button>
+          <button type="button" class="nav-item" data-panel="lab">单页实验室</button>
+          <button type="button" class="nav-item" data-panel="prompts">Prompt 审核</button>
+          <button type="button" class="nav-item" data-panel="export">导出 / QA</button>
         </nav>
         <div class="sidebar-meta">
           <span id="navDeckId">tastecraft-demo</span>
-          <strong id="navReadyState">Draft</strong>
+          <strong id="navReadyState">草稿</strong>
         </div>
       </aside>
 
       <main class="workspace">
         <header class="workspace-header">
           <div>
-            <p class="eyebrow">Static local console</p>
-            <h2 id="workspaceTitle">Project Setup</h2>
+            <p class="eyebrow" id="workspaceEyebrow">静态本地控制台</p>
+            <h2 id="workspaceTitle">项目设置</h2>
           </div>
           <div class="header-actions">
-            <button type="button" class="secondary-button" id="loadSampleBtn">Load Sample</button>
-            <button type="button" class="primary-button" id="exportDeckTopBtn">Export Deck JSON</button>
+            <label class="language-switch">
+              <span id="languageSwitchText">语言</span>
+              <select id="languageSelect" aria-label="语言">
+                <option value="zh-CN">中文</option>
+                <option value="en">English</option>
+              </select>
+            </label>
+            <button type="button" class="secondary-button" id="loadSampleBtn">加载示例</button>
+            <button type="button" class="primary-button" id="exportDeckTopBtn">导出 Deck JSON</button>
           </div>
         </header>
 
         <section class="panel active" id="panel-project" aria-labelledby="project-title">
           <div class="section-heading">
-            <h3 id="project-title">Project Setup</h3>
-            <span class="status-pill" id="projectStatusPill">Draft</span>
+            <h3 id="project-title">项目设置</h3>
+            <span class="status-pill" id="projectStatusPill">草稿</span>
           </div>
           <div class="form-grid three">
             <label>
@@ -54,61 +61,61 @@
               <input id="deckId" data-bind="project.deck_id" autocomplete="off">
             </label>
             <label>
-              Project Name
+              项目名称
               <input id="projectName" data-bind="project.name" autocomplete="off">
             </label>
             <label>
-              Locale
+              语言区域
               <input id="projectLocale" data-bind="project.locale" autocomplete="off">
             </label>
           </div>
           <div class="form-grid two">
             <label>
-              Topic
+              主题
               <input id="briefTopic" data-bind="brief.topic" autocomplete="off">
             </label>
             <label>
-              Audience
+              受众
               <input id="briefAudience" data-bind="brief.audience" autocomplete="off">
             </label>
             <label>
-              Scenario
+              场景
               <select id="briefScenario" data-bind="brief.scenario">
-                <option value="keynote">Keynote</option>
-                <option value="investor-roadshow">Investor Roadshow</option>
-                <option value="internal-report">Internal Report</option>
-                <option value="board-review">Board Review</option>
-                <option value="product-demo">Product Demo</option>
-                <option value="technical-brief">Technical Brief</option>
-                <option value="training">Training</option>
-                <option value="other">Other</option>
+                <option value="keynote">发布会 / 演讲</option>
+                <option value="investor-roadshow">投资人路演</option>
+                <option value="internal-report">内部汇报</option>
+                <option value="board-review">董事会汇报</option>
+                <option value="product-demo">产品演示</option>
+                <option value="technical-brief">技术简报</option>
+                <option value="training">培训</option>
+                <option value="other">其他</option>
               </select>
             </label>
             <label>
-              Tone
+              语气
               <input id="briefTone" data-bind="brief.tone" autocomplete="off">
             </label>
           </div>
           <label class="wide-field">
-            Goal
+            目标
             <textarea id="briefGoal" data-bind="brief.goal" rows="3"></textarea>
           </label>
           <label class="wide-field">
-            Constraints
+            限制条件
             <textarea id="briefConstraints" data-list-bind="brief.constraints" rows="3"></textarea>
           </label>
           <div class="form-grid three">
             <label>
-              Target Format
+              目标格式
               <select id="targetFormat" data-bind="output.target_format">
-                <option value="auto">Auto</option>
-                <option value="editable-pptx">Editable PPTX</option>
-                <option value="html-deck">HTML Deck</option>
-                <option value="image-enhanced-pptx">Image-Enhanced PPTX</option>
+                <option value="auto">自动</option>
+                <option value="editable-pptx">可编辑 PPTX</option>
+                <option value="html-deck">HTML 演示</option>
+                <option value="image-enhanced-pptx">图片增强 PPTX</option>
               </select>
             </label>
             <label>
-              Aspect Ratio
+              页面比例
               <select id="aspectRatio" data-bind="output.aspect_ratio">
                 <option value="16:9">16:9</option>
                 <option value="4:3">4:3</option>
@@ -116,60 +123,60 @@
               </select>
             </label>
             <label>
-              Slide Count
+              页数
               <input id="slideCount" type="number" min="1" max="80" data-bind="output.slide_count">
             </label>
           </div>
           <div class="form-grid four checkbox-grid">
             <label>
               <input id="modeBatchSingle" type="radio" name="mode" value="batch_with_single_page_experiments" data-radio-bind="output.mode">
-              Batch + Lab
+              批量 + 实验室
             </label>
             <label>
               <input type="radio" name="mode" value="batch" data-radio-bind="output.mode">
-              Batch
+              批量
             </label>
             <label>
               <input type="radio" name="mode" value="single" data-radio-bind="output.mode">
-              Single
+              单页
             </label>
             <label>
               <input id="capImage" type="checkbox" data-bind="output.model_capabilities.image_generation">
-              Image Generation
+              图像生成
             </label>
             <label>
               <input id="capPptx" type="checkbox" data-bind="output.model_capabilities.pptx_export">
-              PPTX Export
+              PPTX 导出
             </label>
             <label>
               <input id="capBrowser" type="checkbox" data-bind="output.model_capabilities.browser_preview">
-              Browser Preview
+              浏览器预览
             </label>
           </div>
         </section>
 
         <section class="panel" id="panel-planner" aria-labelledby="planner-title">
           <div class="section-heading">
-            <h3 id="planner-title">Batch Planner</h3>
-            <span class="status-pill" id="plannerPageCount">0 pages</span>
+            <h3 id="planner-title">批量规划</h3>
+            <span class="status-pill" id="plannerPageCount">0 页</span>
           </div>
           <div class="planner-grid">
             <div class="control-band">
               <label>
-                Batch Size
+                批量页数
                 <input id="plannerSlideCount" type="number" min="1" max="80">
               </label>
               <label>
-                Default Density
+                默认密度
                 <select id="plannerDensity">
-                  <option value="speaker-led">Speaker Led</option>
-                  <option value="balanced">Balanced</option>
-                  <option value="reading-first">Reading First</option>
-                  <option value="appendix-heavy">Appendix Heavy</option>
+                  <option value="speaker-led">演讲辅助</option>
+                  <option value="balanced">均衡</option>
+                  <option value="reading-first">阅读优先</option>
+                  <option value="appendix-heavy">附录密集</option>
                 </select>
               </label>
-              <button type="button" class="primary-button" id="generateSevenBtn">Generate 7-Type Map</button>
-              <button type="button" class="secondary-button" id="regeneratePromptsBtn">Regenerate Prompts</button>
+              <button type="button" class="primary-button" id="generateSevenBtn">生成 7 类页面地图</button>
+              <button type="button" class="secondary-button" id="regeneratePromptsBtn">重新生成 Prompts</button>
             </div>
             <div class="planner-summary" id="plannerSummary"></div>
           </div>
@@ -177,8 +184,8 @@
 
         <section class="panel" id="panel-map" aria-labelledby="map-title">
           <div class="section-heading">
-            <h3 id="map-title">Page Map</h3>
-            <span class="status-pill" id="mapStatusPill">No pages</span>
+            <h3 id="map-title">页面地图</h3>
+            <span class="status-pill" id="mapStatusPill">无页面</span>
           </div>
           <div class="split-layout">
             <div class="table-wrap">
@@ -186,9 +193,9 @@
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>Type</th>
-                    <th>Title</th>
-                    <th>Status</th>
+                    <th>类型</th>
+                    <th>标题</th>
+                    <th>状态</th>
                   </tr>
                 </thead>
                 <tbody id="pageTableBody"></tbody>
@@ -196,67 +203,67 @@
             </div>
             <div class="editor-panel">
               <div class="editor-header">
-                <h4 id="pageEditorTitle">Page Editor</h4>
-                <button type="button" class="secondary-button" id="addPageBtn">Add Page</button>
+                <h4 id="pageEditorTitle">页面编辑器</h4>
+                <button type="button" class="secondary-button" id="addPageBtn">新增页面</button>
               </div>
               <div class="form-grid two">
                 <label>
-                  Page Type
+                  页面类型
                   <select id="pageType">
-                    <option value="cover">Cover</option>
-                    <option value="agenda">Agenda</option>
-                    <option value="chapter">Chapter</option>
-                    <option value="content">Content</option>
-                    <option value="data">Data</option>
-                    <option value="visual">Visual</option>
-                    <option value="closing">Closing</option>
+                    <option value="cover">封面</option>
+                    <option value="agenda">目录</option>
+                    <option value="chapter">章节页</option>
+                    <option value="content">内容页</option>
+                    <option value="data">数据页</option>
+                    <option value="visual">视觉页</option>
+                    <option value="closing">结束页</option>
                   </select>
                 </label>
                 <label>
-                  Status
+                  状态
                   <select id="pageStatus">
-                    <option value="draft">Draft</option>
-                    <option value="valid">Valid</option>
-                    <option value="locked">Locked</option>
-                    <option value="needs_prompt">Needs Prompt</option>
-                    <option value="prompt_confirmed">Prompt Confirmed</option>
-                    <option value="warning">Warning</option>
+                    <option value="draft">草稿</option>
+                    <option value="valid">有效</option>
+                    <option value="locked">已锁定</option>
+                    <option value="needs_prompt">需 Prompt</option>
+                    <option value="prompt_confirmed">Prompt 已确认</option>
+                    <option value="warning">警告</option>
                   </select>
                 </label>
                 <label>
-                  Density
+                  密度
                   <select id="pageDensity">
-                    <option value="speaker-led">Speaker Led</option>
-                    <option value="balanced">Balanced</option>
-                    <option value="reading-first">Reading First</option>
-                    <option value="appendix-heavy">Appendix Heavy</option>
+                    <option value="speaker-led">演讲辅助</option>
+                    <option value="balanced">均衡</option>
+                    <option value="reading-first">阅读优先</option>
+                    <option value="appendix-heavy">附录密集</option>
                   </select>
                 </label>
                 <label>
-                  Logo Policy
+                  Logo 策略
                   <input id="pageLogoPolicy" autocomplete="off">
                 </label>
               </div>
               <label class="wide-field">
-                Title
+                标题
                 <input id="pageTitle" autocomplete="off">
               </label>
               <label class="wide-field">
-                Objective
+                页面目标
                 <textarea id="pageObjective" rows="3"></textarea>
               </label>
               <div class="form-grid two">
                 <label>
-                  Layout Variant
+                  版式变体
                   <input id="pageLayout" autocomplete="off">
                 </label>
                 <label>
-                  Visual Role
+                  视觉角色
                   <input id="pageVisualRole" autocomplete="off">
                 </label>
               </div>
               <label class="wide-field">
-                Content Inputs
+                内容输入
                 <textarea id="pageContent" rows="4"></textarea>
               </label>
             </div>
@@ -265,12 +272,12 @@
 
         <section class="panel" id="panel-visual" aria-labelledby="visual-title">
           <div class="section-heading">
-            <h3 id="visual-title">Visual System</h3>
-            <span class="status-pill" id="contrastStatusPill">Checking</span>
+            <h3 id="visual-title">视觉系统</h3>
+            <span class="status-pill" id="contrastStatusPill">检查中</span>
           </div>
           <div class="form-grid three">
             <label>
-              Palette Preset
+              配色预设
               <select id="palettePreset">
                 <option value="citrus-editorial">Citrus Editorial</option>
                 <option value="market-slate">Market Slate</option>
@@ -282,78 +289,78 @@
               </select>
             </label>
             <label>
-              Heading Style
+              标题风格
               <input id="headingStyle" data-bind="theme.typography.heading_style" autocomplete="off">
             </label>
             <label>
-              Body Style
+              正文风格
               <input id="bodyStyle" data-bind="theme.typography.body_style" autocomplete="off">
             </label>
           </div>
           <div class="color-grid">
-            <label>Background<input type="color" id="colorBackground" data-color-key="background"></label>
-            <label>Surface<input type="color" id="colorSurface" data-color-key="surface"></label>
-            <label>Text<input type="color" id="colorText" data-color-key="text"></label>
-            <label>Muted Text<input type="color" id="colorMutedText" data-color-key="muted_text"></label>
-            <label>Primary<input type="color" id="colorPrimary" data-color-key="primary"></label>
-            <label>Secondary<input type="color" id="colorSecondary" data-color-key="secondary"></label>
-            <label>Accent<input type="color" id="colorAccent" data-color-key="accent"></label>
+            <label>背景<input type="color" id="colorBackground" data-color-key="background"></label>
+            <label>面板<input type="color" id="colorSurface" data-color-key="surface"></label>
+            <label>正文色<input type="color" id="colorText" data-color-key="text"></label>
+            <label>弱化文字<input type="color" id="colorMutedText" data-color-key="muted_text"></label>
+            <label>主色<input type="color" id="colorPrimary" data-color-key="primary"></label>
+            <label>辅色<input type="color" id="colorSecondary" data-color-key="secondary"></label>
+            <label>强调色<input type="color" id="colorAccent" data-color-key="accent"></label>
           </div>
           <div class="form-grid three">
             <label>
-              Typography Density
+              字体密度
               <select id="themeDensity" data-bind="theme.typography.density">
-                <option value="speaker-led">Speaker Led</option>
-                <option value="balanced">Balanced</option>
-                <option value="reading-first">Reading First</option>
-                <option value="appendix-heavy">Appendix Heavy</option>
+                <option value="speaker-led">演讲辅助</option>
+                <option value="balanced">均衡</option>
+                <option value="reading-first">阅读优先</option>
+                <option value="appendix-heavy">附录密集</option>
               </select>
             </label>
             <label>
-              Logo Placement
+              Logo 位置
               <select id="logoPlacement" data-bind="theme.logo.placement">
-                <option value="none">None</option>
-                <option value="cover-only">Cover Only</option>
-                <option value="cover-and-closing">Cover and Closing</option>
-                <option value="footer-subtle">Footer Subtle</option>
-                <option value="section-only">Section Only</option>
-                <option value="all-pages">All Pages</option>
+                <option value="none">无</option>
+                <option value="cover-only">仅封面</option>
+                <option value="cover-and-closing">封面和结束页</option>
+                <option value="footer-subtle">页脚弱露出</option>
+                <option value="section-only">仅章节页</option>
+                <option value="all-pages">所有页面</option>
               </select>
             </label>
             <label>
-              Brand Mode
+              品牌模式
               <select id="brandMode" data-bind="theme.logo.brand_mode">
-                <option value="none">None</option>
-                <option value="light-brand">Light Brand</option>
-                <option value="strong-brand">Strong Brand</option>
-                <option value="white-label">White Label</option>
+                <option value="none">无品牌</option>
+                <option value="light-brand">轻品牌</option>
+                <option value="strong-brand">强品牌</option>
+                <option value="white-label">白标</option>
               </select>
             </label>
             <label>
-              Logo Source
+              Logo 来源
               <input id="logoSource" data-bind="theme.logo.source" autocomplete="off">
             </label>
             <label>
-              Imagery Direction
+              图像方向
               <input id="imageryStyle" data-bind="theme.imagery.style_direction" autocomplete="off">
             </label>
           </div>
           <div class="form-grid three checkbox-grid">
             <label>
               <input id="logoEnabled" type="checkbox" data-bind="theme.logo.enabled">
-              Logo Enabled
+              启用 Logo
             </label>
             <label>
               <input id="logoReverse" type="checkbox" data-bind="theme.logo.reverse_version_allowed">
-              Reverse Logo Allowed
+              允许反白 Logo
             </label>
             <label>
               <input id="aiImageEnabled" type="checkbox" data-bind="theme.imagery.ai_image_enabled">
-              AI Image Prompts
+              AI 图像 Prompts
             </label>
           </div>
           <label class="wide-field">
-            Forbidden Elements
+            禁止元素
             <textarea id="forbiddenElements" data-list-bind="theme.imagery.forbidden_elements" rows="3"></textarea>
           </label>
           <div class="warning-list" id="contrastWarnings"></div>
@@ -361,91 +368,91 @@
 
         <section class="panel" id="panel-lab" aria-labelledby="lab-title">
           <div class="section-heading">
-            <h3 id="lab-title">Single-Slide Lab</h3>
-            <span class="status-pill" id="labStatusPill">Sandbox</span>
+            <h3 id="lab-title">单页实验室</h3>
+            <span class="status-pill" id="labStatusPill">沙盒</span>
           </div>
           <div class="lab-layout">
             <div class="editor-panel">
               <label>
-                Lab Page
+                实验页面
                 <select id="labPageSelect"></select>
               </label>
               <div class="form-grid two">
                 <label>
-                  Layout Variant
+                  版式变体
                   <input id="labLayout" autocomplete="off">
                 </label>
                 <label>
-                  Visual Role
+                  视觉角色
                   <input id="labVisualRole" autocomplete="off">
                 </label>
                 <label>
-                  Density
+                  密度
                   <select id="labDensity">
-                    <option value="speaker-led">Speaker Led</option>
-                    <option value="balanced">Balanced</option>
-                    <option value="reading-first">Reading First</option>
-                    <option value="appendix-heavy">Appendix Heavy</option>
+                    <option value="speaker-led">演讲辅助</option>
+                    <option value="balanced">均衡</option>
+                    <option value="reading-first">阅读优先</option>
+                    <option value="appendix-heavy">附录密集</option>
                   </select>
                 </label>
                 <label>
-                  Result
+                  结果
                   <select id="labResult">
-                    <option value="sandbox">Sandbox</option>
-                    <option value="applied_to_page">Applied to Page</option>
-                    <option value="promoted_to_rule">Promoted to Rule</option>
-                    <option value="discarded">Discarded</option>
+                    <option value="sandbox">沙盒</option>
+                    <option value="applied_to_page">应用到页面</option>
+                    <option value="promoted_to_rule">提升为规则</option>
+                    <option value="discarded">丢弃</option>
                   </select>
                 </label>
               </div>
               <label class="wide-field">
-                Experiment Note
+                实验备注
                 <textarea id="labNote" rows="4"></textarea>
               </label>
               <div class="button-row">
-                <button type="button" class="primary-button" id="applyLabBtn">Apply to Page</button>
-                <button type="button" class="secondary-button" id="recordExperimentBtn">Record Experiment</button>
+                <button type="button" class="primary-button" id="applyLabBtn">应用到页面</button>
+                <button type="button" class="secondary-button" id="recordExperimentBtn">记录实验</button>
               </div>
             </div>
-            <div class="slide-preview" id="slidePreview" aria-label="Slide preview"></div>
+            <div class="slide-preview" id="slidePreview" aria-label="幻灯片预览"></div>
           </div>
         </section>
 
         <section class="panel" id="panel-prompts" aria-labelledby="prompts-title">
           <div class="section-heading">
-            <h3 id="prompts-title">Prompt Review</h3>
-            <span class="status-pill" id="promptCountPill">0 confirmed</span>
+            <h3 id="prompts-title">Prompt 审核</h3>
+            <span class="status-pill" id="promptCountPill">0 已确认</span>
           </div>
           <div class="split-layout">
             <div class="prompt-list" id="promptList"></div>
             <div class="editor-panel">
               <div class="editor-header">
-                <h4 id="promptEditorTitle">Prompt Editor</h4>
-                <button type="button" class="secondary-button" id="confirmSelectedPromptBtn">Confirm</button>
+                <h4 id="promptEditorTitle">Prompt 编辑器</h4>
+                <button type="button" class="secondary-button" id="confirmSelectedPromptBtn">确认</button>
               </div>
               <label class="wide-field">
-                Purpose
+                用途
                 <input id="promptPurpose" autocomplete="off">
               </label>
               <label class="wide-field">
-                Positive Prompt
+                正向 Prompt
                 <textarea id="promptPositive" rows="5"></textarea>
               </label>
               <label class="wide-field">
-                Negative Prompt
+                负向 Prompt
                 <textarea id="promptNegative" rows="3"></textarea>
               </label>
               <label class="wide-field">
-                Reference Notes
+                参考说明
                 <textarea id="promptNotes" rows="3"></textarea>
               </label>
               <div class="form-grid three">
                 <label>
-                  Model Hint
+                  模型提示
                   <input id="promptModelHint" autocomplete="off">
                 </label>
                 <label>
-                  Size
+                  尺寸
                   <input id="promptSize" autocomplete="off">
                 </label>
                 <label>
@@ -454,9 +461,9 @@
                 </label>
               </div>
               <div class="button-row status-actions">
-                <button type="button" data-prompt-status="draft">Draft</button>
-                <button type="button" data-prompt-status="review">Needs Review</button>
-                <button type="button" data-prompt-status="confirmed">Confirmed</button>
+                <button type="button" data-prompt-status="draft">草稿</button>
+                <button type="button" data-prompt-status="review">待审核</button>
+                <button type="button" data-prompt-status="confirmed">已确认</button>
               </div>
             </div>
           </div>
@@ -464,30 +471,30 @@
 
         <section class="panel" id="panel-export" aria-labelledby="export-title">
           <div class="section-heading">
-            <h3 id="export-title">Export / QA</h3>
-            <span class="status-pill" id="exportReadyPill">Draft</span>
+            <h3 id="export-title">导出 / QA</h3>
+            <span class="status-pill" id="exportReadyPill">草稿</span>
           </div>
           <div class="qa-grid">
             <div class="qa-card">
-              <strong>Required Fields</strong>
-              <span id="qaFields">Pending</span>
+              <strong id="qaFieldsLabel">必填字段</strong>
+              <span id="qaFields">待处理</span>
             </div>
             <div class="qa-card">
-              <strong>Prompt Confirmations</strong>
-              <span id="qaPrompts">Pending</span>
+              <strong id="qaPromptsLabel">Prompt 确认</strong>
+              <span id="qaPrompts">待处理</span>
             </div>
             <div class="qa-card">
-              <strong>Contrast</strong>
-              <span id="qaContrast">Pending</span>
+              <strong id="qaContrastLabel">对比度</strong>
+              <span id="qaContrast">待处理</span>
             </div>
             <div class="qa-card">
-              <strong>Export Ready</strong>
-              <span id="qaReady">Pending</span>
+              <strong id="qaReadyLabel">可导出</strong>
+              <span id="qaReady">待处理</span>
             </div>
           </div>
           <div class="button-row">
-            <button type="button" class="primary-button" id="downloadDeckBtn">Download tastecraft.deck.json</button>
-            <button type="button" class="primary-button" id="downloadPromptPackBtn">Download prompt-pack.json</button>
+            <button type="button" class="primary-button" id="downloadDeckBtn">下载 tastecraft.deck.json</button>
+            <button type="button" class="primary-button" id="downloadPromptPackBtn">下载 prompt-pack.json</button>
           </div>
           <div class="export-previews">
             <label>

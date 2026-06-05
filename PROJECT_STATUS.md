@@ -6,6 +6,7 @@
 - V1 scope is locked to presentation and deck workflows.
 - GitHub public repository created and pushed: `https://github.com/rox1694125-bit/tastecraft-decks`.
 - GitHub release created: `https://github.com/rox1694125-bit/tastecraft-decks/releases/tag/v0.1.0`.
+- Local console now supports Chinese and English UI modes, with Chinese as the default.
 
 ## V1 Definition
 

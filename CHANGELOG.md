@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Add Chinese/English language switching to the local console, defaulting to Chinese.
+- Localize the static console's initial visible UI text to Chinese before runtime translation runs.
+
 ## 0.1.0 - 2026-06-06
 
 - Initialize TasteCraft Decks / 审美工坊·演示美学.

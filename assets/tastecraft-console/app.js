@@ -3,14 +3,365 @@
 
   var pageTypes = ["cover", "agenda", "chapter", "content", "data", "visual", "closing"];
   var densityValues = ["speaker-led", "balanced", "reading-first", "appendix-heavy"];
-  var panelTitles = {
-    project: "Project Setup",
-    planner: "Batch Planner",
-    map: "Page Map",
-    visual: "Visual System",
-    lab: "Single-Slide Lab",
-    prompts: "Prompt Review",
-    export: "Export / QA"
+  var currentLanguage = "zh-CN";
+  var panelKeys = {
+    project: "panel.project",
+    planner: "panel.planner",
+    map: "panel.map",
+    visual: "panel.visual",
+    lab: "panel.lab",
+    prompts: "panel.prompts",
+    export: "panel.export"
+  };
+  var i18n = {
+    "zh-CN": {
+      documentTitle: "TasteCraft Decks 控制台",
+      brandSubtitle: "审美主控台",
+      workspaceEyebrow: "静态本地控制台",
+      language: "语言",
+      "panel.project": "项目设置",
+      "panel.planner": "批量规划",
+      "panel.map": "页面地图",
+      "panel.visual": "视觉系统",
+      "panel.lab": "单页实验室",
+      "panel.prompts": "Prompt 审核",
+      "panel.export": "导出 / QA",
+      "button.loadSample": "加载示例",
+      "button.exportDeck": "导出 Deck JSON",
+      "button.generateMap": "生成 7 类页面地图",
+      "button.regeneratePrompts": "重新生成 Prompts",
+      "button.addPage": "新增页面",
+      "button.applyLab": "应用到页面",
+      "button.recordExperiment": "记录实验",
+      "button.confirm": "确认",
+      "button.downloadDeck": "下载 tastecraft.deck.json",
+      "button.downloadPrompts": "下载 prompt-pack.json",
+      "label.deckId": "Deck ID",
+      "label.projectName": "项目名称",
+      "label.locale": "语言区域",
+      "label.topic": "主题",
+      "label.audience": "受众",
+      "label.scenario": "场景",
+      "label.tone": "语气",
+      "label.goal": "目标",
+      "label.constraints": "限制条件",
+      "label.targetFormat": "目标格式",
+      "label.aspectRatio": "页面比例",
+      "label.slideCount": "页数",
+      "label.batchLab": "批量 + 实验室",
+      "label.batch": "批量",
+      "label.single": "单页",
+      "label.imageGeneration": "图像生成",
+      "label.pptxExport": "PPTX 导出",
+      "label.browserPreview": "浏览器预览",
+      "label.batchSize": "批量页数",
+      "label.defaultDensity": "默认密度",
+      "label.pageType": "页面类型",
+      "label.status": "状态",
+      "label.density": "密度",
+      "label.logoPolicy": "Logo 策略",
+      "label.title": "标题",
+      "label.objective": "页面目标",
+      "label.layoutVariant": "版式变体",
+      "label.visualRole": "视觉角色",
+      "label.contentInputs": "内容输入",
+      "label.palettePreset": "配色预设",
+      "label.headingStyle": "标题风格",
+      "label.bodyStyle": "正文风格",
+      "label.background": "背景",
+      "label.surface": "面板",
+      "label.text": "正文色",
+      "label.mutedText": "弱化文字",
+      "label.primary": "主色",
+      "label.secondary": "辅色",
+      "label.accent": "强调色",
+      "label.typographyDensity": "字体密度",
+      "label.logoPlacement": "Logo 位置",
+      "label.brandMode": "品牌模式",
+      "label.logoSource": "Logo 来源",
+      "label.imageryDirection": "图像方向",
+      "label.logoEnabled": "启用 Logo",
+      "label.reverseLogo": "允许反白 Logo",
+      "label.aiPrompts": "AI 图像 Prompts",
+      "label.forbiddenElements": "禁止元素",
+      "label.labPage": "实验页面",
+      "label.result": "结果",
+      "label.experimentNote": "实验备注",
+      "label.purpose": "用途",
+      "label.positivePrompt": "正向 Prompt",
+      "label.negativePrompt": "负向 Prompt",
+      "label.referenceNotes": "参考说明",
+      "label.modelHint": "模型提示",
+      "label.size": "尺寸",
+      "label.seed": "Seed",
+      "qa.requiredFields": "必填字段",
+      "qa.promptConfirmations": "Prompt 确认",
+      "qa.contrast": "对比度",
+      "qa.exportReady": "可导出",
+      "table.index": "#",
+      "table.type": "类型",
+      "table.title": "标题",
+      "table.status": "状态",
+      "status.draft": "草稿",
+      "status.valid": "有效",
+      "status.locked": "已锁定",
+      "status.needs_prompt": "需 Prompt",
+      "status.prompt_confirmed": "Prompt 已确认",
+      "status.warning": "警告",
+      "status.review": "待审核",
+      "status.confirmed": "已确认",
+      "status.complete": "完整",
+      "status.incomplete": "不完整",
+      "status.ready": "就绪",
+      "status.notReady": "未就绪",
+      "status.clear": "清晰",
+      "status.pending": "待处理",
+      "status.sandbox": "沙盒",
+      "status.recorded": "已记录",
+      "status.untitled": "未命名",
+      "type.cover": "封面",
+      "type.agenda": "目录",
+      "type.chapter": "章节页",
+      "type.content": "内容页",
+      "type.data": "数据页",
+      "type.visual": "视觉页",
+      "type.closing": "结束页",
+      "density.speaker-led": "演讲辅助",
+      "density.balanced": "均衡",
+      "density.reading-first": "阅读优先",
+      "density.appendix-heavy": "附录密集",
+      "format.auto": "自动",
+      "format.editable-pptx": "可编辑 PPTX",
+      "format.html-deck": "HTML 演示",
+      "format.image-enhanced-pptx": "图片增强 PPTX",
+      "scenario.keynote": "发布会 / 演讲",
+      "scenario.investor-roadshow": "投资人路演",
+      "scenario.internal-report": "内部汇报",
+      "scenario.board-review": "董事会汇报",
+      "scenario.product-demo": "产品演示",
+      "scenario.technical-brief": "技术简报",
+      "scenario.training": "培训",
+      "scenario.other": "其他",
+      "mode.batch_with_single_page_experiments": "批量 + 单页实验",
+      "mode.batch": "批量",
+      "mode.single": "单页",
+      "logo.none": "无",
+      "logo.cover-only": "仅封面",
+      "logo.cover-and-closing": "封面和结束页",
+      "logo.footer-subtle": "页脚弱露出",
+      "logo.section-only": "仅章节页",
+      "logo.all-pages": "所有页面",
+      "brand.none": "无品牌",
+      "brand.light-brand": "轻品牌",
+      "brand.strong-brand": "强品牌",
+      "brand.white-label": "白标",
+      "lab.applied_to_page": "应用到页面",
+      "lab.promoted_to_rule": "提升为规则",
+      "lab.discarded": "丢弃",
+      "palette.citrus-editorial": "Citrus Editorial",
+      "palette.market-slate": "Market Slate",
+      "palette.atelier-rose": "Atelier Rose",
+      "palette.harbor-mint": "Harbor Mint",
+      "palette.ink-copper": "Ink Copper",
+      "palette.orchard-lab": "Orchard Lab",
+      "palette.custom": "自定义",
+      planned: "已规划",
+      notMapped: "未映射",
+      noPages: "无页面",
+      pages: "页",
+      pageEditor: "页面编辑器",
+      pageTitlePrefix: "第 {index} 页 - {type}",
+      noContrastWarnings: "无对比度警告。",
+      warningCount: "{count} 个警告",
+      promptCount: "{confirmed} 已确认 / 共 {total}",
+      promptEditor: "Prompt 编辑器",
+      unconfirmedPrompts: "有未确认 Prompt",
+      textOnBackground: "正文色 / 背景",
+      textOnSurface: "正文色 / 面板",
+      mutedOnBackground: "弱化文字 / 背景",
+      mutedOnSurface: "弱化文字 / 面板",
+      primaryOnBackground: "主色 / 背景",
+      secondaryOnBackground: "辅色 / 背景",
+      accentOnBackground: "强调色 / 背景",
+      contrastWarning: "{name} 对比度为 {ratio}:1；目标为 {target}:1。",
+      promptPackPalette: "配色预设",
+      promptPackLogo: "Logo 位置",
+      promptPackBrand: "品牌模式"
+    },
+    en: {
+      documentTitle: "TasteCraft Decks Console",
+      brandSubtitle: "Design-control console",
+      workspaceEyebrow: "Static local console",
+      language: "Language",
+      "panel.project": "Project Setup",
+      "panel.planner": "Batch Planner",
+      "panel.map": "Page Map",
+      "panel.visual": "Visual System",
+      "panel.lab": "Single-Slide Lab",
+      "panel.prompts": "Prompt Review",
+      "panel.export": "Export / QA",
+      "button.loadSample": "Load Sample",
+      "button.exportDeck": "Export Deck JSON",
+      "button.generateMap": "Generate 7-Type Map",
+      "button.regeneratePrompts": "Regenerate Prompts",
+      "button.addPage": "Add Page",
+      "button.applyLab": "Apply to Page",
+      "button.recordExperiment": "Record Experiment",
+      "button.confirm": "Confirm",
+      "button.downloadDeck": "Download tastecraft.deck.json",
+      "button.downloadPrompts": "Download prompt-pack.json",
+      "label.deckId": "Deck ID",
+      "label.projectName": "Project Name",
+      "label.locale": "Locale",
+      "label.topic": "Topic",
+      "label.audience": "Audience",
+      "label.scenario": "Scenario",
+      "label.tone": "Tone",
+      "label.goal": "Goal",
+      "label.constraints": "Constraints",
+      "label.targetFormat": "Target Format",
+      "label.aspectRatio": "Aspect Ratio",
+      "label.slideCount": "Slide Count",
+      "label.batchLab": "Batch + Lab",
+      "label.batch": "Batch",
+      "label.single": "Single",
+      "label.imageGeneration": "Image Generation",
+      "label.pptxExport": "PPTX Export",
+      "label.browserPreview": "Browser Preview",
+      "label.batchSize": "Batch Size",
+      "label.defaultDensity": "Default Density",
+      "label.pageType": "Page Type",
+      "label.status": "Status",
+      "label.density": "Density",
+      "label.logoPolicy": "Logo Policy",
+      "label.title": "Title",
+      "label.objective": "Objective",
+      "label.layoutVariant": "Layout Variant",
+      "label.visualRole": "Visual Role",
+      "label.contentInputs": "Content Inputs",
+      "label.palettePreset": "Palette Preset",
+      "label.headingStyle": "Heading Style",
+      "label.bodyStyle": "Body Style",
+      "label.background": "Background",
+      "label.surface": "Surface",
+      "label.text": "Text",
+      "label.mutedText": "Muted Text",
+      "label.primary": "Primary",
+      "label.secondary": "Secondary",
+      "label.accent": "Accent",
+      "label.typographyDensity": "Typography Density",
+      "label.logoPlacement": "Logo Placement",
+      "label.brandMode": "Brand Mode",
+      "label.logoSource": "Logo Source",
+      "label.imageryDirection": "Imagery Direction",
+      "label.logoEnabled": "Logo Enabled",
+      "label.reverseLogo": "Reverse Logo Allowed",
+      "label.aiPrompts": "AI Image Prompts",
+      "label.forbiddenElements": "Forbidden Elements",
+      "label.labPage": "Lab Page",
+      "label.result": "Result",
+      "label.experimentNote": "Experiment Note",
+      "label.purpose": "Purpose",
+      "label.positivePrompt": "Positive Prompt",
+      "label.negativePrompt": "Negative Prompt",
+      "label.referenceNotes": "Reference Notes",
+      "label.modelHint": "Model Hint",
+      "label.size": "Size",
+      "label.seed": "Seed",
+      "qa.requiredFields": "Required Fields",
+      "qa.promptConfirmations": "Prompt Confirmations",
+      "qa.contrast": "Contrast",
+      "qa.exportReady": "Export Ready",
+      "table.index": "#",
+      "table.type": "Type",
+      "table.title": "Title",
+      "table.status": "Status",
+      "status.draft": "Draft",
+      "status.valid": "Valid",
+      "status.locked": "Locked",
+      "status.needs_prompt": "Needs Prompt",
+      "status.prompt_confirmed": "Prompt Confirmed",
+      "status.warning": "Warning",
+      "status.review": "Needs Review",
+      "status.confirmed": "Confirmed",
+      "status.complete": "Complete",
+      "status.incomplete": "Incomplete",
+      "status.ready": "Ready",
+      "status.notReady": "Not ready",
+      "status.clear": "Clear",
+      "status.pending": "Pending",
+      "status.sandbox": "Sandbox",
+      "status.recorded": "Recorded",
+      "status.untitled": "untitled",
+      "type.cover": "Cover",
+      "type.agenda": "Agenda",
+      "type.chapter": "Chapter",
+      "type.content": "Content",
+      "type.data": "Data",
+      "type.visual": "Visual",
+      "type.closing": "Closing",
+      "density.speaker-led": "Speaker Led",
+      "density.balanced": "Balanced",
+      "density.reading-first": "Reading First",
+      "density.appendix-heavy": "Appendix Heavy",
+      "format.auto": "Auto",
+      "format.editable-pptx": "Editable PPTX",
+      "format.html-deck": "HTML Deck",
+      "format.image-enhanced-pptx": "Image-Enhanced PPTX",
+      "scenario.keynote": "Keynote",
+      "scenario.investor-roadshow": "Investor Roadshow",
+      "scenario.internal-report": "Internal Report",
+      "scenario.board-review": "Board Review",
+      "scenario.product-demo": "Product Demo",
+      "scenario.technical-brief": "Technical Brief",
+      "scenario.training": "Training",
+      "scenario.other": "Other",
+      "mode.batch_with_single_page_experiments": "Batch + Lab",
+      "mode.batch": "Batch",
+      "mode.single": "Single",
+      "logo.none": "None",
+      "logo.cover-only": "Cover Only",
+      "logo.cover-and-closing": "Cover and Closing",
+      "logo.footer-subtle": "Footer Subtle",
+      "logo.section-only": "Section Only",
+      "logo.all-pages": "All Pages",
+      "brand.none": "None",
+      "brand.light-brand": "Light Brand",
+      "brand.strong-brand": "Strong Brand",
+      "brand.white-label": "White Label",
+      "lab.applied_to_page": "Applied to Page",
+      "lab.promoted_to_rule": "Promoted to Rule",
+      "lab.discarded": "Discarded",
+      "palette.citrus-editorial": "Citrus Editorial",
+      "palette.market-slate": "Market Slate",
+      "palette.atelier-rose": "Atelier Rose",
+      "palette.harbor-mint": "Harbor Mint",
+      "palette.ink-copper": "Ink Copper",
+      "palette.orchard-lab": "Orchard Lab",
+      "palette.custom": "Custom",
+      planned: "planned",
+      notMapped: "Not mapped",
+      noPages: "No pages",
+      pages: "pages",
+      pageEditor: "Page Editor",
+      pageTitlePrefix: "Page {index} - {type}",
+      noContrastWarnings: "No contrast warnings.",
+      warningCount: "{count} warning",
+      promptCount: "{confirmed} confirmed / {total}",
+      promptEditor: "Prompt Editor",
+      unconfirmedPrompts: "Unconfirmed prompts",
+      textOnBackground: "Text on background",
+      textOnSurface: "Text on surface",
+      mutedOnBackground: "Muted text on background",
+      mutedOnSurface: "Muted text on surface",
+      primaryOnBackground: "Primary on background",
+      secondaryOnBackground: "Secondary on background",
+      accentOnBackground: "Accent on background",
+      contrastWarning: "{name} contrast is {ratio}:1; target is {target}:1.",
+      promptPackPalette: "Palette preset",
+      promptPackLogo: "Logo placement",
+      promptPackBrand: "Brand mode"
+    }
   };
   var palettes = {
     "citrus-editorial": {
@@ -74,18 +425,18 @@
     selectedPromptId: "prompt-page-01-cover",
     project: {
       deck_id: "tastecraft-demo",
-      name: "TasteCraft Demo Deck",
+      name: "TasteCraft 演示稿示例",
       locale: "zh-CN",
       created_at: "",
       updated_at: ""
     },
     brief: {
-      topic: "AI-assisted presentation craft",
-      audience: "Strategy and design leads",
+      topic: "AI 辅助演示审美工作流",
+      audience: "战略和设计负责人",
       scenario: "internal-report",
-      goal: "Align the team on a repeatable deck design workflow.",
-      tone: "Precise, premium, editorial",
-      constraints: ["No external dependencies", "Static local export only"]
+      goal: "让团队对可复用的演示设计流程形成共识。",
+      tone: "精准、高级、编辑感",
+      constraints: ["无外部依赖", "仅本地静态导出"]
     },
     output: {
       target_format: "auto",
@@ -105,21 +456,21 @@
         colors: copy(palettes["market-slate"])
       },
       typography: {
-        heading_style: "Editorial grotesk, high contrast scale",
-        body_style: "Readable sans, compact evidence blocks",
+        heading_style: "编辑感无衬线，高对比标题层级",
+        body_style: "易读无衬线，紧凑证据块",
         density: "balanced"
       },
       logo: {
         enabled: true,
-        source: "Local brand mark",
+        source: "本地品牌标识",
         placement: "cover-and-closing",
         reverse_version_allowed: true,
         brand_mode: "light-brand"
       },
       imagery: {
         ai_image_enabled: true,
-        style_direction: "Documentary product stills with clean workspace context",
-        forbidden_elements: ["generic 3D blobs", "fake dashboard numbers", "watermarks"]
+        style_direction: "纪实产品静物，干净工作场景",
+        forbidden_elements: ["通用 3D 装饰球", "虚假仪表盘数字", "水印"]
       }
     },
     pages: [],
@@ -129,6 +480,194 @@
 
   function copy(value) {
     return JSON.parse(JSON.stringify(value));
+  }
+
+  function t(key) {
+    var active = i18n[currentLanguage] || i18n["zh-CN"];
+    var fallback = i18n.en || {};
+    return active[key] || fallback[key] || key;
+  }
+
+  function fmt(key, values) {
+    return t(key).replace(/\{(\w+)\}/g, function (_, name) {
+      return values && values[name] !== undefined ? values[name] : "";
+    });
+  }
+
+  function panelTitle(panel) {
+    return t(panelKeys[panel] || panel);
+  }
+
+  function typeLabel(value) {
+    return t("type." + value);
+  }
+
+  function densityLabel(value) {
+    return t("density." + value);
+  }
+
+  function statusLabel(value) {
+    return t("status." + value);
+  }
+
+  function optionLabel(value) {
+    return t("format." + value) !== "format." + value ? t("format." + value) :
+      t("scenario." + value) !== "scenario." + value ? t("scenario." + value) :
+      t("mode." + value) !== "mode." + value ? t("mode." + value) :
+      t("logo." + value) !== "logo." + value ? t("logo." + value) :
+      t("brand." + value) !== "brand." + value ? t("brand." + value) :
+      t("lab." + value) !== "lab." + value ? t("lab." + value) :
+      t("palette." + value) !== "palette." + value ? t("palette." + value) :
+      t("density." + value) !== "density." + value ? t("density." + value) :
+      t("type." + value) !== "type." + value ? t("type." + value) :
+      t("status." + value) !== "status." + value ? t("status." + value) :
+      toTitle(value);
+  }
+
+  function pageCountLabel(count) {
+    return count + " " + t("pages");
+  }
+
+  function setFirstTextNode(label, value) {
+    if (!label) {
+      return;
+    }
+    var node = Array.prototype.find.call(label.childNodes, function (child) {
+      return child.nodeType === 3 && child.textContent.trim();
+    });
+    if (node) {
+      node.textContent = "\n              " + value + "\n              ";
+    }
+  }
+
+  function localizeControlLabels() {
+    var labels = {
+      deckId: "label.deckId",
+      projectName: "label.projectName",
+      projectLocale: "label.locale",
+      briefTopic: "label.topic",
+      briefAudience: "label.audience",
+      briefScenario: "label.scenario",
+      briefTone: "label.tone",
+      briefGoal: "label.goal",
+      briefConstraints: "label.constraints",
+      targetFormat: "label.targetFormat",
+      aspectRatio: "label.aspectRatio",
+      slideCount: "label.slideCount",
+      modeBatchSingle: "label.batchLab",
+      capImage: "label.imageGeneration",
+      capPptx: "label.pptxExport",
+      capBrowser: "label.browserPreview",
+      plannerSlideCount: "label.batchSize",
+      plannerDensity: "label.defaultDensity",
+      pageType: "label.pageType",
+      pageStatus: "label.status",
+      pageDensity: "label.density",
+      pageLogoPolicy: "label.logoPolicy",
+      pageTitle: "label.title",
+      pageObjective: "label.objective",
+      pageLayout: "label.layoutVariant",
+      pageVisualRole: "label.visualRole",
+      pageContent: "label.contentInputs",
+      palettePreset: "label.palettePreset",
+      headingStyle: "label.headingStyle",
+      bodyStyle: "label.bodyStyle",
+      colorBackground: "label.background",
+      colorSurface: "label.surface",
+      colorText: "label.text",
+      colorMutedText: "label.mutedText",
+      colorPrimary: "label.primary",
+      colorSecondary: "label.secondary",
+      colorAccent: "label.accent",
+      themeDensity: "label.typographyDensity",
+      logoPlacement: "label.logoPlacement",
+      brandMode: "label.brandMode",
+      logoSource: "label.logoSource",
+      imageryStyle: "label.imageryDirection",
+      logoEnabled: "label.logoEnabled",
+      logoReverse: "label.reverseLogo",
+      aiImageEnabled: "label.aiPrompts",
+      forbiddenElements: "label.forbiddenElements",
+      labPageSelect: "label.labPage",
+      labLayout: "label.layoutVariant",
+      labVisualRole: "label.visualRole",
+      labDensity: "label.density",
+      labResult: "label.result",
+      labNote: "label.experimentNote",
+      promptPurpose: "label.purpose",
+      promptPositive: "label.positivePrompt",
+      promptNegative: "label.negativePrompt",
+      promptNotes: "label.referenceNotes",
+      promptModelHint: "label.modelHint",
+      promptSize: "label.size",
+      promptSeed: "label.seed"
+    };
+    Object.keys(labels).forEach(function (id) {
+      var control = byId(id);
+      if (control) {
+        setFirstTextNode(control.closest("label"), t(labels[id]));
+      }
+    });
+
+    document.querySelectorAll('input[name="mode"]').forEach(function (input) {
+      setFirstTextNode(input.closest("label"), optionLabel(input.value));
+    });
+  }
+
+  function localizeOptions() {
+    document.querySelectorAll("select").forEach(function (select) {
+      Array.prototype.forEach.call(select.options, function (option) {
+        option.textContent = optionLabel(option.value);
+      });
+    });
+  }
+
+  function localizeStaticUi() {
+    document.documentElement.lang = currentLanguage;
+    document.title = t("documentTitle");
+    document.querySelector(".sidebar").setAttribute("aria-label", currentLanguage === "zh-CN" ? "控制台面板" : "Console panels");
+    byId("brandSubtitle").textContent = t("brandSubtitle");
+    byId("workspaceEyebrow").textContent = t("workspaceEyebrow");
+    byId("languageSwitchText").textContent = t("language");
+    byId("languageSelect").setAttribute("aria-label", t("language"));
+    byId("languageSelect").value = currentLanguage;
+    document.querySelectorAll(".nav-item").forEach(function (button) {
+      button.textContent = panelTitle(button.dataset.panel);
+    });
+    byId("loadSampleBtn").textContent = t("button.loadSample");
+    byId("exportDeckTopBtn").textContent = t("button.exportDeck");
+    byId("generateSevenBtn").textContent = t("button.generateMap");
+    byId("regeneratePromptsBtn").textContent = t("button.regeneratePrompts");
+    byId("addPageBtn").textContent = t("button.addPage");
+    byId("applyLabBtn").textContent = t("button.applyLab");
+    byId("recordExperimentBtn").textContent = t("button.recordExperiment");
+    byId("confirmSelectedPromptBtn").textContent = t("button.confirm");
+    byId("downloadDeckBtn").textContent = t("button.downloadDeck");
+    byId("downloadPromptPackBtn").textContent = t("button.downloadPrompts");
+    Object.keys(panelKeys).forEach(function (panel) {
+      var heading = byId(panel === "map" ? "map-title" : panel + "-title");
+      if (panel === "project") heading = byId("project-title");
+      if (panel === "planner") heading = byId("planner-title");
+      if (panel === "visual") heading = byId("visual-title");
+      if (panel === "lab") heading = byId("lab-title");
+      if (panel === "prompts") heading = byId("prompts-title");
+      if (panel === "export") heading = byId("export-title");
+      if (heading) {
+        heading.textContent = panelTitle(panel);
+      }
+    });
+    byId("qaFieldsLabel").textContent = t("qa.requiredFields");
+    byId("qaPromptsLabel").textContent = t("qa.promptConfirmations");
+    byId("qaContrastLabel").textContent = t("qa.contrast");
+    byId("qaReadyLabel").textContent = t("qa.exportReady");
+    document.querySelectorAll("th").forEach(function (cell, index) {
+      cell.textContent = [t("table.index"), t("table.type"), t("table.title"), t("table.status")][index] || cell.textContent;
+    });
+    document.querySelectorAll("[data-prompt-status]").forEach(function (button) {
+      button.textContent = statusLabel(button.dataset.promptStatus);
+    });
+    localizeControlLabels();
+    localizeOptions();
   }
 
   function byId(id) {
@@ -189,8 +728,58 @@
   }
 
   function pageBlueprint(type, index, density) {
-    var topic = state.brief.topic || state.project.name || "TasteCraft Deck";
-    var blueprints = {
+    var topic = state.brief.topic || state.project.name || (currentLanguage === "zh-CN" ? "TasteCraft 演示稿" : "TasteCraft Deck");
+    var blueprints = currentLanguage === "zh-CN" ? {
+      cover: {
+        title: topic,
+        objective: "建立叙事框架和审美预期。",
+        layout_variant: "全幅标题",
+        visual_role: "主视觉",
+        logo_policy: "封面标识"
+      },
+      agenda: {
+        title: "汇报路径",
+        objective: "展示会议顺序和决策路径。",
+        layout_variant: "编号目录",
+        visual_role: "结构化列表",
+        logo_policy: "弱页脚"
+      },
+      chapter: {
+        title: "章节过渡",
+        objective: "干净地切入核心论点。",
+        layout_variant: "章节分隔",
+        visual_role: "字体强调",
+        logo_policy: "章节标识"
+      },
+      content: {
+        title: "核心工作流",
+        objective: "用简洁证据解释主要观点。",
+        layout_variant: "双栏证据",
+        visual_role: "图解辅助",
+        logo_policy: "弱页脚"
+      },
+      data: {
+        title: "表现快照",
+        objective: "在不制造视觉噪音的前提下呈现证据。",
+        layout_variant: "指标条加图表",
+        visual_role: "图表强调",
+        logo_policy: "弱页脚"
+      },
+      visual: {
+        title: "视觉参考",
+        objective: "展示期望的观感、场景或产品状态。",
+        layout_variant: "图片主导对比",
+        visual_role: "大视觉",
+        logo_policy: "无"
+      },
+      closing: {
+        title: "决策与下一步",
+        objective: "落地建议、行动和责任人。",
+        layout_variant: "收束承诺",
+        visual_role: "总结信号",
+        logo_policy: "结束页标识"
+      }
+    } : {
       cover: {
         title: topic,
         objective: "Set the narrative frame and design expectation.",
@@ -250,7 +839,7 @@
       objective: base.objective,
       density: density || state.theme.typography.density || "balanced",
       content_inputs: {
-        notes: "Sample " + type + " page generated by the console."
+        notes: currentLanguage === "zh-CN" ? "控制台生成的" + typeLabel(type) + "示例页。" : "Sample " + type + " page generated by the console."
       },
       layout_variant: base.layout_variant,
       visual_role: base.visual_role,
@@ -276,21 +865,28 @@
   function makePromptForPage(page, previous) {
     var confirmedAt = previous && previous.confirmed_at ? previous.confirmed_at : "";
     var status = previous && previous.status ? previous.status : "draft";
+    var positiveParts = currentLanguage === "zh-CN" ? [
+      state.theme.imagery.style_direction,
+      "用于" + typeLabel(page.type) + "演示页面",
+      "主题：" + (state.brief.topic || state.project.name),
+      "版式角色：" + page.visual_role,
+      "干净构图，高级编辑光线，可用留白"
+    ] : [
+      state.theme.imagery.style_direction,
+      "for a " + page.type + " presentation slide",
+      "topic: " + (state.brief.topic || state.project.name),
+      "layout role: " + page.visual_role,
+      "clean composition, premium editorial lighting, usable whitespace"
+    ];
     return {
       prompt_id: page.image_prompt_refs[0] || ("prompt-" + page.page_id),
       page_id: page.page_id,
       page_type: page.type,
-      purpose: "Create the image asset for the " + toTitle(page.type) + " page.",
+      purpose: currentLanguage === "zh-CN" ? "为" + typeLabel(page.type) + "创建图像素材。" : "Create the image asset for the " + toTitle(page.type) + " page.",
       aspect_ratio: state.output.aspect_ratio,
-      positive_prompt: [
-        state.theme.imagery.style_direction,
-        "for a " + page.type + " presentation slide",
-        "topic: " + (state.brief.topic || state.project.name),
-        "layout role: " + page.visual_role,
-        "clean composition, premium editorial lighting, usable whitespace"
-      ].filter(Boolean).join("; "),
+      positive_prompt: positiveParts.filter(Boolean).join("; "),
       negative_prompt: state.theme.imagery.forbidden_elements.join(", "),
-      reference_notes: "Match palette " + state.theme.palette.preset_id + " and logo policy " + page.logo_policy + ".",
+      reference_notes: currentLanguage === "zh-CN" ? "匹配配色 " + state.theme.palette.preset_id + " 和 logo 策略 " + page.logo_policy + "。" : "Match palette " + state.theme.palette.preset_id + " and logo policy " + page.logo_policy + ".",
       generation_params: {
         model_hint: "image-generation-capable",
         size: state.output.aspect_ratio === "4:3" ? "1536x1152" : "1792x1024",
@@ -406,18 +1002,18 @@
   function contrastWarnings() {
     var colors = state.theme.palette.colors;
     var checks = [
-      ["Text on background", colors.text, colors.background, 4.5],
-      ["Text on surface", colors.text, colors.surface, 4.5],
-      ["Muted text on background", colors.muted_text, colors.background, 3],
-      ["Muted text on surface", colors.muted_text, colors.surface, 3],
-      ["Primary on background", colors.primary, colors.background, 3],
-      ["Secondary on background", colors.secondary, colors.background, 3],
-      ["Accent on background", colors.accent, colors.background, 3]
+      [t("textOnBackground"), colors.text, colors.background, 4.5],
+      [t("textOnSurface"), colors.text, colors.surface, 4.5],
+      [t("mutedOnBackground"), colors.muted_text, colors.background, 3],
+      [t("mutedOnSurface"), colors.muted_text, colors.surface, 3],
+      [t("primaryOnBackground"), colors.primary, colors.background, 3],
+      [t("secondaryOnBackground"), colors.secondary, colors.background, 3],
+      [t("accentOnBackground"), colors.accent, colors.background, 3]
     ];
     return checks.reduce(function (warnings, check) {
       var ratio = contrastRatio(check[1], check[2]);
       if (ratio < check[3]) {
-        warnings.push(check[0] + " contrast is " + ratio.toFixed(2) + ":1; target is " + check[3] + ":1.");
+        warnings.push(fmt("contrastWarning", { name: check[0], ratio: ratio.toFixed(2), target: check[3] }));
       }
       return warnings;
     }, []);
@@ -520,9 +1116,9 @@
       global_image_policy: {
         style_direction: state.theme.imagery.style_direction,
         brand_constraints: [
-          "Palette preset: " + state.theme.palette.preset_id,
-          "Logo placement: " + state.theme.logo.placement,
-          "Brand mode: " + state.theme.logo.brand_mode
+          t("promptPackPalette") + ": " + state.theme.palette.preset_id,
+          t("promptPackLogo") + ": " + optionLabel(state.theme.logo.placement),
+          t("promptPackBrand") + ": " + optionLabel(state.theme.logo.brand_mode)
         ],
         forbidden_elements: copy(state.theme.imagery.forbidden_elements)
       },
@@ -584,6 +1180,7 @@
   }
 
   function renderPanels() {
+    localizeStaticUi();
     document.querySelectorAll(".nav-item").forEach(function (button) {
       button.classList.toggle("active", button.dataset.panel === state.activePanel);
     });
@@ -591,17 +1188,17 @@
       panel.classList.remove("active");
     });
     byId("panel-" + state.activePanel).classList.add("active");
-    byId("workspaceTitle").textContent = panelTitles[state.activePanel];
+    byId("workspaceTitle").textContent = panelTitle(state.activePanel);
   }
 
   function renderPlanner() {
-    byId("plannerPageCount").textContent = state.pages.length + " pages";
+    byId("plannerPageCount").textContent = pageCountLabel(state.pages.length);
     byId("plannerSummary").innerHTML = pageTypes.map(function (type) {
       var pages = state.pages.filter(function (page) {
         return page.type === type;
       });
-      return '<div class="type-chip"><strong>' + escapeHtml(type) + '</strong><span>' +
-        pages.length + " planned</span><span>" + escapeHtml(pages[0] ? pages[0].layout_variant : "Not mapped") +
+      return '<div class="type-chip"><strong>' + escapeHtml(typeLabel(type)) + '</strong><span>' +
+        pages.length + " " + t("planned") + '</span><span>' + escapeHtml(pages[0] ? pages[0].layout_variant : t("notMapped")) +
         "</span></div>";
     }).join("");
   }
@@ -611,10 +1208,10 @@
     tbody.innerHTML = state.pages.map(function (page) {
       return '<tr data-page-id="' + escapeHtml(page.page_id) + '" class="' +
         (page.page_id === state.selectedPageId ? "selected" : "") + '"><td>' +
-        page.index + "</td><td>" + escapeHtml(toTitle(page.type)) + "</td><td>" +
-        escapeHtml(page.title) + "</td><td>" + escapeHtml(page.status) + "</td></tr>";
+        page.index + "</td><td>" + escapeHtml(typeLabel(page.type)) + "</td><td>" +
+        escapeHtml(page.title) + "</td><td>" + escapeHtml(statusLabel(page.status)) + "</td></tr>";
     }).join("");
-    byId("mapStatusPill").textContent = state.pages.length ? state.pages.length + " pages" : "No pages";
+    byId("mapStatusPill").textContent = state.pages.length ? pageCountLabel(state.pages.length) : t("noPages");
   }
 
   function renderPageEditor() {
@@ -624,10 +1221,10 @@
       byId(id).disabled = disabled;
     });
     if (!page) {
-      byId("pageEditorTitle").textContent = "Page Editor";
+      byId("pageEditorTitle").textContent = t("pageEditor");
       return;
     }
-    byId("pageEditorTitle").textContent = "Page " + page.index + " - " + toTitle(page.type);
+    byId("pageEditorTitle").textContent = fmt("pageTitlePrefix", { index: page.index, type: typeLabel(page.type) });
     byId("pageType").value = page.type;
     byId("pageStatus").value = page.status;
     byId("pageDensity").value = page.density;
@@ -643,8 +1240,8 @@
     var warnings = contrastWarnings();
     byId("contrastWarnings").innerHTML = warnings.length ? warnings.map(function (warning) {
       return '<div class="warning-item">' + escapeHtml(warning) + "</div>";
-    }).join("") : '<div class="warning-item">No contrast warnings.</div>';
-    setPill(byId("contrastStatusPill"), warnings.length ? warnings.length + " warning" + (warnings.length > 1 ? "s" : "") : "Clear", warnings.length ? "warning" : "ready");
+    }).join("") : '<div class="warning-item">' + escapeHtml(t("noContrastWarnings")) + "</div>";
+    setPill(byId("contrastStatusPill"), warnings.length ? fmt("warningCount", { count: warnings.length }) : t("status.clear"), warnings.length ? "warning" : "ready");
     document.documentElement.style.setProperty("--preview-bg", state.theme.palette.colors.background);
     document.documentElement.style.setProperty("--preview-text", state.theme.palette.colors.text);
     document.documentElement.style.setProperty("--preview-muted", state.theme.palette.colors.muted_text);
@@ -661,7 +1258,7 @@
       byId("labLayout").value = page.layout_variant;
       byId("labVisualRole").value = page.visual_role;
       byId("labDensity").value = page.density;
-      byId("slidePreview").innerHTML = '<div><div class="preview-kicker">' + escapeHtml(toTitle(page.type)) +
+      byId("slidePreview").innerHTML = '<div><div class="preview-kicker">' + escapeHtml(typeLabel(page.type)) +
         '</div><h4 class="preview-title">' + escapeHtml(page.title) + '</h4></div><p class="preview-objective">' +
         escapeHtml(page.objective) + '</p><div class="preview-footer"><span>' + escapeHtml(page.layout_variant) +
         '</span><span>' + escapeHtml(page.logo_policy) + "</span></div>";
@@ -674,12 +1271,12 @@
     var confirmed = state.prompts.filter(function (prompt) {
       return prompt.status === "confirmed";
     }).length;
-    byId("promptCountPill").textContent = confirmed + " confirmed / " + state.prompts.length;
+    byId("promptCountPill").textContent = fmt("promptCount", { confirmed: confirmed, total: state.prompts.length });
     byId("promptList").innerHTML = state.prompts.map(function (prompt) {
       return '<button type="button" class="prompt-row ' + (prompt.prompt_id === state.selectedPromptId ? "selected" : "") +
         '" data-prompt-id="' + escapeHtml(prompt.prompt_id) + '"><strong>' + escapeHtml(prompt.page_id) +
-        '</strong><span>' + escapeHtml(toTitle(prompt.page_type)) + '</span><span class="prompt-status ' +
-        escapeHtml(prompt.status) + '">' + escapeHtml(prompt.status) + "</span></button>";
+        '</strong><span>' + escapeHtml(typeLabel(prompt.page_type)) + '</span><span class="prompt-status ' +
+        escapeHtml(prompt.status) + '">' + escapeHtml(statusLabel(prompt.status)) + "</span></button>";
     }).join("");
     renderPromptEditor();
   }
@@ -696,7 +1293,7 @@
     });
     byId("confirmSelectedPromptBtn").disabled = disabled;
     if (!prompt) {
-      byId("promptEditorTitle").textContent = "Prompt Editor";
+      byId("promptEditorTitle").textContent = t("promptEditor");
       return;
     }
     byId("promptEditorTitle").textContent = prompt.prompt_id;
@@ -712,14 +1309,14 @@
   function renderQa() {
     var qa = qaState();
     var warnings = qa.contrast_warnings.length;
-    byId("qaFields").textContent = qa.required_fields_complete ? "Complete" : "Incomplete";
-    byId("qaPrompts").textContent = qa.all_required_prompts_confirmed ? "Confirmed" : "Unconfirmed prompts";
-    byId("qaContrast").textContent = warnings ? warnings + " warning" + (warnings > 1 ? "s" : "") : "Clear";
-    byId("qaReady").textContent = qa.export_ready ? "Ready" : "Not ready";
-    setPill(byId("exportReadyPill"), qa.export_ready ? "Ready" : "Draft", qa.export_ready ? "ready" : "warning");
-    setPill(byId("projectStatusPill"), qa.required_fields_complete ? "Complete" : "Draft", qa.required_fields_complete ? "ready" : "warning");
-    setPill(byId("navReadyState"), qa.export_ready ? "Ready" : "Draft", qa.export_ready ? "ready" : "warning");
-    byId("navDeckId").textContent = state.project.deck_id || "untitled";
+    byId("qaFields").textContent = qa.required_fields_complete ? t("status.complete") : t("status.incomplete");
+    byId("qaPrompts").textContent = qa.all_required_prompts_confirmed ? t("status.confirmed") : t("unconfirmedPrompts");
+    byId("qaContrast").textContent = warnings ? fmt("warningCount", { count: warnings }) : t("status.clear");
+    byId("qaReady").textContent = qa.export_ready ? t("status.ready") : t("status.notReady");
+    setPill(byId("exportReadyPill"), qa.export_ready ? t("status.ready") : t("status.draft"), qa.export_ready ? "ready" : "warning");
+    setPill(byId("projectStatusPill"), qa.required_fields_complete ? t("status.complete") : t("status.draft"), qa.required_fields_complete ? "ready" : "warning");
+    setPill(byId("navReadyState"), qa.export_ready ? t("status.ready") : t("status.draft"), qa.export_ready ? "ready" : "warning");
+    byId("navDeckId").textContent = state.project.deck_id || t("status.untitled");
     byId("deckJsonPreview").value = JSON.stringify(buildDeckSpec(), null, 2);
     byId("promptPackPreview").value = JSON.stringify(buildPromptPack(), null, 2);
   }
@@ -754,6 +1351,10 @@
   }
 
   function bindGlobalControls() {
+    byId("languageSelect").addEventListener("change", function (event) {
+      currentLanguage = event.target.value;
+      renderAll();
+    });
     document.querySelectorAll(".nav-item").forEach(function (button) {
       button.addEventListener("click", function () {
         state.activePanel = button.dataset.panel;
@@ -908,7 +1509,7 @@
         },
         result: byId("labResult").value
       });
-      setPill(byId("labStatusPill"), "Recorded", "ready");
+      setPill(byId("labStatusPill"), t("status.recorded"), "ready");
       renderAll();
     });
   }
@@ -992,20 +1593,21 @@
   }
 
   function loadSample() {
+    var zh = currentLanguage === "zh-CN";
     state.project = {
       deck_id: "tastecraft-demo",
-      name: "TasteCraft Demo Deck",
-      locale: "zh-CN",
+      name: zh ? "TasteCraft 演示稿示例" : "TasteCraft Demo Deck",
+      locale: zh ? "zh-CN" : "en-US",
       created_at: "",
       updated_at: ""
     };
     state.brief = {
-      topic: "AI-assisted presentation craft",
-      audience: "Strategy and design leads",
+      topic: zh ? "AI 辅助演示审美工作流" : "AI-assisted presentation craft",
+      audience: zh ? "战略和设计负责人" : "Strategy and design leads",
       scenario: "internal-report",
-      goal: "Align the team on a repeatable deck design workflow.",
-      tone: "Precise, premium, editorial",
-      constraints: ["No external dependencies", "Static local export only"]
+      goal: zh ? "让团队对可复用的演示设计流程形成共识。" : "Align the team on a repeatable deck design workflow.",
+      tone: zh ? "精准、高级、编辑感" : "Precise, premium, editorial",
+      constraints: zh ? ["无外部依赖", "仅本地静态导出"] : ["No external dependencies", "Static local export only"]
     };
     state.output = {
       target_format: "auto",
@@ -1025,21 +1627,21 @@
         colors: copy(palettes["market-slate"])
       },
       typography: {
-        heading_style: "Editorial grotesk, high contrast scale",
-        body_style: "Readable sans, compact evidence blocks",
+        heading_style: zh ? "编辑感无衬线，高对比标题层级" : "Editorial grotesk, high contrast scale",
+        body_style: zh ? "易读无衬线，紧凑证据块" : "Readable sans, compact evidence blocks",
         density: "balanced"
       },
       logo: {
         enabled: true,
-        source: "Local brand mark",
+        source: zh ? "本地品牌标识" : "Local brand mark",
         placement: "cover-and-closing",
         reverse_version_allowed: true,
         brand_mode: "light-brand"
       },
       imagery: {
         ai_image_enabled: true,
-        style_direction: "Documentary product stills with clean workspace context",
-        forbidden_elements: ["generic 3D blobs", "fake dashboard numbers", "watermarks"]
+        style_direction: zh ? "纪实产品静物，干净工作场景" : "Documentary product stills with clean workspace context",
+        forbidden_elements: zh ? ["通用 3D 装饰球", "虚假仪表盘数字", "水印"] : ["generic 3D blobs", "fake dashboard numbers", "watermarks"]
       }
     };
     state.experiments = [];

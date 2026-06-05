@@ -17,6 +17,7 @@
 - The source repository shares references and assets; release packages generated under `dist/skills/` are self-contained.
 - Private brand kits live only under `knowledge/brand-kits/_local/` and are ignored by Git.
 - The canonical V1 palette IDs are the six IDs in `assets/palettes/v1-palettes.json`; console defaults and demo samples use `market-slate`.
+- The local console supports `zh-CN` and English UI modes. It defaults to `zh-CN`; switching languages changes UI labels and generated sample copy without changing schema field values.
 
 ## Known Constraints
 
@@ -42,7 +43,9 @@
 - Chrome headless screenshot verified the static console renders at `/assets/tastecraft-console/index.html`.
 - GitHub public repo and remote `main` were verified after push.
 - GitHub release `v0.1.0` was created at `https://github.com/rox1694125-bit/tastecraft-decks/releases/tag/v0.1.0`.
+- Bilingual console update passed local validation: JS syntax check, console smoke test, schema examples, strict reference validation, sensitive-file scan, and unit tests.
+- In-app browser verification for the local `file://` console URL was blocked by Browser Use URL policy; validation continued through local scripts.
 
 ## Next Agent Task
 
-Use the `v0.1.0` baseline for early synthetic testing, then improve prompt lint, demo gallery quality, and release packaging.
+Use the post-`v0.1.0` bilingual console baseline for early synthetic testing, then improve prompt lint, demo gallery quality, and release packaging.

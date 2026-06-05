@@ -7,6 +7,7 @@ This repository is not a SaaS product, not a stock template gallery, and not a p
 ## What It Does
 
 - Routes presentation requests through a shared deck contract, `tastecraft.deck.json`.
+- Provides a bilingual local console with Chinese as the default UI and English as a switchable mode.
 - Keeps aesthetic choices explicit: palette, density, typography, logo policy, imagery policy, page intent, and QA status.
 - Supports synthetic demo material so the public repo can show workflows without exposing real logos or client data.
 - Gives contributors a common vocabulary for deck quality: audience fit, narrative flow, slide density, visual hierarchy, accessibility, and release readiness.
