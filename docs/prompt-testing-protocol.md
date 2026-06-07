@@ -7,8 +7,8 @@ This protocol is for real-world testing of TasteCraft prompt templates for Codex
 V1 testing focuses on one workflow:
 
 1. User provides one realistic slide brief.
-2. TasteCraft turns it into prompts across the six style templates.
-3. Codex generates PPT-ready images.
+2. TasteCraft turns it into pure AI whole-slide prompts across the six style templates.
+3. Codex generates PPT-ready finished-page images.
 4. User reviews the images against real presentation standards.
 5. Feedback is distilled into reusable prompt template improvements.
 
@@ -31,6 +31,7 @@ Default output:
 - Candidate count: one image per template at first
 - Max regenerations: three candidates per page/template before the prompt must be revised
 - Text policy: generated image may contain full slide text; any key typo, missing text, garbled text, or wrong meaning is a failure
+- Generation path: pure AI finished-page image. Do not default to AI background plus HTML/PPT overlay.
 
 ## User Brief Format
 
@@ -105,7 +106,23 @@ Each prompt should include:
 - typography rules: hierarchy, consistent levels, and high-contrast text;
 - negative constraints: avoid generic cards, default dashboards, flat HTML-like charts, and decorative clutter.
 
-If exact Chinese text and high-end visuals conflict, prefer a hybrid final-image workflow: image generation creates the premium visual system and background, deterministic HTML/PPT rendering places exact text and charts, then the final output is flattened as a 4K image.
+## Route Decision: Pure AI First
+
+The June 8 tax-comparison test compared:
+
+- pure AI whole-slide image;
+- deterministic HTML/CSS composition;
+- AI-generated background/visual system plus deterministic HTML text and chart overlay.
+
+The current project decision is that pure AI whole-slide output is the correct V1 path. The overlay route preserved exact text and 4K export size, but the result still felt like foreground cards placed on top of a background and did not deliver the image-model-native visual ceiling the project is trying to unlock.
+
+Use hybrid overlay only as:
+
+- a benchmark for exactness;
+- a documented rejected path in testing notes;
+- an emergency fallback when exact text/data matters more than visual ambition.
+
+Do not make hybrid overlay the default prompt-testing workflow.
 
 ## Distillation Rule
 

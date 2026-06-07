@@ -2,7 +2,7 @@
 
 TasteCraft Decks is a local-first skill repository for making presentation work more deliberate: clearer briefs, stronger visual direction, inspectable deck contracts, and repeatable QA before a deck is delivered.
 
-This repository is not a SaaS product, not a stock template gallery, and not a place for real customer brand assets. It is an open-source skill repository for agents that create or improve decks in three delivery modes: editable PowerPoint, browser-native HTML decks, and image-enhanced presentations.
+This repository is not a SaaS product, not a stock template gallery, and not a place for real customer brand assets. It is an open-source skill repository for agents that create or improve decks. The original scaffold includes editable PowerPoint, browser-native HTML decks, and image-enhanced presentations; the active V1 experiment is now narrowed to pure AI whole-slide PPT image generation.
 
 ## What It Does
 
@@ -30,9 +30,9 @@ This repository is not a SaaS product, not a stock template gallery, and not a p
 
 ## Current V1 Status
 
-TasteCraft Decks currently contains the V1 local console, schema contracts, four skill entrypoints, shared design references, validation scripts, synthetic demo notes, and open-source operating docs. It is ready for local validation and early contributor testing, but generated deck artifacts should still pass the QA checklist before being treated as release examples.
+TasteCraft Decks currently contains the V1 local console, schema contracts, four skill entrypoints, shared design references, validation scripts, synthetic demo notes, and open-source operating docs. The current product direction is to make pure AI whole-slide PPT images look materially better than HTML or ordinary PPT composition while keeping prompt preview and QA explicit.
 
-Use the release checklist in [docs/release-checklist.md](docs/release-checklist.md) before tagging any release.
+Use the release checklist in [docs/release-checklist.md](docs/release-checklist.md) before tagging any release. Do not treat hybrid HTML text/chart overlay as the default V1 path; it is only a benchmark or fallback after the June 8 test.
 
 ## Quick Start
 

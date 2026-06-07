@@ -4,7 +4,7 @@ TasteCraft Decks is a local-first skill repository for presentation aesthetics. 
 
 ## Current State
 
-The repository currently contains the V1 baseline: schema contracts, a static local console, four skill entrypoints, shared design references, validation scripts, synthetic demo notes, and public documentation. The remaining release work is validation, packaging review, GitHub publishing, and continued demo refinement.
+The repository currently contains the V1 baseline: schema contracts, a static local console, four skill entrypoints, shared design references, validation scripts, synthetic demo notes, and public documentation. The active V1 direction is narrowed to pure AI whole-slide PPT image generation; broader PPTX, HTML deck, and report routes remain scaffolded but should not drive near-term work.
 
 ## System Pieces
 
@@ -27,7 +27,7 @@ The repository currently contains the V1 baseline: schema contracts, a static lo
 1. User configures a deck in a local console, provides an existing deck, or asks the router directly.
 2. The workflow creates or reads `tastecraft.deck.json`.
 3. Image workflows create `prompt-pack.json` only when prompts are confirmed.
-4. The router chooses editable PPTX, HTML deck, or image-enhanced deck.
+4. For current V1 tests, the execution path generates pure AI whole-slide images from confirmed prompts.
 5. The execution skill reads the relevant reference material.
 6. Output is checked against the QA rubric before delivery.
 

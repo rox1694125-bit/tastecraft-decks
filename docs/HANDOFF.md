@@ -13,6 +13,7 @@
 ## Current Decisions
 
 - V1 is being narrowed to Codex-first PPT image generation rather than full PPTX / HTML deck routing.
+- The active V1 route is pure AI whole-slide finished images. The tested hybrid route of AI-generated background/visual system plus deterministic HTML text/chart overlay is not the main path because the result felt visually weaker than pure AI output.
 - The local console is static HTML/CSS/JS and does not call AI APIs.
 - `prompt-pack.json` may include only confirmed prompts.
 - The source repository shares references and assets; release packages generated under `dist/skills/` are self-contained.
@@ -21,6 +22,7 @@
 - The local console supports `zh-CN` and English UI modes. It defaults to `zh-CN`; switching languages changes UI labels and generated sample copy without changing schema field values.
 - Prompt testing starts with single-slide comparison across the six templates. Full-deck testing comes only after the best templates and prompt lessons are identified.
 - Whole-slide image generation may include text in V1 tests, but any key typo, missing text, garbled text, or wrong meaning is a reject.
+- HTML/PPT exact overlay is allowed only as a documented fallback or benchmark. Do not spend further V1 work improving it unless explicitly requested.
 
 ## Known Constraints
 
@@ -53,4 +55,4 @@
 
 ## Next Agent Task
 
-Collect one realistic single-slide brief from the user, generate one candidate per style template, capture feedback using the protocol, and push the distilled findings.
+Rewrite the six single-slide prompt templates for pure AI finished-page output, generate one candidate per style template from the tax-comparison brief, capture feedback using the protocol, and push the distilled findings.

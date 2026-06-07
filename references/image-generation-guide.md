@@ -2,6 +2,12 @@
 
 Use this guide when a deck uses AI-generated imagery, image-enhanced PPTX, or image-led HTML pages.
 
+## Current V1 Route
+
+The active V1 experiment is pure AI whole-slide image generation for PPT-ready pages. The tested route of AI-generated background/visual system plus deterministic HTML text/chart overlay is not the default because it did not meet the desired visual ceiling.
+
+Whole-slide images may include Chinese text, numbers, charts, and labels in the current prompt tests. This is intentionally risky and must be evaluated strictly: any key typo, garbled label, wrong number, or country/category mismatch is a reject.
+
 ## Image Use Policy
 
 Generate images only when they improve the deck objective:
@@ -14,8 +20,8 @@ Generate images only when they improve the deck objective:
 Do not generate images for:
 
 - Private people, private customer data, private logos, or confidential facilities without explicit source and permission.
-- Charts, numbers, certifications, screenshots, or legal/financial/medical claims.
-- Replacement of editable text or tables.
+- Unverified charts, numbers, certifications, screenshots, or legal/financial/medical claims.
+- Replacement of editable text or tables when exactness is the higher priority than visual ambition.
 - Generic decoration that does not clarify the page.
 
 ## Workflow
@@ -26,7 +32,7 @@ Do not generate images for:
 4. Add only confirmed prompts to `prompt-pack.json`.
 5. Generate images.
 6. Inspect contact sheet or page previews for artifacts.
-7. Place images with editable overlays.
+7. For current V1 pure-image tests, inspect the finished image directly rather than adding editable overlays.
 8. Score imagery and prompt pack under the QA rubric.
 
 ## Image Specs
@@ -63,4 +69,3 @@ Reject or regenerate images with:
 - If brand assets are required but unavailable, generate neutral imagery and reserve brand for editable overlays.
 - If the image cannot pass QA after two prompt revisions, replace it with an editable diagram or sourced asset.
 - If the user wants a risky or unverified image claim, refuse that element and offer a safe conceptual alternative.
-
