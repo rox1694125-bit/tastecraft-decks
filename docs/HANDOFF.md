@@ -7,22 +7,26 @@
 3. `schema/tastecraft.deck.schema.json`
 4. `schema/prompt-pack.schema.json`
 5. `references/qa-checklist.md`
-6. `README.md`
+6. `docs/prompt-testing-protocol.md`
+7. `README.md`
 
 ## Current Decisions
 
-- V1 is presentation-only: PPTX, HTML deck, and image-enhanced deck.
+- V1 is being narrowed to Codex-first PPT image generation rather than full PPTX / HTML deck routing.
 - The local console is static HTML/CSS/JS and does not call AI APIs.
 - `prompt-pack.json` may include only confirmed prompts.
 - The source repository shares references and assets; release packages generated under `dist/skills/` are self-contained.
 - Private brand kits live only under `knowledge/brand-kits/_local/` and are ignored by Git.
 - The canonical V1 palette IDs are the six IDs in `assets/palettes/v1-palettes.json`; console defaults and demo samples use `market-slate`.
 - The local console supports `zh-CN` and English UI modes. It defaults to `zh-CN`; switching languages changes UI labels and generated sample copy without changing schema field values.
+- Prompt testing starts with single-slide comparison across the six templates. Full-deck testing comes only after the best templates and prompt lessons are identified.
+- Whole-slide image generation may include text in V1 tests, but any key typo, missing text, garbled text, or wrong meaning is a reject.
 
 ## Known Constraints
 
 - No SaaS, accounts, cloud sync, or collaboration layer in V1.
 - No Word report implementation in V1.
+- Do not treat PPTX auto-assembly or HTML deck output as active V1 behavior until the narrowed image workflow is stable.
 - No real customer data, private logos, tokens, or generated binary outputs in the public repo.
 - GitHub remote is `https://github.com/rox1694125-bit/tastecraft-decks`.
 
@@ -45,7 +49,8 @@
 - GitHub release `v0.1.0` was created at `https://github.com/rox1694125-bit/tastecraft-decks/releases/tag/v0.1.0`.
 - Bilingual console update passed local validation: JS syntax check, console smoke test, schema examples, strict reference validation, sensitive-file scan, and unit tests.
 - In-app browser verification for the local `file://` console URL was blocked by Browser Use URL policy; validation continued through local scripts.
+- Added `docs/prompt-testing-protocol.md` to define single-slide prompt comparison, scenario differences, feedback capture, and distillation rules.
 
 ## Next Agent Task
 
-Use the post-`v0.1.0` bilingual console baseline for early synthetic testing, then improve prompt lint, demo gallery quality, and release packaging.
+Collect one realistic single-slide brief from the user, generate one candidate per style template, capture feedback using the protocol, and push the distilled findings.
