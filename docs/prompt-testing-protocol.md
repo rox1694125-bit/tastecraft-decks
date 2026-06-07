@@ -81,12 +81,31 @@ Use the same rubric for every candidate:
 
 - Text accuracy: all required text is correct and readable.
 - Slide fit: the image looks like a PPT page, not a poster, web hero, or generic ad.
+- Visual ambition: the result should justify using an image model. Reject outputs that are only plain cards, basic charts, or layouts that could be made faster in HTML or a normal PPT editor.
 - Visual hierarchy: title, main point, and supporting information are clearly ordered.
 - Template fidelity: color, mood, composition, and density match the selected style template.
 - Scenario fit: the slide feels appropriate for the intended audience and use case.
 - Reusability: the prompt lesson can improve future generations, not only this one image.
 
 Images with failed text accuracy cannot be accepted as final candidates.
+
+## Prompt Quality Lessons
+
+The first tax-comparison test showed that narrow prompts such as "two panels plus donut charts" produce correct but visually ordinary outputs. Future prompts should not treat a style template as only a color palette.
+
+Each prompt should include:
+
+- role and intent: a senior business visual designer creating a high-end one-page presentation image;
+- output specification: 4K target when the generation path supports it, aspect ratio, and presentation use;
+- visual ambition: premium financial / consulting-grade composition, not a plain chart;
+- information architecture: what to emphasize, what to compress, and which numbers are hero values;
+- layout grammar: modular grid, invisible alignment, whitespace rhythm, dense/sparse alternation;
+- color usage rules: which colors apply to titles, key figures, cards, dividers, charts, and highlights;
+- visual assets: material texture, subtle linework, spatial depth, refined background graphics, or subject-relevant metaphors when useful;
+- typography rules: hierarchy, consistent levels, and high-contrast text;
+- negative constraints: avoid generic cards, default dashboards, flat HTML-like charts, and decorative clutter.
+
+If exact Chinese text and high-end visuals conflict, prefer a hybrid final-image workflow: image generation creates the premium visual system and background, deterministic HTML/PPT rendering places exact text and charts, then the final output is flattened as a 4K image.
 
 ## Distillation Rule
 
