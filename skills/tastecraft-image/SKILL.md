@@ -9,6 +9,12 @@ description: "Use when 用户粘贴完整 slide 内容，需要将其转换为 C
 
 Turn complete user-provided slide content into one confirmed Codex image prompt, then generate a PPT-ready image only after explicit confirmation. Default output is a single 16:9 finished-slide image, not a deck, HTML view, editable PPT slide, or overlay mockup.
 
+## Core Principles
+
+- **Structure before style / 结构先于风格**: identify the title, subtitle, content modules, required body text, key numbers, page purpose, density, and explicit constraints before choosing a template or visual direction.
+- **Visuals serve the argument / 视觉服务论证**: every visual device must clarify the message, reading path, hierarchy, comparison, or emphasis. Do not add decoration only to make the image feel premium.
+- **One explicit confirmation / 一次明确确认**: produce the recommended template and full prompt first, then generate only after the user gives action wording that clearly asks for image generation.
+
 ## Load Before Work
 
 - Load `assets/tastecraft-image/templates.json` from the repository root or packaged skill root.
@@ -20,19 +26,20 @@ Turn complete user-provided slide content into one confirmed Codex image prompt,
 
 1. Read the user's complete pasted content before choosing a visual direction.
 2. Identify the slide title, content type, content modules, must-preserve text, key numbers, density, aspect ratio, and any explicit constraints.
-3. Recommend one Chinese template and give a short reason tied to the page purpose and content structure.
-4. When useful, provide 1-2 alternative templates with brief tradeoffs.
-5. Output these fixed sections in order:
+3. Decide whether the page is mainly for reading, explanation, comparison, roadshow persuasion, or research analysis before selecting a style.
+4. Recommend one Chinese template and give a short reason tied to the page purpose, density, and content structure.
+5. When useful, provide 1-2 alternative templates with brief tradeoffs.
+6. Output these fixed sections in order:
    - `内容识别摘要`
    - `推荐模板`
    - `中文主 Prompt`
    - `English Variant`
    - `确认生图`
-6. Record the draft with log type `draft_prompt` before image generation is requested. The JSONL event should preserve the generated prompt text so the user can inspect it later; do not log hidden reasoning.
-7. Wait for explicit generation confirmation.
-8. After confirmation, generate the image using the Chinese primary prompt by default unless the user explicitly chooses the English variant.
-9. Record the generated result with log type `generated_image`, including the exact `imagegen_prompt` that was sent to the image model.
-10. Review the generated image against the Image Review checklist before reporting completion.
+7. Record the draft with log type `draft_prompt` before image generation is requested. The JSONL event should preserve the generated prompt text so the user can inspect it later; do not log hidden reasoning.
+8. Wait for explicit generation confirmation.
+9. After confirmation, generate the image using the Chinese primary prompt by default unless the user explicitly chooses the English variant.
+10. Record the generated result with log type `generated_image`, including the exact `imagegen_prompt` that was sent to the image model.
+11. Review the generated image against the Image Review checklist before reporting completion.
 
 If the actual image-generation prompt changes after confirmation, such as a retry prompt, shortened prompt, or reformatted prompt for tool stability, record that final prompt. The log must let the user recover the exact prompt that produced each image.
 
@@ -62,6 +69,8 @@ Select templates by content type, density, seriousness, page purpose, industry r
 
 Prefer templates that protect legibility and hierarchy over templates with impressive decoration. If an industry visual could add stereotype risk, unsupported claims, or visual noise, choose a more neutral composition.
 
+Use spatial-depth templates when the page benefits from roadshow presence, client persuasion, or a premium advisory atmosphere. Use reading-first templates when the user provides dense body text, many numbers, terms, or conditions. Use balanced templates when both presentation polish and body-text fidelity matter.
+
 ## Prompt Requirements
 
 Every image prompt must specify:
@@ -73,6 +82,7 @@ Every image prompt must specify:
 - Do not add conclusions, disclaimers, ratings, scores, source labels, citations, template names, internal instructions, or claims that the user did not provide.
 - Keep the full body text by default; make it the main focus of the visual system.
 - Decoration must serve the content, improve hierarchy, and never compete with or obscure the text.
+- The prompt should state why the visual system exists, such as organizing clause hierarchy, preserving comparison logic, emphasizing key numbers, or guiding the reading path.
 
 The Chinese primary prompt should be directly usable for Codex image generation and should include layout, typography, color, material, density handling, and abstract avoid principles.
 

@@ -33,6 +33,19 @@ validate_templates = load_script("validate_tastecraft_image_templates")
 
 
 class TasteCraftImageTemplateTests(unittest.TestCase):
+    def test_skill_keeps_core_prompt_workflow_principles(self) -> None:
+        skill = (ROOT / "skills" / "tastecraft-image" / "SKILL.md").read_text(encoding="utf-8")
+
+        for required in (
+            "Structure before style",
+            "结构先于风格",
+            "Visuals serve the argument",
+            "视觉服务论证",
+            "One explicit confirmation",
+            "一次明确确认",
+        ):
+            self.assertIn(required, skill)
+
     def test_builtin_templates_are_valid_and_named_for_users(self) -> None:
         result = validate_templates.validate_repo(ROOT)
         self.assertEqual(result.errors, [], "\n".join(result.errors))
