@@ -1,13 +1,15 @@
 # TasteCraft Decks / 审美工坊·演示美学
 
-TasteCraft Decks is a local-first skill repository for making presentation work more deliberate: clearer briefs, stronger visual direction, inspectable deck contracts, and repeatable QA before a deck is delivered.
+TasteCraft Decks is a local-first skill repository for making PowerPoint-ready AI slide images more deliberate. The current V1 main entry is `tastecraft-image`: a Codex-first skill that turns complete pasted slide content into a confirmed image-generation prompt, then generates one whole-slide image only after explicit user confirmation.
 
-This repository is not a SaaS product, not a stock template gallery, and not a place for real customer brand assets. It is an open-source skill repository for agents that create or improve decks. The original scaffold includes editable PowerPoint, browser-native HTML decks, and image-enhanced presentations; the active V1 experiment is now narrowed to pure AI whole-slide PPT image generation.
+This repository is not a SaaS product, not a stock template gallery, and not a place for real customer brand assets. The original scaffold includes editable PowerPoint, browser-native HTML decks, and image-enhanced presentations; those routes are now legacy/secondary while V1 is narrowed to a Codex image-prompt skill.
 
 ## What It Does
 
-- Routes presentation requests through a shared deck contract, `tastecraft.deck.json`.
-- Provides a bilingual local console with Chinese as the default UI and English as a switchable mode.
+- Provides `tastecraft-image`, a Codex skill for analyzing complete slide content, choosing a visual template, producing Chinese and English prompt variants, logging the prompt, and waiting for explicit image-generation confirmation.
+- Stores six built-in image prompt templates with direct Chinese names and color/material cues.
+- Keeps prompt and generated-image runs inspectable through JSONL and Markdown project logs.
+- Keeps the bilingual local console as a prompt preview and experimentation aid, not the V1 default user path.
 - Keeps aesthetic choices explicit: palette, density, typography, logo policy, imagery policy, page intent, and QA status.
 - Supports synthetic demo material so the public repo can show workflows without exposing real logos or client data.
 - Gives contributors a common vocabulary for deck quality: audience fit, narrative flow, slide density, visual hierarchy, accessibility, and release readiness.
@@ -16,10 +18,12 @@ This repository is not a SaaS product, not a stock template gallery, and not a p
 
 | Path | Purpose |
 | --- | --- |
-| `skills/presentation-router/` | Router skill that chooses the execution path from a brief or deck spec. |
-| `skills/editable-pptx/` | Skill instructions for editable PowerPoint delivery. |
-| `skills/html-deck/` | Skill instructions for browser-native deck delivery. |
-| `skills/image-enhanced-deck/` | Skill instructions for prompt-pack and image-enhanced deck workflows. |
+| `skills/tastecraft-image/` | V1 main skill for Codex-first prompt confirmation and PPT-ready image generation. |
+| `assets/tastecraft-image/` | Built-in and custom image prompt template source. |
+| `skills/presentation-router/` | Legacy router skill that chooses an execution path from a brief or deck spec. |
+| `skills/editable-pptx/` | Legacy skill instructions for editable PowerPoint delivery. |
+| `skills/html-deck/` | Legacy skill instructions for browser-native deck delivery. |
+| `skills/image-enhanced-deck/` | Legacy skill instructions for prompt-pack and image-enhanced deck workflows. |
 | `schema/` | JSON Schema contracts for deck specs and prompt packs. |
 | `docs/` | Architecture, contribution process, roadmap, release checklist, governance, and ADRs. |
 | `demo/` | Synthetic examples and markdown gallery notes only. No binary assets or real logos. |
@@ -30,15 +34,25 @@ This repository is not a SaaS product, not a stock template gallery, and not a p
 
 ## Current V1 Status
 
-TasteCraft Decks currently contains the V1 local console, schema contracts, four skill entrypoints, shared design references, validation scripts, synthetic demo notes, and open-source operating docs. The current product direction is to make pure AI whole-slide PPT images look materially better than HTML or ordinary PPT composition while keeping prompt preview and QA explicit.
+TasteCraft Decks currently contains the V1 `tastecraft-image` skill, structured image templates, prompt/image logging helpers, the local console, schema contracts, legacy skill entrypoints, shared design references, validation scripts, synthetic demo notes, and open-source operating docs. The current product direction is to make pure AI whole-slide PPT images look materially better than HTML or ordinary PPT composition while keeping prompt preview and QA explicit.
 
 Use the release checklist in [docs/release-checklist.md](docs/release-checklist.md) before tagging any release. Do not treat hybrid HTML text/chart overlay as the default V1 path; it is only a benchmark or fallback after the June 8 test.
 
 ## Quick Start
 
-### 1. Open the local console
+### 1. Use the V1 Codex skill
 
-The console is static HTML. It does not call an API and does not require a build step.
+In Codex, paste the full slide content and invoke the main skill:
+
+```text
+Use $tastecraft-image with the following complete slide content.
+```
+
+The skill should return a content recognition summary, a recommended Chinese template name, a Chinese primary prompt, an English variant, and a confirmation step. It should not generate an image until the user explicitly says to generate.
+
+### 2. Open the local console when needed
+
+The console is static HTML. It does not call an API and does not require a build step. Use it for prompt preview, manual refinement, and regression checks rather than as the default V1 user flow.
 
 Open this file in a browser:
 
@@ -58,9 +72,9 @@ Then open:
 http://127.0.0.1:8765/assets/tastecraft-console/index.html
 ```
 
-### 2. Configure the deck
+### 3. Configure the legacy deck contract
 
-Use the console panels in order:
+When testing the legacy deck-contract flow, use the console panels in order:
 
 1. `Project Setup`: set audience, scenario, goal, output format, aspect ratio, and model capabilities.
 2. `Batch Planner`: generate the seven-page baseline map.
@@ -72,9 +86,9 @@ Use the console panels in order:
 
 Important: `prompt-pack.json` exports confirmed prompts only. Draft or rejected prompts stay out of the handoff.
 
-### 3. Invoke the skills
+### 4. Invoke legacy skills
 
-Use the router when the delivery path is unclear:
+Use the router only when the delivery path is unclear:
 
 ```text
 Use $presentation-router with this tastecraft.deck.json and choose the right TasteCraft workflow.
@@ -88,12 +102,13 @@ Use $html-deck to create a browser-native presentation from this tastecraft.deck
 Use $image-enhanced-deck to review this prompt-pack.json and produce deck visual prompts.
 ```
 
-### 4. Validate before release
+### 5. Validate before release
 
 Run the local checks before publishing changes or packaging skills:
 
 ```bash
 python3 scripts/validate_skill_metadata.py
+python3 scripts/validate_tastecraft_image_templates.py --strict
 python3 scripts/validate_references.py --strict
 python3 scripts/validate_schema_examples.py
 python3 scripts/smoke_test_console.py
@@ -107,6 +122,8 @@ To build standalone skill bundles outside the source tree:
 ```bash
 python3 scripts/build_dist.py --dist /private/tmp/tastecraft-dist-check
 ```
+
+By default, packaging builds only `tastecraft-image` when it exists. Use `--include-legacy` when you intentionally need the older skill packages too.
 
 ## Deck Contract
 

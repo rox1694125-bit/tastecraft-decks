@@ -66,6 +66,35 @@
           "positive_prompt": { "type": "string", "minLength": 1 },
           "negative_prompt": { "type": "string" },
           "reference_notes": { "type": "string" },
+          "prompt_variants": {
+            "type": "object",
+            "required": ["zh-CN", "en"],
+            "additionalProperties": false,
+            "properties": {
+              "zh-CN": {
+                "type": "object",
+                "required": ["purpose", "positive_prompt", "negative_prompt", "reference_notes"],
+                "additionalProperties": false,
+                "properties": {
+                  "purpose": { "type": "string" },
+                  "positive_prompt": { "type": "string", "minLength": 1 },
+                  "negative_prompt": { "type": "string" },
+                  "reference_notes": { "type": "string" }
+                }
+              },
+              "en": {
+                "type": "object",
+                "required": ["purpose", "positive_prompt", "negative_prompt", "reference_notes"],
+                "additionalProperties": false,
+                "properties": {
+                  "purpose": { "type": "string" },
+                  "positive_prompt": { "type": "string", "minLength": 1 },
+                  "negative_prompt": { "type": "string" },
+                  "reference_notes": { "type": "string" }
+                }
+              }
+            }
+          },
           "generation_params": {
             "type": "object",
             "additionalProperties": false,

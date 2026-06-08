@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0",
+  "templates": [
+    {
+      "id": "custom-glory-heritage-green-abstract",
+      "name_zh": "Glory传承绿｜抽象材质",
+      "name_en": "Glory Heritage Green | Abstract Material",
+      "status": "draft",
+      "use_case_zh": "适合财富传承、税务规划、家族办公室、保险信托和跨境资产配置等严肃高密度路演内容。",
+      "use_case_en": "For serious high-density roadshow content around wealth succession, tax planning, family office, insurance trust, and cross-border asset allocation.",
+      "selection_signals": [
+        "wealth_succession",
+        "tax_planning",
+        "family_office",
+        "high_density",
+        "abstract_material"
+      ],
+      "art_direction_zh": "温润、克制、私人财富顾问感；以深传承绿建立专业结构，用海绿色作为小面积强调，避免自然疗愈或生活方式广告感。",
+      "art_direction_en": "Warm, restrained private wealth advisory direction; use deep heritage green for professional structure and sea green only as small accents, avoiding wellness or lifestyle-advertising drift.",
+      "composition_zh": "标题区不超过 18%，主体信息区不少于 70%；适合三栏或四栏横向对比、条款卡片、精致分隔线、小型抽象线标和结构路径。背景只使用乳白纸感、浅暖米渐变、极细线、微弱纸张纹理和柔和几何边界。",
+      "composition_en": "Title area under 18% and main information area over 70%; suitable for three- or four-column comparisons, clause cards, refined dividers, small abstract line marks, and structural paths. Background uses only ivory paper texture, warm beige gradients, hairline rules, subtle paper grain, and soft geometric boundaries.",
+      "color_rules_zh": "深传承绿用于标题、导航和主结构；海绿色 #20B2AA 只用于关键数字、节点或小面积强调；暖米色和乳白色用于背景与面板，深暖灰用于正文。",
+      "color_rules_en": "Use deep heritage green for titles, navigation, and main structure; sea green #20B2AA only for key numbers, nodes, or small accents; warm beige and ivory for backgrounds and panels, deep warm gray for body text.",
+      "palette": {
+        "background": "#F8F4EA",
+        "surface": "#FFFDF7",
+        "text": "#253532",
+        "muted_text": "#6F7C76",
+        "primary": "#0F6F68",
+        "secondary": "#D8C49A",
+        "accent": "#20B2AA"
+      },
+      "avoid": [
+        "visuals that imply unsupported information",
+        "decorative elements that compete with body copy",
+        "natural wellness mood that weakens advisory credibility",
+        "concrete scene elements unless explicitly requested"
+      ],
+      "default_density_fit": "medium_to_high"
+    },
+    {
+      "id": "custom-glory-heritage-green-spatial",
+      "name_zh": "Glory传承绿｜空间路演",
+      "name_en": "Glory Heritage Green | Spatial Roadshow",
+      "status": "draft",
+      "use_case_zh": "适合高净值客户路演、财富传承主题页、家族办公室沟通、保险信托说明和中低密度跨境资产配置页面。",
+      "use_case_en": "For high-net-worth client roadshows, wealth succession pages, family office communication, insurance trust explanation, and low-to-medium density cross-border allocation pages.",
+      "selection_signals": [
+        "wealth_succession",
+        "client_roadshow",
+        "family_office",
+        "spatial_depth",
+        "low_to_medium_density"
+      ],
+      "art_direction_zh": "温润、克制、私人财富顾问感，允许低对比度空间层次增强高级感；具象场景必须退到背景层，只服务信任、传承和私密顾问氛围。",
+      "art_direction_en": "Warm, restrained private wealth advisory direction with low-contrast spatial depth for a more premium feel; concrete scene cues must stay in the background and only support trust, succession, and private advisory atmosphere.",
+      "composition_zh": "标题区不超过 18%，主体信息区不少于 70%；适合横向对比、路演式分区、条款卡片和轻量结构路径。背景可使用浅化的家族办公室、私密咨询桌面、窗边自然光、温润建筑轮廓或远景庭院感，但必须保持低对比和背景化。",
+      "composition_en": "Title area under 18% and main information area over 70%; suitable for horizontal comparison, roadshow sections, clause cards, and light structural paths. Background may use softened family office, private advisory desk, window light, warm architectural outline, or distant courtyard feeling, but must stay low-contrast and backgrounded.",
+      "color_rules_zh": "深传承绿用于标题、导航和主结构；海绿色 #20B2AA 只用于关键数字、节点或小面积强调；暖米色和乳白色用于背景与面板，深暖灰用于正文。",
+      "color_rules_en": "Use deep heritage green for titles, navigation, and main structure; sea green #20B2AA only for key numbers, nodes, or small accents; warm beige and ivory for backgrounds and panels, deep warm gray for body text.",
+      "palette": {
+        "background": "#F8F4EA",
+        "surface": "#FFFDF7",
+        "text": "#253532",
+        "muted_text": "#6F7C76",
+        "primary": "#0F6F68",
+        "secondary": "#D8C49A",
+        "accent": "#20B2AA"
+      },
+      "avoid": [
+        "scene depth that overpowers the information body",
+        "lifestyle-advertising mood",
+        "decorative elements that compete with body copy",
+        "visual cues that imply unsupported information"
+      ],
+      "default_density_fit": "low_to_medium"
+    }
+  ]
+}

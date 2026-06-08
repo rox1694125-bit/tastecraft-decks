@@ -598,6 +598,132 @@ tbody tr.selected {
   font-size: 0.78rem;
 }
 
+.simple-workbench {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 32px 22px 48px;
+}
+
+.simple-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.simple-header h1 {
+  max-width: 760px;
+  margin: 0;
+  font-size: 2.8rem;
+  line-height: 1.05;
+}
+
+.simple-subtitle {
+  max-width: 680px;
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.workbench-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.step-pill {
+  min-height: 42px;
+  padding: 11px 12px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.58);
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.step-pill.active {
+  border-color: rgba(23, 92, 98, 0.32);
+  background: rgba(23, 92, 98, 0.1);
+  color: var(--primary);
+}
+
+.workbench-panel {
+  display: grid;
+  gap: 16px;
+}
+
+.workbench-stage {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  padding: 22px;
+}
+
+.stage-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.stage-heading h2 {
+  margin: 0;
+  font-size: 1.28rem;
+}
+
+.stage-heading p,
+.inline-hint {
+  margin: 6px 0 0;
+  color: var(--muted);
+}
+
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.review-grid .wide-field {
+  margin-bottom: 0;
+}
+
+.style-variants {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.style-variants.collapsed {
+  display: none;
+}
+
+.style-variant-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: center;
+  border: 1px solid var(--line);
+  background: var(--surface-strong);
+  padding: 12px;
+}
+
+.style-variant-card h4 {
+  margin: 0;
+}
+
+.style-variant-card p {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+.advanced-console[hidden],
+.simple-workbench[hidden] {
+  display: none;
+}
+
 @media (max-width: 1100px) {
   .app-shell {
     grid-template-columns: 1fr;
@@ -659,5 +785,26 @@ tbody tr.selected {
 
   .slide-preview {
     min-height: 360px;
+  }
+}
+
+@media (max-width: 760px) {
+  .simple-workbench {
+    padding: 22px 16px 34px;
+  }
+
+  .simple-header,
+  .stage-heading {
+    display: grid;
+  }
+
+  .simple-header h1 {
+    font-size: 2rem;
+  }
+
+  .workbench-steps,
+  .review-grid,
+  .style-variant-card {
+    grid-template-columns: 1fr;
   }
 }

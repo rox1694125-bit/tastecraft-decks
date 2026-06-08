@@ -62,6 +62,60 @@ class ToolingScriptTests(unittest.TestCase):
             self.assertTrue((dist / "demo-skill" / "schema" / "demo.schema.json").exists())
             self.assertTrue((dist / "manifest.json").exists())
 
+    def test_build_dist_defaults_to_tastecraft_image_when_present(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            for name in ("tastecraft-image", "legacy-skill"):
+                skill_dir = root / "skills" / name
+                (skill_dir / "agents").mkdir(parents=True)
+                (skill_dir / "SKILL.md").write_text(
+                    f"---\nname: {name}\ndescription: Demo skill with a long enough trigger description.\n---\n",
+                    encoding="utf-8",
+                )
+                (skill_dir / "agents" / "openai.yaml").write_text(
+                    'interface:\n  display_name: "Demo"\n  short_description: "Demo"\n  default_prompt: "Demo"\n',
+                    encoding="utf-8",
+                )
+            (root / "schema").mkdir()
+            (root / "schema" / "demo.schema.json").write_text("{}", encoding="utf-8")
+            (root / "assets" / "tastecraft-image").mkdir(parents=True)
+            (root / "assets" / "tastecraft-image" / "templates.json").write_text("{}", encoding="utf-8")
+            (root / "scripts").mkdir()
+            (root / "scripts" / "tastecraft_image_log.py").write_text("# helper\n", encoding="utf-8")
+            dist = root / "out"
+
+            manifest = build_dist.build_packages(root, dist)
+
+            self.assertEqual(manifest["package_count"], 1)
+            self.assertEqual(manifest["packages"][0]["name"], "tastecraft-image")
+            self.assertTrue((dist / "tastecraft-image" / "SKILL.md").exists())
+            self.assertTrue((dist / "tastecraft-image" / "assets" / "tastecraft-image" / "templates.json").exists())
+            self.assertTrue((dist / "tastecraft-image" / "scripts" / "tastecraft_image_log.py").exists())
+            self.assertFalse((dist / "legacy-skill").exists())
+
+    def test_build_dist_include_legacy_keeps_all_skills(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            for name in ("tastecraft-image", "legacy-skill"):
+                skill_dir = root / "skills" / name
+                (skill_dir / "agents").mkdir(parents=True)
+                (skill_dir / "SKILL.md").write_text(
+                    f"---\nname: {name}\ndescription: Demo skill with a long enough trigger description.\n---\n",
+                    encoding="utf-8",
+                )
+                (skill_dir / "agents" / "openai.yaml").write_text(
+                    'interface:\n  display_name: "Demo"\n  short_description: "Demo"\n  default_prompt: "Demo"\n',
+                    encoding="utf-8",
+                )
+            dist = root / "out"
+
+            manifest = build_dist.build_packages(root, dist, include_legacy=True)
+
+            self.assertEqual(
+                {package["name"] for package in manifest["packages"]},
+                {"tastecraft-image", "legacy-skill"},
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

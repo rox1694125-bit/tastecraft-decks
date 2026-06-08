@@ -7,7 +7,98 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div class="app-shell">
+    <div class="simple-workbench" id="simpleWorkbench">
+      <header class="simple-header">
+        <div>
+          <p class="eyebrow">Prompt 工作台</p>
+          <h1>把完整内容变成可用的图片 Prompt</h1>
+          <p class="simple-subtitle">先粘贴内容，再交给 Codex 拆解，最后确认并复制推荐 Prompt。</p>
+        </div>
+        <button type="button" class="secondary-button" id="openAdvancedConsoleBtn">高级控制台</button>
+      </header>
+
+      <nav class="workbench-steps" aria-label="Prompt 工作台步骤">
+        <span class="step-pill active" data-workbench-step="1">1 粘贴内容</span>
+        <span class="step-pill" data-workbench-step="2">2 交给 Codex 拆解</span>
+        <span class="step-pill" data-workbench-step="3">3 确认 Prompt</span>
+      </nav>
+
+      <main class="workbench-panel">
+        <section class="workbench-stage" id="workbenchStagePaste">
+          <div class="stage-heading">
+            <div>
+              <h2>粘贴完整内容</h2>
+              <p>粘贴你的标题、正文、要点或完整文案。不要先整理成复杂表单。</p>
+            </div>
+            <span class="status-pill" id="workbenchRawStatus">待输入</span>
+          </div>
+          <label class="wide-field">
+            原始内容
+            <textarea id="workbenchRawContent" rows="12" placeholder="例如：&#10;【主标题】...&#10;（副标：...）&#10;1. 核心要点..."></textarea>
+          </label>
+          <p class="inline-hint" id="workbenchRawHint">先粘贴一段内容。</p>
+          <div class="button-row">
+            <button type="button" class="primary-button" id="buildStructuringRequestBtn" disabled>生成 Codex 拆解请求</button>
+            <button type="button" class="secondary-button" id="loadWorkbenchSampleBtn">加载示例</button>
+            <button type="button" class="secondary-button" id="clearWorkbenchBtn">清空</button>
+          </div>
+        </section>
+
+        <section class="workbench-stage" id="workbenchStageStructure" hidden>
+          <div class="stage-heading">
+            <div>
+              <h2>交给 Codex 拆解</h2>
+              <p>复制下面的请求到 Codex，再把 Codex 返回的结构化结果粘回这里。</p>
+            </div>
+            <span class="status-pill" id="workbenchStructureStatus">等待拆解</span>
+          </div>
+          <label class="wide-field">
+            Codex 拆解请求
+            <textarea id="workbenchStructuringRequest" rows="9" readonly></textarea>
+          </label>
+          <div class="button-row">
+            <button type="button" class="primary-button" id="copyStructuringRequestBtn">复制拆解请求</button>
+          </div>
+          <label class="wide-field">
+            粘贴 Codex 返回的结构化结果
+            <textarea id="workbenchStructuredInput" rows="9" placeholder='{"title":"","sections":[{"heading":"","body":""}]}'></textarea>
+          </label>
+          <p class="inline-hint" id="workbenchStructuredHint">优先粘贴 JSON；如果 Codex 返回 Markdown，也可以继续手动整理。</p>
+          <div class="button-row">
+            <button type="button" class="primary-button" id="applyStructuredResultBtn">生成推荐 Prompt</button>
+          </div>
+        </section>
+
+        <section class="workbench-stage" id="workbenchStageReview" hidden>
+          <div class="stage-heading">
+            <div>
+              <h2>确认推荐 Prompt</h2>
+              <p>先检查结构化字段，再复制推荐 Prompt 到 Codex 生图。</p>
+            </div>
+            <span class="status-pill" id="workbenchPromptStatus">未生成</span>
+          </div>
+          <div class="review-grid">
+            <label>标题<input id="workbenchTitle" autocomplete="off"></label>
+            <label>副标题<input id="workbenchSubtitle" autocomplete="off"></label>
+            <label class="wide-field">核心内容模块<textarea id="workbenchSections" rows="5"></textarea></label>
+            <label class="wide-field">必须完整保留<textarea id="workbenchMustPreserve" rows="3"></textarea></label>
+            <label>禁止出现<input id="workbenchForbidden" autocomplete="off"></label>
+            <label>风格倾向<input id="workbenchStyleIntent" autocomplete="off"></label>
+          </div>
+          <label class="wide-field">
+            推荐 Prompt
+            <textarea id="workbenchRecommendedPrompt" rows="12" readonly></textarea>
+          </label>
+          <div class="button-row">
+            <button type="button" class="primary-button" id="copyRecommendedPromptBtn">复制推荐 Prompt 到 Codex 生图</button>
+            <button type="button" class="secondary-button" id="toggleStyleVariantsBtn">展开查看 6 个风格版本</button>
+          </div>
+          <div class="style-variants collapsed" id="workbenchStyleVariants"></div>
+        </section>
+      </main>
+    </div>
+
+    <div class="app-shell advanced-console" id="advancedConsole" hidden>
       <aside class="sidebar" aria-label="控制台面板">
         <div class="brand-block">
           <div class="brand-mark">TC</div>
@@ -279,12 +370,12 @@
             <label>
               配色预设
               <select id="palettePreset">
-                <option value="citrus-editorial">Citrus Editorial</option>
+                <option value="citrus-editorial">Editorial Paper</option>
                 <option value="market-slate">Market Slate</option>
-                <option value="atelier-rose">Atelier Rose</option>
-                <option value="harbor-mint">Harbor Mint</option>
+                <option value="atelier-rose">Sovereign Gold</option>
+                <option value="harbor-mint">Precision Blueprint</option>
                 <option value="ink-copper">Ink Copper</option>
-                <option value="orchard-lab">Orchard Lab</option>
+                <option value="orchard-lab">Evidence Lab</option>
                 <option value="custom">Custom</option>
               </select>
             </label>

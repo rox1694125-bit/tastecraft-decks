@@ -13,23 +13,23 @@
   "palettes": [
     {
       "preset_id": "citrus-editorial",
-      "name": "Citrus Editorial",
-      "character": "Fresh, culinary, optimistic, and editorial.",
-      "best_for": ["consumer food", "product launch", "keynote", "brand story"],
-      "avoid_for": ["conservative board packet", "dense legal appendix"],
+      "name": "Editorial Paper",
+      "character": "Warm, editorial, textured, and non-literal.",
+      "best_for": ["brand story", "consumer strategy", "light business narrative", "non-financial keynote"],
+      "avoid_for": ["conservative board packet", "dense legal appendix", "serious financial comparison"],
       "colors": {
-        "background": "#FFF9F0",
+        "background": "#FBF7EF",
         "surface": "#FFFFFF",
-        "text": "#1F2328",
-        "muted_text": "#667085",
-        "primary": "#D9480F",
-        "secondary": "#0F766E",
-        "accent": "#F2B705"
+        "text": "#20242A",
+        "muted_text": "#68707A",
+        "primary": "#A75E2B",
+        "secondary": "#2F6F73",
+        "accent": "#C9A646"
       },
       "usage": {
-        "primary": "Use for major headings, section markers, and one key data series.",
-        "secondary": "Use for structure, comparison, and cool contrast.",
-        "accent": "Use for small highlights only; avoid long text on accent."
+        "primary": "Use for major headings, editorial markers, and one hero value.",
+        "secondary": "Use for structure, comparison, and restrained cool contrast.",
+        "accent": "Use for small print-like highlights only; avoid large accent fields."
       }
     },
     {
@@ -55,86 +55,86 @@
     },
     {
       "preset_id": "atelier-rose",
-      "name": "Atelier Rose",
-      "character": "Premium, human, editorial, and warm.",
-      "best_for": ["hospitality", "brand strategy", "lifestyle", "customer experience"],
-      "avoid_for": ["very dense financial appendix", "technical architecture"],
+      "name": "Sovereign Gold",
+      "character": "Reserved, premium, financial, and authoritative.",
+      "best_for": ["private wealth", "asset management", "executive finance", "board narrative"],
+      "avoid_for": ["playful lifestyle", "casual training", "service-design walkthrough"],
       "colors": {
-        "background": "#FAF6F3",
+        "background": "#F6F1E6",
         "surface": "#FFFFFF",
-        "text": "#27211F",
-        "muted_text": "#7A6B64",
-        "primary": "#9F3A4A",
-        "secondary": "#406A5D",
-        "accent": "#D79A3D"
+        "text": "#1B2230",
+        "muted_text": "#6E6A61",
+        "primary": "#8A6A2F",
+        "secondary": "#243B5A",
+        "accent": "#B98A44"
       },
       "usage": {
-        "primary": "Use for expressive headings and premium emphasis.",
-        "secondary": "Use for grounding blocks, process lines, and comparison.",
-        "accent": "Use for small editorial details and warm highlights."
+        "primary": "Use for premium headings, hero emphasis, and financial authority.",
+        "secondary": "Use for structure, comparison lines, and institutional grounding.",
+        "accent": "Use for small value markers and controlled metallic detail."
       }
     },
     {
       "preset_id": "harbor-mint",
-      "name": "Harbor Mint",
-      "character": "Clean, calm, technical, and service-oriented.",
-      "best_for": ["product demo", "SaaS", "service design", "training"],
-      "avoid_for": ["luxury positioning", "dramatic keynote"],
+      "name": "Precision Blueprint",
+      "character": "Precise, technical, structured, and explanatory.",
+      "best_for": ["technical finance", "mechanism explanation", "architecture", "systems overview"],
+      "avoid_for": ["luxury positioning", "lifestyle narrative", "dramatic keynote"],
       "colors": {
-        "background": "#F4FBFA",
+        "background": "#F3F7FC",
         "surface": "#FFFFFF",
-        "text": "#172326",
-        "muted_text": "#617073",
-        "primary": "#007C89",
-        "secondary": "#5B8C5A",
-        "accent": "#FFB703"
+        "text": "#172033",
+        "muted_text": "#5C6878",
+        "primary": "#1F5E8C",
+        "secondary": "#2B7480",
+        "accent": "#BFA15A"
       },
       "usage": {
-        "primary": "Use for interface structure, titles, and key path lines.",
-        "secondary": "Use for stable supporting labels and completed states.",
-        "accent": "Use for active state, one CTA, or a single metric highlight."
+        "primary": "Use for structure, titles, and blueprint lines.",
+        "secondary": "Use for mechanism paths and analytical contrast.",
+        "accent": "Use for one active node, threshold, or hero metric."
       }
     },
     {
       "preset_id": "ink-copper",
       "name": "Ink Copper",
-      "character": "High contrast, premium, dramatic, and focused.",
+      "character": "Dark mineral, copper, premium, dramatic, and focused.",
       "best_for": ["keynote", "closing", "executive narrative", "strong brand moment"],
-      "avoid_for": ["long reading-first deck", "dense appendix"],
+      "avoid_for": ["long reading-first deck", "dense appendix", "pure black stage aesthetic"],
       "colors": {
-        "background": "#151A1E",
-        "surface": "#242A2F",
-        "text": "#F7F2EA",
-        "muted_text": "#B8C0C2",
-        "primary": "#C46A3A",
-        "secondary": "#66A6A0",
-        "accent": "#F0C75E"
+        "background": "#17221E",
+        "surface": "#22302A",
+        "text": "#F2ECE0",
+        "muted_text": "#AEB6A8",
+        "primary": "#C1783D",
+        "secondary": "#88A39C",
+        "accent": "#D4B36A"
       },
       "usage": {
         "primary": "Use for warm emphasis, chapter numbers, and key lines.",
-        "secondary": "Use for contrast structure and secondary data series.",
-        "accent": "Use only for small highlights; large accent fields can feel theatrical."
+        "secondary": "Use only for thin structural contrast and calm secondary data support.",
+        "accent": "Use only for tiny antique-gold signal markers; avoid large saturated blue, red, or flat black fields."
       }
     },
     {
       "preset_id": "orchard-lab",
-      "name": "Orchard Lab",
-      "character": "Natural, precise, optimistic, and research-driven.",
-      "best_for": ["food innovation", "sustainability", "research summary", "operations improvement"],
-      "avoid_for": ["formal legal deck", "severe board escalation"],
+      "name": "Evidence Lab",
+      "character": "Clean, research-driven, evidence-oriented, and distinctive.",
+      "best_for": ["research summary", "evidence review", "decision memo", "analytical comparison"],
+      "avoid_for": ["formal legal deck", "severe board escalation", "nature or sustainability storytelling"],
       "colors": {
-        "background": "#FBFCF5",
+        "background": "#F7F8F4",
         "surface": "#FFFFFF",
-        "text": "#20251D",
-        "muted_text": "#66705C",
-        "primary": "#4F7D24",
-        "secondary": "#1E6F78",
-        "accent": "#E0A100"
+        "text": "#20242A",
+        "muted_text": "#687060",
+        "primary": "#4E6375",
+        "secondary": "#66775A",
+        "accent": "#C2A24D"
       },
       "usage": {
-        "primary": "Use for growth, freshness, and main conclusion markers.",
+        "primary": "Use for evidence hierarchy, main conclusions, and dossier anchors.",
         "secondary": "Use for analytical contrast, methods, and secondary series.",
-        "accent": "Use for experiment markers, thresholds, or small highlights."
+        "accent": "Use for thresholds, verification markers, or small highlights."
       }
     }
   ]

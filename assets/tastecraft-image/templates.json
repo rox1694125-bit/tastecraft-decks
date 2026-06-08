@@ -1,0 +1,224 @@
+{
+  "schema_version": "1.0",
+  "templates": [
+    {
+      "id": "editorial-paper",
+      "name_zh": "暖棕编辑纸感",
+      "name_en": "Warm Brown Editorial Paper",
+      "status": "built_in",
+      "use_case_zh": "适合偏轻、偏编辑感、质感较强的商业内容，也适合需要温暖纸张质地和清晰编辑层级的说明页。",
+      "use_case_en": "For lighter business topics that need editorial texture, warm paper materiality, and clear information hierarchy.",
+      "selection_signals": [
+        "lighter_business",
+        "editorial_texture",
+        "warm_material",
+        "moderate_density"
+      ],
+      "art_direction_zh": "温暖纸张、编辑感、强质感但不过度装饰；使用高级纸张纹理、精致边距线、克制的编辑标记和印刷材质深度，避免把页面做成生活方式陈列。",
+      "art_direction_en": "Warm paper-based editorial direction with premium texture, refined margin rules, restrained editorial marks, and print-material depth without lifestyle staging.",
+      "composition_zh": "非对称编辑跨页结构，保留充足标题区，一个占主导的信息主体区，局部小型注释或证据模块，使用细微纸张颗粒和轻阴影建立层次。",
+      "composition_en": "Asymmetric editorial spread with a generous title field, one dominant information area, small annotation or evidence modules, subtle paper grain, and light shadows.",
+      "color_rules_zh": "暖棕用于标题、主数值或关键语义锚点；低饱和蓝绿用于结构对比；古金只用于少量编辑标记或一个关键高亮。",
+      "color_rules_en": "Use warm brown for titles, hero values, or semantic anchors; muted blue green for structural contrast; antique gold only for small editorial marks or one key highlight.",
+      "palette": {
+        "background": "#FBF7EF",
+        "surface": "#FFFFFF",
+        "text": "#20242A",
+        "muted_text": "#68707A",
+        "primary": "#A75E2B",
+        "secondary": "#2F6F73",
+        "accent": "#C9A646"
+      },
+      "avoid": [
+        "off-topic editorial decoration",
+        "visual elements that compete with the body copy",
+        "template or system labels visible in the image",
+        "overly casual styling that weakens business credibility"
+      ],
+      "default_density_fit": "medium"
+    },
+    {
+      "id": "market-slate",
+      "name_zh": "蓝绿稳健汇报",
+      "name_en": "Blue Green Executive Report",
+      "status": "built_in",
+      "use_case_zh": "默认安全款，适合专业说明、客户沟通、内部报告和高密度稳健汇报。",
+      "use_case_en": "Default safe choice for professional explanation, client communication, internal reports, and restrained high-density executive reporting.",
+      "selection_signals": [
+        "safe_default",
+        "professional_report",
+        "client_presentation",
+        "high_density"
+      ],
+      "art_direction_zh": "专业、克制、机构级的高密度汇报方向；强调清晰结论、业务判断、关键证据和咨询级信息层级，不制造无关场景。",
+      "art_direction_en": "Professional, restrained institutional report direction with clear conclusions, business judgment, key evidence, and consulting-grade hierarchy without unrelated scenery.",
+      "composition_zh": "模块化高管简报页，强隐形网格，受控留白节奏，一个主结论区，紧凑证据带，精确对比几何，适合承载较多正文。",
+      "composition_en": "Modular executive briefing page with a strong invisible grid, controlled whitespace, one dominant conclusion zone, compact evidence strip, and precise comparison geometry.",
+      "color_rules_zh": "石板蓝用于标题和主结构；稳健绿色用于结构对照；珊瑚强调色只用于风险、差异或单个重点数值。",
+      "color_rules_en": "Use slate blue for titles and structure, stable green for structural counterpoint, and coral only for risk, delta, or a single key value.",
+      "palette": {
+        "background": "#F7F8FA",
+        "surface": "#FFFFFF",
+        "text": "#18202A",
+        "muted_text": "#5D6B7A",
+        "primary": "#205B73",
+        "secondary": "#2F855A",
+        "accent": "#E76F51"
+      },
+      "avoid": [
+        "unsupported analytical context not provided by the user",
+        "generic dashboard conventions that flatten the message",
+        "decorative data marks that are not tied to the content",
+        "visual density that crowds out the main text"
+      ],
+      "default_density_fit": "high"
+    },
+    {
+      "id": "sovereign-gold",
+      "name_zh": "海军蓝高端金融",
+      "name_en": "Navy Premium Finance",
+      "status": "built_in",
+      "use_case_zh": "适合金融、保险、资管、财富管理等需要高端、尊贵、克制表达的内容。",
+      "use_case_en": "For finance, insurance, asset management, wealth management, and premium advisory content that needs quiet prestige.",
+      "selection_signals": [
+        "finance",
+        "insurance",
+        "wealth",
+        "premium",
+        "high_trust"
+      ],
+      "art_direction_zh": "克制的高端金融方向，使用机构海军蓝、古金细节和安静权威感；强调信任、秩序、专业判断，不使用浪漫化装饰或生活方式场景。",
+      "art_direction_en": "Reserved premium finance direction with institutional navy, antique gold detail, quiet authority, trust, order, and professional judgment without romantic or lifestyle styling.",
+      "composition_zh": "有层次的金融编辑跨页，框定式主洞察，精致分隔线，安静对比图解，纪律化留白；信息承载强但视觉姿态保持克制。",
+      "composition_en": "Layered financial editorial spread with a framed hero insight, refined dividers, quiet comparative diagrams, and disciplined whitespace while supporting dense content.",
+      "color_rules_zh": "海军蓝用于结构和对比线；古金用于高级标题和主强调；青铜色只作为小型数值标记或细节信号。",
+      "color_rules_en": "Use navy for structure and comparison lines, antique gold for premium headings and hero emphasis, and bronze only as small value markers or detail signals.",
+      "palette": {
+        "background": "#F6F1E6",
+        "surface": "#FFFFFF",
+        "text": "#1B2230",
+        "muted_text": "#6E6A61",
+        "primary": "#243B5A",
+        "secondary": "#8A6A2F",
+        "accent": "#B98A44"
+      },
+      "avoid": [
+        "prestige cues that feel decorative rather than content-serving",
+        "lifestyle associations that weaken financial seriousness",
+        "template or system labels visible in the image",
+        "ornamentation that competes with trust and readability"
+      ],
+      "default_density_fit": "high"
+    },
+    {
+      "id": "precision-blueprint",
+      "name_zh": "钢蓝结构蓝图",
+      "name_en": "Steel Blue Structure Blueprint",
+      "status": "built_in",
+      "use_case_zh": "适合解释机制、流程、系统结构、产品架构和复杂关系。",
+      "use_case_en": "For mechanisms, processes, system structures, product architecture, and complex relationships.",
+      "selection_signals": [
+        "mechanism",
+        "process",
+        "system_structure",
+        "product_architecture",
+        "technical_explanation"
+      ],
+      "art_direction_zh": "钢蓝蓝图和精密线稿方向，强调机制路径、层级结构、系统关系和分析清晰度；只让图形服务于结构说明。",
+      "art_direction_en": "Steel blue blueprint direction with precise linework, mechanism paths, hierarchy, system relationships, and analytical clarity where graphics serve explanation.",
+      "composition_zh": "蓝图式解释页，使用度量路径、结构叠层、坐标式导引、节点路径、局部放大标注和清晰机制区，适合中密度结构表达。",
+      "composition_en": "Blueprint explanation page with measured paths, structural overlays, axis-like guides, node routes, local zoom callouts, and clear mechanism zones.",
+      "color_rules_zh": "钢蓝用于结构和标题；技术青用于机制路径；低饱和黄铜只用于一个活跃节点或主指标。",
+      "color_rules_en": "Use steel blue for structure and titles, technical teal for mechanism paths, and muted brass only for one active node or hero metric.",
+      "palette": {
+        "background": "#F3F7FC",
+        "surface": "#FFFFFF",
+        "text": "#172033",
+        "muted_text": "#5C6878",
+        "primary": "#1F5E8C",
+        "secondary": "#2B7480",
+        "accent": "#BFA15A"
+      },
+      "avoid": [
+        "technical decoration without explanatory purpose",
+        "interface-like framing that makes the slide look like software",
+        "process graphics that do not map to the user content",
+        "visual complexity that obscures the mechanism"
+      ],
+      "default_density_fit": "medium"
+    },
+    {
+      "id": "ink-copper",
+      "name_zh": "墨绿铜金演讲",
+      "name_en": "Mineral Green Copper Keynote",
+      "status": "built_in",
+      "use_case_zh": "适合深色但不纯黑的高管演讲、发布会感和强叙事页面，尤其适合低到中密度内容。",
+      "use_case_en": "For dark but not pure-black executive keynotes, launch-style narrative pages, and low-to-medium density content.",
+      "selection_signals": [
+        "executive_keynote",
+        "dark_background",
+        "launch_narrative",
+        "low_to_medium_density"
+      ],
+      "art_direction_zh": "深矿物绿和铜金的高管演讲方向，暖铜层级、象牙白文字、低饱和矿物绿辅助，整体有发布会气质但保持克制。",
+      "art_direction_en": "Deep mineral green and copper executive keynote direction with warm copper hierarchy, ivory text, muted mineral support, and restrained launch-stage presence.",
+      "composition_zh": "一个有力量的焦点结构，大面积深矿物色负空间，铜光数据架构，雕塑感分隔，强层级，少量但果断的证据模块。",
+      "composition_en": "One powerful focal structure with deep mineral negative space, copper-lit data architecture, sculptural dividers, strong hierarchy, and sparse but decisive evidence modules.",
+      "color_rules_zh": "铜色用于主强调和章节锚点；矿物鼠尾草绿只用于细线结构对比；古金只作为极小信号标记。",
+      "color_rules_en": "Use copper for hero emphasis and anchors, mineral sage only for thin structural contrast, and antique gold only as tiny signal markers.",
+      "palette": {
+        "background": "#17221E",
+        "surface": "#22302A",
+        "text": "#F2ECE0",
+        "muted_text": "#AEB6A8",
+        "primary": "#C1783D",
+        "secondary": "#88A39C",
+        "accent": "#D4B36A"
+      },
+      "avoid": [
+        "stage effects that overpower the message",
+        "high-drama styling that weakens executive restraint",
+        "large saturated color fields that reduce readability",
+        "decorative spectacle without content function"
+      ],
+      "default_density_fit": "low_to_medium"
+    },
+    {
+      "id": "evidence-lab",
+      "name_zh": "灰蓝研究分析",
+      "name_en": "Gray Blue Research Analysis",
+      "status": "built_in",
+      "use_case_zh": "适合研究结论、证据拆解、分析型内容和谨慎比较。",
+      "use_case_en": "For research conclusions, evidence breakdowns, analytical reasoning, and careful comparisons.",
+      "selection_signals": [
+        "research",
+        "evidence",
+        "analysis",
+        "comparison",
+        "calm_reasoning"
+      ],
+      "art_direction_zh": "灰蓝研究分析方向，强调严谨、证据层级、分析比较和克制推理；使用抽象证据标记，不伪造指标、档案标签或实验室徽章。",
+      "art_direction_en": "Gray blue research-analysis direction emphasizing rigor, evidence hierarchy, analytical comparison, and restrained reasoning with abstract evidence marks and no fabricated labels.",
+      "composition_zh": "精修研究分析页，有度量网格、抽象验证标记、平静对比区、来自内容本身的干净边注和微妙纸张材质，适合高密度分析。",
+      "composition_en": "Polished research-analysis page with measured grid, abstract verification marks, calm comparison zones, content-derived margin notes, and subtle paper materiality.",
+      "color_rules_zh": "灰蓝用于证据层级；干燥鼠尾草绿用于分析对比；低饱和黄铜用于阈值、验证标记或单个重点。",
+      "color_rules_en": "Use gray blue for evidence hierarchy, dry sage for analytical contrast, and muted brass for thresholds, verification marks, or one key emphasis.",
+      "palette": {
+        "background": "#F7F8F4",
+        "surface": "#FFFFFF",
+        "text": "#20242A",
+        "muted_text": "#687060",
+        "primary": "#4E6375",
+        "secondary": "#66775A",
+        "accent": "#C2A24D"
+      },
+      "avoid": [
+        "fabricated evidence labels or metrics",
+        "research motifs that imply unsupported sources",
+        "template or system labels visible in the image",
+        "decorative analysis marks that are not grounded in the content"
+      ],
+      "default_density_fit": "high"
+    }
+  ]
+}
