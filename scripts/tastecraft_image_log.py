@@ -8,8 +8,21 @@ from pathlib import Path
 from typing import Any, List, Optional, Union
 
 
-VALID_STATUSES = {"draft_prompt", "generated_image", "feedback"}
+VALID_STATUSES = {"draft_prompt", "generated_image", "feedback", "style_learning"}
 DRAFT_PROMPT_REQUIRED_FIELDS = {"title", "template_id", "template_name_zh", "prompt_zh", "prompt_en"}
+STYLE_LEARNING_REQUIRED_FIELDS = {
+    "source_type",
+    "source_note",
+    "template_id",
+    "template_name_zh",
+    "aesthetic_analysis",
+    "transfer_guidance",
+    "template_draft",
+    "test_suggestion",
+    "maturity",
+    "merge_group",
+    "created_at",
+}
 
 
 def repo_root() -> Path:
@@ -33,6 +46,14 @@ def log_paths(root: Union[str, Path], date: str) -> dict[str, Path]:
     }
 
 
+def style_learning_log_paths(root: Union[str, Path], date: str) -> dict[str, Path]:
+    safe_date = validate_date(date)
+    log_dir = Path(root) / "docs" / "project-log" / "style-learning"
+    return {
+        "jsonl": log_dir / f"{safe_date}-style-learning.jsonl",
+    }
+
+
 def validate_event(event: dict[str, Any]) -> None:
     if not isinstance(event, dict):
         raise ValueError("event must be a JSON object")
@@ -52,6 +73,24 @@ def validate_event(event: dict[str, Any]) -> None:
             raise ValueError("generated_image requires image_path")
         if not event.get("imagegen_prompt"):
             raise ValueError("generated_image requires imagegen_prompt")
+
+    if status == "style_learning":
+        missing = sorted(field for field in STYLE_LEARNING_REQUIRED_FIELDS if field not in event)
+        if missing:
+            raise ValueError(f"style_learning missing required fields: {', '.join(missing)}")
+        if event.get("source_type") != "single_reference_image":
+            raise ValueError("style_learning source_type must be single_reference_image")
+        if event.get("maturity") != "draft":
+            raise ValueError("style_learning maturity must be draft in v1")
+        if event.get("merge_group") is not None:
+            raise ValueError("style_learning merge_group must be null in v1")
+        if "source_image" in event:
+            raise ValueError("style_learning must not store source_image")
+        if "image_path" in event:
+            raise ValueError("style_learning must not store image_path")
+        for field in ("aesthetic_analysis", "transfer_guidance", "template_draft", "test_suggestion"):
+            if not isinstance(event.get(field), dict):
+                raise ValueError(f"style_learning {field} must be an object")
 
 
 def _single_line(value: Any) -> str:
@@ -83,9 +122,19 @@ def markdown_line(event: dict[str, Any]) -> str:
 def append_event(root: Union[str, Path], event: dict[str, Any], date: Optional[str] = None) -> dict[str, Path]:
     event_to_log = dict(event)
     event_to_log.setdefault("logged_at", datetime.now().replace(microsecond=0).isoformat())
+    if event_to_log.get("status") == "style_learning":
+        event_to_log.setdefault("created_at", event_to_log["logged_at"])
     validate_event(event_to_log)
 
     log_date = validate_date(date or datetime.now().date().isoformat())
+
+    if event_to_log.get("status") == "style_learning":
+        paths = style_learning_log_paths(root, log_date)
+        paths["jsonl"].parent.mkdir(parents=True, exist_ok=True)
+        with paths["jsonl"].open("a", encoding="utf-8") as jsonl_file:
+            jsonl_file.write(json.dumps(event_to_log, ensure_ascii=False, sort_keys=True) + "\n")
+        return paths
+
     paths = log_paths(root, log_date)
     paths["jsonl"].parent.mkdir(parents=True, exist_ok=True)
 
