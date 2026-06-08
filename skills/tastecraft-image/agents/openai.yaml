@@ -1,0 +1,4 @@
+interface:
+  display_name: "TasteCraft Image"
+  short_description: "Turn pasted slide content into confirmed Codex image prompts and generated PPT-ready images."
+  default_prompt: "Use TasteCraft Image to analyze the user's complete slide content, choose a suitable template, produce a Chinese primary image prompt plus English variant, log the prompt, and wait for explicit confirmation before generating an image."
