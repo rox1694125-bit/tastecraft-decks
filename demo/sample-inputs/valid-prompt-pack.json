@@ -24,6 +24,20 @@
       "positive_prompt": "A clean studio scene showing presentation boards, color swatches, and a laptop with abstract dashboard shapes, bright editorial lighting, premium product photography, no visible brand marks.",
       "negative_prompt": "No real people, no readable brand logos, no private documents, no cluttered office background.",
       "reference_notes": "Use as a full-bleed cover visual with enough quiet space for headline text.",
+      "prompt_variants": {
+        "zh-CN": {
+          "purpose": "为演示质量控制主题创建封面图像。",
+          "positive_prompt": "一个干净的工作室场景，展示演示板、色卡和一台带抽象仪表盘形状的笔记本电脑，明亮编辑光线，高级产品摄影感，不出现可识别品牌标识。",
+          "negative_prompt": "不要真实人物，不要可读品牌 logo，不要私人文件，不要杂乱办公室背景。",
+          "reference_notes": "作为全幅封面视觉使用，保留足够安静空间放置标题文字。"
+        },
+        "en": {
+          "purpose": "Cover image for a deck about presentation quality control.",
+          "positive_prompt": "A clean studio scene showing presentation boards, color swatches, and a laptop with abstract dashboard shapes, bright editorial lighting, premium product photography, no visible brand marks.",
+          "negative_prompt": "No real people, no readable brand logos, no private documents, no cluttered office background.",
+          "reference_notes": "Use as a full-bleed cover visual with enough quiet space for headline text."
+        }
+      },
       "generation_params": {
         "model_hint": "image-generation",
         "size": "1792x1024",

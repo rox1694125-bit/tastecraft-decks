@@ -31,6 +31,7 @@ Default output:
 - Candidate count: one image per template at first
 - Max regenerations: three candidates per page/template before the prompt must be revised
 - Text policy: generated image may contain full slide text; any key typo, missing text, garbled text, or wrong meaning is a failure
+- Content policy: if the user provides full content, test prompts must carry the full content by default; do not summarize or shorten unless the user explicitly asks for summary, extraction, or compression
 - Generation path: pure AI finished-page image. Do not default to AI background plus HTML/PPT overlay.
 
 ## User Brief Format
@@ -98,13 +99,39 @@ Each prompt should include:
 
 - role and intent: a senior business visual designer creating a high-end one-page presentation image;
 - output specification: 4K target when the generation path supports it, aspect ratio, and presentation use;
-- visual ambition: premium financial / consulting-grade composition, not a plain chart;
-- information architecture: what to emphasize, what to compress, and which numbers are hero values;
+- hard rules: pure AI whole-slide finished image, no HTML/PPT overlay, visible text comes from user-provided content only, no template names or internal instructions as slide copy;
+- visual requirements: clear information structure first, then material depth, background linework, or light decoration;
+- information architecture: what to emphasize, how to organize supporting evidence, and which information groups are primary;
+- content fidelity: full user-provided body copy remains in the prompt and should be placed in the image unless the user explicitly asks for compression;
 - layout grammar: modular grid, invisible alignment, whitespace rhythm, dense/sparse alternation;
-- color usage rules: which colors apply to titles, key figures, cards, dividers, charts, and highlights;
+- color usage rules: which colors apply to titles, key figures, cards, dividers, charts, and highlights, plus a visual proportion such as 70-80% background/whitespace, 15-20% structure, and no more than 5% accent;
 - visual assets: material texture, subtle linework, spatial depth, refined background graphics, or subject-relevant metaphors when useful;
 - typography rules: hierarchy, consistent levels, and high-contrast text;
-- negative constraints: avoid generic cards, default dashboards, flat HTML-like charts, and decorative clutter.
+- negative constraints: keep the list short and focused on failure types such as garbled text, warped typography, invented numbers, fake logos, watermarks, input labels as visible text, visible template names, low-resolution details, stock infographic style, cheap template look, and mechanical side-by-side boxes.
+
+June 8 user-review additions:
+
+- Do not use a global hard-coded object-ban list for fruit, flowers, plants, leaves, or food still life. If a future template needs object-specific bans, keep them local to that template decision rather than the global negative prompt.
+- Do not let decorative style compress the core message. The core information body should occupy 60-70% of visual attention; only comparison pages should specify that the data comparison itself occupies 60-70%.
+- Do not add user-unprovided conclusions, disclaimers, ratings, sources, template names, or internal instruction text.
+- If the slide uses donut charts, ring charts, circular nodes, or comparison circles, they must remain visually circular rather than flattened by perspective.
+- Similar templates should be repositioned rather than kept as near-duplicates; each template needs a distinct use case and visual grammar.
+- Palette prompts should specify mature color relationships, not only color names, especially for dark executive pages.
+- Do not summarize or shorten user-provided slide content by default. If content is dense, adjust layout density and reduce decoration before deleting body copy; test the real dense-layout behavior using multi-column, sectioned, table-like, reading-first, or appendix-style composition.
+- Raw input labels such as `【主标题】`, `副标：`, `Subtitle:`, bullets, numbering, and wrapper parentheses are structure hints. The generated image should preserve the content after them, but not render those labels or wrapper marks as visible copy unless explicitly requested.
+- Template names, IDs, and signatures are metadata and should not be sent in the image-generation prompt body. They should not appear as visible copy.
+- Subject-relevant concrete metaphors are acceptable and can improve the result, but prompt templates should not inject fixed object lists based on keywords such as insurance, Hong Kong, finance, or AI.
+- For `market-slate`, generic world maps or stock-line decorations are failures unless the topic itself calls for them. The prompt should state the relevance rule generically rather than listing subject-specific cue examples.
+- For `ink-copper`, avoid pure black stage backgrounds. Use the mineral copper palette so the dark variant has more practical use cases.
+
+## Fixed Smoke Briefs
+
+Use these four brief types after prompt-template changes to reduce overfitting to a single insurance or finance example:
+
+- No-copy style test: minimal or no body copy, used to check whether the six style templates remain visually distinct.
+- Short sales page: title, subtitle, four selling points, and key numbers, used to test commercial product-page structure.
+- Long Chinese full-copy page: dense Chinese body copy similar to the Starlight Mutual insurance test, used to test default full-content rendering.
+- Non-financial topic page: AI training workflow, restaurant brand strategy, or enterprise process review, used to test whether the templates were overfit to insurance / finance.
 
 ## Route Decision: Pure AI First
 

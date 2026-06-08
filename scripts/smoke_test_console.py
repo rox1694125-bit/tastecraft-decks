@@ -67,6 +67,19 @@ def check_console(root: Path, console_dir: Path) -> list[str]:
         if marker not in html:
             errors.append(f"index.html does not mention {marker}")
 
+    workbench_markers = (
+        "simpleWorkbench",
+        "workbenchRawContent",
+        "buildStructuringRequestBtn",
+        "workbenchRecommendedPrompt",
+        "advancedConsole",
+    )
+    for marker in workbench_markers:
+        if marker not in html:
+            errors.append(f"index.html does not include Prompt Workbench marker {marker}")
+    if 'id="workbenchStageStructure" hidden' not in html or 'id="workbenchStageReview" hidden' not in html:
+        errors.append("Prompt Workbench structure/review stages should be hidden before JavaScript initializes")
+
     if '<html lang="zh-CN">' not in html:
         errors.append("index.html must default to zh-CN")
     if 'id="languageSelect"' not in html or 'value="zh-CN"' not in html or 'value="en"' not in html:
@@ -110,6 +123,12 @@ const api = sandbox.window.__tastecraftConsole;
 if (!api || typeof api.buildDeckSpec !== 'function' || typeof api.buildPromptPack !== 'function') {
   throw new Error('console test API is missing export functions');
 }
+if (
+  typeof api.buildWorkbenchStructuringRequestForTest !== 'function' ||
+  typeof api.applyWorkbenchStructuredResultForTest !== 'function'
+) {
+  throw new Error('console test API is missing workbench export functions');
+}
 api.setStateForTest({
   prompts: [
     {
@@ -150,6 +169,62 @@ if (pack.export_policy !== 'confirmed_prompts_only') {
 }
 if (pack.prompts.length !== 1 || pack.prompts[0].prompt_id !== 'confirmed-cover') {
   throw new Error('prompt pack did not exclude unconfirmed prompts');
+}
+const rawWorkbenchContent = [
+  '【主标题】守护家庭现金流的三道防线',
+  '（副标：把保障、储蓄和应急资金放在同一张决策图里）',
+  '',
+  '完整正文：',
+  '第一道防线是 6 个月家庭开支的紧急备用金，确保收入中断时仍能覆盖房贷、学费和医疗垫付。',
+  '第二道防线是重疾和医疗保障，用确定的保额处理低概率高损失事件。',
+  '第三道防线是长期储蓄账户，让未来教育金和退休现金流不被短期市场波动打乱。'
+].join('\n');
+const structuringRequest = api.buildWorkbenchStructuringRequestForTest(rawWorkbenchContent);
+if (!structuringRequest.includes('完整正文')) {
+  throw new Error('workbench structuring request must preserve full body copy');
+}
+const structuredWorkbenchResult = {
+  title: '守护家庭现金流的三道防线',
+  subtitle: '把保障、储蓄和应急资金放在同一张决策图里',
+  audience: '家庭财务规划客户',
+  scenario: 'client-presentation',
+  sections: [
+    {
+      heading: '紧急备用金',
+      body: '第一道防线是 6 个月家庭开支的紧急备用金，确保收入中断时仍能覆盖房贷、学费和医疗垫付。'
+    },
+    {
+      heading: '风险保障',
+      body: '第二道防线是重疾和医疗保障，用确定的保额处理低概率高损失事件。'
+    },
+    {
+      heading: '长期储蓄',
+      body: '第三道防线是长期储蓄账户，让未来教育金和退休现金流不被短期市场波动打乱。'
+    }
+  ],
+  must_preserve: [
+    '6 个月家庭开支',
+    '覆盖房贷、学费和医疗垫付',
+    '教育金和退休现金流'
+  ],
+  key_numbers: ['6 个月'],
+  forbidden_elements: [],
+  style_intent: '专业、清晰、适合客户沟通的高可信金融演示页',
+  density_notes: '完整正文必须保留，使用三栏结构承载。'
+};
+const workbenchResult = api.applyWorkbenchStructuredResultForTest(structuredWorkbenchResult);
+const recommendedPrompt = workbenchResult.recommended_prompt && workbenchResult.recommended_prompt.positive_prompt;
+if (!recommendedPrompt || !recommendedPrompt.includes('守护家庭现金流的三道防线')) {
+  throw new Error('workbench recommended prompt does not include the main title');
+}
+if (!recommendedPrompt.includes('第一道防线是 6 个月家庭开支的紧急备用金')) {
+  throw new Error('workbench recommended prompt does not include body content');
+}
+if (!Array.isArray(workbenchResult.style_variants) || workbenchResult.style_variants.length !== 6) {
+  throw new Error('workbench style_variants should include 6 variants');
+}
+if (!workbenchResult.style_variants.every((variant) => variant.use_case)) {
+  throw new Error('workbench style_variants should include user-facing use cases');
 }
 """
     result = subprocess.run(

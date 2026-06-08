@@ -20,12 +20,12 @@ Use the palette IDs in `assets/palettes/v1-palettes.json`.
 
 | Palette ID | Character | Best For | Avoid For |
 | --- | --- | --- | --- |
-| `citrus-editorial` | Fresh, culinary, optimistic | consumer food, product launch, keynote | conservative board packets |
-| `market-slate` | Crisp, analytical, confident | investor, operating report, KPI review | playful training |
-| `atelier-rose` | Premium, human, editorial | brand strategy, hospitality, lifestyle | very dense financial appendices |
-| `harbor-mint` | Clean, calm, technical | product demo, SaaS, service design | luxury positioning |
-| `ink-copper` | High contrast, dramatic, premium | keynote, closing, strong brand pages | long reading-first decks |
-| `orchard-lab` | Natural, precise, optimistic | food innovation, research, sustainability | formal legal or board decks |
+| `citrus-editorial` | Warm, editorial, textured | brand story, consumer strategy, non-financial keynote | serious financial comparison |
+| `market-slate` | Crisp, analytical, confident | investor, operating report, KPI review | playful training, unrelated market-map decoration |
+| `atelier-rose` | Reserved, premium, financial | private wealth, asset management, board narrative | playful lifestyle |
+| `harbor-mint` | Precise, technical, structured | technical finance, mechanism explanation, systems overview | luxury positioning |
+| `ink-copper` | Dark mineral, copper, premium | keynote, closing, strong brand pages | long reading-first decks, pure black stage aesthetic |
+| `orchard-lab` | Clean, research-driven, evidence-oriented | research summary, evidence review, decision memo | nature or sustainability storytelling |
 
 ## Contrast Rules
 
@@ -68,4 +68,3 @@ If the user provides a brand kit:
 - If brand colors are unusable for text, use them as lines, markers, or small accents instead.
 - If a generated image clashes with the palette, adjust the image prompt or add a translucent overlay; do not recolor all typography to chase the image.
 - If the user requests a one-color look, preserve the requested mood but introduce neutral contrast for text, data, and UI structure.
-

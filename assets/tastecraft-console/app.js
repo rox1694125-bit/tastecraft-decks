@@ -158,12 +158,12 @@
       "lab.applied_to_page": "应用到页面",
       "lab.promoted_to_rule": "提升为规则",
       "lab.discarded": "丢弃",
-      "palette.citrus-editorial": "Citrus Editorial",
+      "palette.citrus-editorial": "Editorial Paper",
       "palette.market-slate": "Market Slate",
-      "palette.atelier-rose": "Atelier Rose",
-      "palette.harbor-mint": "Harbor Mint",
+      "palette.atelier-rose": "Sovereign Gold",
+      "palette.harbor-mint": "Precision Blueprint",
       "palette.ink-copper": "Ink Copper",
-      "palette.orchard-lab": "Orchard Lab",
+      "palette.orchard-lab": "Evidence Lab",
       "palette.custom": "自定义",
       planned: "已规划",
       notMapped: "未映射",
@@ -332,12 +332,12 @@
       "lab.applied_to_page": "Applied to Page",
       "lab.promoted_to_rule": "Promoted to Rule",
       "lab.discarded": "Discarded",
-      "palette.citrus-editorial": "Citrus Editorial",
+      "palette.citrus-editorial": "Editorial Paper",
       "palette.market-slate": "Market Slate",
-      "palette.atelier-rose": "Atelier Rose",
-      "palette.harbor-mint": "Harbor Mint",
+      "palette.atelier-rose": "Sovereign Gold",
+      "palette.harbor-mint": "Precision Blueprint",
       "palette.ink-copper": "Ink Copper",
-      "palette.orchard-lab": "Orchard Lab",
+      "palette.orchard-lab": "Evidence Lab",
       "palette.custom": "Custom",
       planned: "planned",
       notMapped: "Not mapped",
@@ -365,13 +365,13 @@
   };
   var palettes = {
     "citrus-editorial": {
-      background: "#FFF9F0",
+      background: "#FBF7EF",
       surface: "#FFFFFF",
-      text: "#1F2328",
-      muted_text: "#667085",
-      primary: "#D9480F",
-      secondary: "#0F766E",
-      accent: "#F2B705"
+      text: "#20242A",
+      muted_text: "#68707A",
+      primary: "#A75E2B",
+      secondary: "#2F6F73",
+      accent: "#C9A646"
     },
     "market-slate": {
       background: "#F7F8FA",
@@ -383,42 +383,111 @@
       accent: "#E76F51"
     },
     "atelier-rose": {
-      background: "#FAF6F3",
+      background: "#F6F1E6",
       surface: "#FFFFFF",
-      text: "#27211F",
-      muted_text: "#7A6B64",
-      primary: "#9F3A4A",
-      secondary: "#406A5D",
-      accent: "#D79A3D"
+      text: "#1B2230",
+      muted_text: "#6E6A61",
+      primary: "#8A6A2F",
+      secondary: "#243B5A",
+      accent: "#B98A44"
     },
     "harbor-mint": {
-      background: "#F4FBFA",
+      background: "#F3F7FC",
       surface: "#FFFFFF",
-      text: "#172326",
-      muted_text: "#617073",
-      primary: "#007C89",
-      secondary: "#5B8C5A",
-      accent: "#FFB703"
+      text: "#172033",
+      muted_text: "#5C6878",
+      primary: "#1F5E8C",
+      secondary: "#2B7480",
+      accent: "#BFA15A"
     },
     "ink-copper": {
-      background: "#151A1E",
-      surface: "#242A2F",
-      text: "#F7F2EA",
-      muted_text: "#B8C0C2",
-      primary: "#C46A3A",
-      secondary: "#66A6A0",
-      accent: "#F0C75E"
+      background: "#17221E",
+      surface: "#22302A",
+      text: "#F2ECE0",
+      muted_text: "#AEB6A8",
+      primary: "#C1783D",
+      secondary: "#88A39C",
+      accent: "#D4B36A"
     },
     "orchard-lab": {
-      background: "#FBFCF5",
+      background: "#F7F8F4",
       surface: "#FFFFFF",
-      text: "#20251D",
-      muted_text: "#66705C",
-      primary: "#4F7D24",
-      secondary: "#1E6F78",
-      accent: "#E0A100"
+      text: "#20242A",
+      muted_text: "#687060",
+      primary: "#4E6375",
+      secondary: "#66775A",
+      accent: "#C2A24D"
     }
   };
+  var promptStyleTemplates = {
+    "citrus-editorial": {
+      name: "Editorial Paper",
+      signature: "editorial paper system",
+      art_direction: "warm editorial paper direction for lighter business topics: premium print texture, refined margin rules, restrained editorial ribbons, tactile print depth, and one precise analytical layer without unrelated lifestyle props",
+      composition: "asymmetric editorial spread with a generous title field, one dominant information area, small annotated evidence modules, refined shadows, subtle paper grain, and no boxed-card grid",
+      color_rules: "use warm umber primary for title and one hero value, muted teal secondary for comparison structure, antique gold accent only for small editorial ticks or one key highlight",
+      signature_zh: "编辑纸感系统",
+      art_direction_zh: "温暖的编辑印刷纸感，适合较轻的商业主题：高级纸张纹理、精致边距线、克制编辑缎带、印刷材质深度，以及一个精准分析层，避免无关生活方式摆件",
+      composition_zh: "非对称编辑跨页，充足标题区，一个占主导的信息主体区，小型注释证据模块，精致阴影，细微纸张颗粒，避免盒子卡片网格",
+      color_rules_zh: "暖赭主色用于标题和一个主数值，低饱和青绿色用于对比结构，古金强调色只用于小型编辑标记或一个关键高亮"
+    },
+    "market-slate": {
+      name: "Market Slate",
+      signature: "executive market intelligence",
+      art_direction: "institutional executive brief direction: crisp board-review analytics, clear conclusion, business judgment, key evidence, context-relevant geographic, regulatory, or industry linework only when the brief supports it, and consulting-grade hierarchy",
+      composition: "modular executive briefing page with a strong invisible grid, controlled whitespace rhythm, one dominant conclusion zone, compact evidence strip, precise comparison geometry, never a default dashboard, no mechanism flowchart, no unrelated world maps or awkward stock-line decorations",
+      color_rules: "use slate primary for title/navigation and lead series, green secondary for structural counterpoint, coral accent only for risk/delta/callout values",
+      signature_zh: "高管市场情报",
+      art_direction_zh: "机构级高管简报方向：清晰的董事会分析感、明确结论、业务判断、关键证据；只有 brief 支持时才使用与主题相关的地域、监管或行业线稿；咨询级信息层级",
+      composition_zh: "模块化高管简报页，强隐形网格，受控留白节奏，一个主结论区，紧凑证据带，精确对比几何，绝不做默认仪表盘，不要画机制流程图，不使用无关世界地图或突兀股价折线装饰",
+      color_rules_zh: "石板主色用于标题/导航和主数据序列，绿色辅助色用于结构对照，珊瑚强调色只用于风险、差异或单个重点数值"
+    },
+    "atelier-rose": {
+      name: "Sovereign Gold",
+      signature: "sovereign private wealth",
+      art_direction: "reserved private wealth and asset-management direction: institutional navy, antique gold detail, premium financial confidence, quiet authority, and no hospitality, lifestyle, or decorative romance cues",
+      composition: "layered financial editorial spread with a framed hero insight, refined ledger-like dividers, quiet comparative diagram, disciplined whitespace, and premium brochure craft without becoming an advertisement",
+      color_rules: "use antique gold primary for premium headings and hero emphasis, deep navy secondary for structure and comparison lines, restrained bronze accent only as small value markers",
+      signature_zh: "尊贵私行资管",
+      art_direction_zh: "克制的私行/资管方向：机构海军蓝、古金细节、高级金融信任感、安静权威；避免酒店服务业、生活方式或浪漫装饰线索",
+      composition_zh: "有层次的金融编辑跨页，框定式主洞察，精致账簿式分隔线，安静对比图解，纪律化留白，保持高级金融画册质感但不变成广告",
+      color_rules_zh: "古金主色用于高级标题和主强调，深海军蓝辅助色用于结构和对比线，克制青铜强调色只作为小型数值标记"
+    },
+    "harbor-mint": {
+      name: "Precision Blueprint",
+      signature: "precision blueprint system",
+      art_direction: "mechanism blueprint direction for technical finance and system explanation: cool blueprint paper, exact linework, layered architecture diagrams, causal paths, hierarchy, process relationships, and analytical clarity",
+      composition: "blueprint-style explanation page with measured paths, structural overlays, axis-like guides, clear mechanism zones, nodes, local zoom callouts, low-friction reading path, no fake UI screens, and no ordinary executive dashboard",
+      color_rules: "use steel blue primary for structure and titles, technical teal secondary for mechanism paths, muted brass accent for one active node or hero metric",
+      signature_zh: "精密蓝图系统",
+      art_direction_zh: "适合科技金融和机制解释的机制蓝图方向：冷静蓝图纸、精确线稿、层叠架构图、因果路径、层级结构、流程关系和分析清晰度",
+      composition_zh: "蓝图式解释页，有度量路径、结构叠层、类坐标导引、清晰机制区、节点路径、局部放大标注、低阻阅读路径，不伪造 UI 屏幕，不要做普通高管仪表盘",
+      color_rules_zh: "钢蓝主色用于结构和标题，技术青辅助色用于机制路径，低饱和黄铜强调色用于一个活跃节点或主指标"
+    },
+    "ink-copper": {
+      name: "Ink Copper",
+      signature: "mineral copper executive keynote",
+      art_direction: "mineral copper executive keynote system: deep mineral green graphite background instead of pure black, warm copper hierarchy, ivory text, muted mineral-sage support only in structural roles, cinematic but disciplined executive narrative, and no red-blue color clash",
+      composition: "one powerful focal structure with deep mineral negative space, copper-lit data architecture, sculptural dividers, bold hierarchy, sparse but decisive evidence, no nightclub glow, no pure black stage, and no decorative spectacle",
+      color_rules: "use copper primary for hero emphasis and chapter-like anchors, mineral sage secondary only for thin structural contrast and calm data support, antique gold accent only as tiny signal markers; avoid large saturated blue, red, or flat black fields",
+      signature_zh: "深色高管 Keynote",
+      art_direction_zh: "深矿物绿铜金高管 Keynote 系统：用深矿物绿石墨背景替代纯黑，暖铜层级、象牙白文字、低饱和矿物鼠尾草只作为结构辅助，电影感但克制的高管叙事，避免红蓝冲突",
+      composition_zh: "一个有力量的焦点结构，深矿物色负空间，铜光数据架构，雕塑感分隔，强层级，稀疏但果断的证据，避免夜店光效、纯黑舞台或装饰奇观",
+      color_rules_zh: "铜色主色用于主强调和章节锚点，矿物鼠尾草辅助色只用于细线结构对比和冷静数据辅助，古金强调只作为极小信号标记；避免大面积高饱和蓝色、红色或平面纯黑"
+    },
+    "orchard-lab": {
+      name: "Evidence Lab",
+      signature: "evidence lab dossier",
+      art_direction: "research dossier direction: clean research-desk rigor, analytical sheets, instrument-like linework, abstract evidence markers, and calm comparative reasoning without fake dossier metrics",
+      composition: "research dossier meets polished board slide: measured grid, abstract verification markers, calm comparison zones, clean content-only margin notes, subtle paper materiality, and a layout clearly distinct from dashboard templates without template labels",
+      color_rules: "use slate blue primary for evidence hierarchy, dry sage secondary for analytical contrast, muted brass accent for thresholds or verification markers",
+      signature_zh: "证据实验室档案",
+      art_direction_zh: "研究档案式方向：干净研究桌严谨感、分析档案纸、仪器感线稿、抽象证据标记和平静对比推理，避免伪档案指标",
+      composition_zh: "研究档案遇到精修董事会幻灯片：有度量网格、抽象验证标记、平静对比区、只来自内容本身的干净边注、微妙纸张材质，并且和仪表盘模板明显区分，不出现模板标签",
+      color_rules_zh: "石板蓝主色用于证据层级，干燥鼠尾草辅助色用于分析对比，低饱和黄铜强调色用于阈值或验证标记"
+    }
+  };
+  var workbenchTemplateIds = ["citrus-editorial", "market-slate", "atelier-rose", "harbor-mint", "ink-copper", "orchard-lab"];
   var state = {
     activePanel: "project",
     selectedPageId: "page-01-cover",
@@ -477,6 +546,16 @@
     prompts: [],
     experiments: []
   };
+  var workbenchState = {
+    step: 1,
+    raw_content: "",
+    structuring_request: "",
+    structured_input: "",
+    structured_content: null,
+    recommended_prompt: null,
+    style_variants: [],
+    variants_expanded: false
+  };
 
   function copy(value) {
     return JSON.parse(JSON.stringify(value));
@@ -484,6 +563,12 @@
 
   function t(key) {
     var active = i18n[currentLanguage] || i18n["zh-CN"];
+    var fallback = i18n.en || {};
+    return active[key] || fallback[key] || key;
+  }
+
+  function tFor(key, language) {
+    var active = i18n[language] || i18n["zh-CN"];
     var fallback = i18n.en || {};
     return active[key] || fallback[key] || key;
   }
@@ -508,6 +593,642 @@
 
   function statusLabel(value) {
     return t("status." + value);
+  }
+
+  function activePromptTemplate() {
+    return promptStyleTemplates[state.theme.palette.preset_id] || promptStyleTemplates["market-slate"];
+  }
+
+  function templateText(template, key, language) {
+    return language === "zh-CN" ? (template[key + "_zh"] || template[key]) : template[key];
+  }
+
+  function activePaletteColors() {
+    var preset = state.theme.palette.preset_id;
+    if (state.theme.palette.custom && state.theme.palette.colors) {
+      return state.theme.palette.colors;
+    }
+    return palettes[preset] || state.theme.palette.colors || palettes["market-slate"];
+  }
+
+  function buildWorkbenchStructuringRequest(rawContent) {
+    var source = String(rawContent || "").trim();
+    return [
+      "请把下面的原始内容拆解为 Prompt 工作台 JSON。",
+      "",
+      "要求：",
+      "1. 不要摘要、删减或改写用户正文；如果内容很长，也要保留完整正文。",
+      "2. 把【主标题】、副标：、括号、编号和项目符号理解为结构提示，不要把这些包装符号当成正式文案。",
+      "3. 只在用户明确表达时填写 forbidden_elements；不要根据保险、香港、金融、AI 等关键词套用固定物件清单。",
+      "4. 返回严格 JSON，不要包裹 Markdown 代码块。",
+      "",
+      "JSON 结构：",
+      "{",
+      '  "title": "",',
+      '  "subtitle": "",',
+      '  "audience": "",',
+      '  "scenario": "",',
+      '  "sections": [{ "heading": "", "body": "" }],',
+      '  "must_preserve": [],',
+      '  "key_numbers": [],',
+      '  "forbidden_elements": [],',
+      '  "style_intent": "",',
+      '  "density_notes": ""',
+      "}",
+      "",
+      "原始内容：",
+      source
+    ].join("\n");
+  }
+
+  function sectionText(section) {
+    if (!section) {
+      return "";
+    }
+    if (typeof section === "string") {
+      return section;
+    }
+    return [section.heading, section.body].filter(Boolean).join("：");
+  }
+
+  function normalizeTextValue(value) {
+    if (value === undefined || value === null) {
+      return "";
+    }
+    if (typeof value === "string") {
+      return value.trim();
+    }
+    if (Array.isArray(value)) {
+      return value.map(normalizeTextValue).filter(Boolean).join("；");
+    }
+    if (typeof value === "object") {
+      return JSON.stringify(value);
+    }
+    return String(value).trim();
+  }
+
+  function normalizeTextList(value) {
+    if (Array.isArray(value)) {
+      return value.map(normalizeTextValue).filter(Boolean);
+    }
+    if (typeof value === "string") {
+      return listFromLooseText(value);
+    }
+    if (value && typeof value === "object") {
+      return Object.keys(value).map(function (key) {
+        return key + "：" + normalizeTextValue(value[key]);
+      }).filter(Boolean);
+    }
+    return [];
+  }
+
+  function normalizeSections(value) {
+    if (Array.isArray(value)) {
+      return value.map(function (section) {
+        if (typeof section === "string") {
+          return { heading: "", body: section.trim() };
+        }
+        if (section && typeof section === "object") {
+          return {
+            heading: normalizeTextValue(section.heading || section.title || section.name),
+            body: normalizeTextValue(section.body || section.content || section.text)
+          };
+        }
+        return null;
+      }).filter(function (section) {
+        return section && (section.heading || section.body);
+      });
+    }
+    if (typeof value === "string") {
+      return parseSectionsText(value);
+    }
+    if (value && typeof value === "object") {
+      return Object.keys(value).map(function (key) {
+        return {
+          heading: key,
+          body: normalizeTextValue(value[key])
+        };
+      });
+    }
+    return [];
+  }
+
+  function normalizeWorkbenchStructuredContent(structured, rawContent) {
+    var source = structured && typeof structured === "object" ? copy(structured) : {};
+    var originalContent = normalizeTextValue(rawContent || source.original_content || source.raw_content);
+    return {
+      title: normalizeTextValue(source.title),
+      subtitle: normalizeTextValue(source.subtitle),
+      audience: normalizeTextValue(source.audience),
+      scenario: normalizeTextValue(source.scenario),
+      sections: normalizeSections(source.sections),
+      must_preserve: normalizeTextList(source.must_preserve),
+      key_numbers: normalizeTextList(source.key_numbers),
+      forbidden_elements: normalizeTextList(source.forbidden_elements),
+      style_intent: normalizeTextValue(source.style_intent),
+      density_notes: normalizeTextValue(source.density_notes),
+      original_content: originalContent
+    };
+  }
+
+  function structuredContentToNotes(structured) {
+    var lines = [];
+    if (structured.subtitle) {
+      lines.push(structured.subtitle);
+    }
+    (structured.sections || []).forEach(function (section, index) {
+      var text = sectionText(section);
+      if (text) {
+        lines.push((index + 1) + ". " + text);
+      }
+    });
+    if (structured.must_preserve && structured.must_preserve.length) {
+      lines.push("必须完整保留：" + structured.must_preserve.join("；"));
+    }
+    if (structured.key_numbers && structured.key_numbers.length) {
+      lines.push("关键数字：" + structured.key_numbers.join("；"));
+    }
+    if (structured.density_notes) {
+      lines.push("密度说明：" + structured.density_notes);
+    }
+    if (structured.original_content) {
+      lines.push("必须保留的原始完整正文（仅用于内容保真，不是可见标题或标签）：\n" + structured.original_content);
+    }
+    return lines.join("\n\n");
+  }
+
+  function firstMeaningfulLine(text) {
+    return String(text || "").split(/\n+/).map(function (line) {
+      return line.trim();
+    }).filter(Boolean)[0] || "";
+  }
+
+  function workbenchPageFromStructured(structured) {
+    var title = structured.title || firstMeaningfulLine(structuredContentToNotes(structured)) || "未命名内容";
+    return {
+      page_id: "page-workbench-01",
+      index: 1,
+      type: "visual",
+      title: title,
+      objective: "把用户提供的完整内容整理成一张高可信度、可读、可直接用于 Codex 生图的演示页。",
+      density: "reading-first",
+      content_inputs: { notes: structuredContentToNotes(structured) },
+      layout_variant: "single-page-prompt-workbench",
+      visual_role: structured.style_intent || "professional high-density presentation image",
+      logo_policy: "none",
+      image_prompt_refs: ["prompt-workbench-01"],
+      overrides: {},
+      status: "needs_prompt"
+    };
+  }
+
+  function makePromptWithTemplate(page, templateId) {
+    var previousPreset = state.theme.palette.preset_id;
+    var previousCustom = state.theme.palette.custom;
+    var previousColors = copy(state.theme.palette.colors);
+    state.theme.palette.preset_id = templateId;
+    state.theme.palette.custom = false;
+    state.theme.palette.colors = copy(palettes[templateId]);
+    var prompt = makePromptForPage(page, null);
+    state.theme.palette.preset_id = previousPreset;
+    state.theme.palette.custom = previousCustom;
+    state.theme.palette.colors = previousColors;
+    return prompt;
+  }
+
+  function applyWorkbenchStructuredResult(structured) {
+    var normalized = normalizeWorkbenchStructuredContent(structured, arguments[1]);
+    var page = workbenchPageFromStructured(normalized);
+    state.brief.topic = page.title;
+    state.brief.audience = normalized.audience || state.brief.audience || "内容使用者";
+    state.brief.scenario = normalized.scenario || state.brief.scenario || "client-presentation";
+    state.brief.goal = "将用户粘贴的完整内容转化为一张可读、专业、可直接生图的演示页。";
+    state.theme.imagery.style_direction = normalized.style_intent || state.theme.imagery.style_direction;
+    state.theme.imagery.forbidden_elements = normalized.forbidden_elements;
+    state.theme.palette.preset_id = "market-slate";
+    state.theme.palette.custom = false;
+    state.theme.palette.colors = copy(palettes["market-slate"]);
+    state.pages = [page];
+    state.output.slide_count = 1;
+    state.selectedPageId = page.page_id;
+    syncPromptsFromPages(false);
+    state.selectedPromptId = page.image_prompt_refs[0];
+    var recommended = state.prompts[0];
+    return {
+      structured_content: normalized,
+      recommended_template_id: "market-slate",
+      recommended_prompt: recommended,
+      style_variants: workbenchTemplateIds.map(function (templateId) {
+        var prompt = makePromptWithTemplate(page, templateId);
+        return {
+          template_id: templateId,
+          template_name: promptStyleTemplates[templateId].name,
+          use_case: workbenchTemplateUseCase(templateId),
+          positive_prompt: prompt.positive_prompt,
+          negative_prompt: prompt.negative_prompt
+        };
+      })
+    };
+  }
+
+  function parseWorkbenchStructuredInput(input) {
+    var text = String(input || "").trim();
+    if (!text) {
+      return { value: null, warning: "先粘贴 Codex 返回的结构化结果。" };
+    }
+    var clean = text.replace(/^```(?:json)?\s*/i, "").replace(/```$/i, "").trim();
+    try {
+      return { value: JSON.parse(clean), warning: "" };
+    } catch (error) {
+      return {
+        value: {
+          title: firstMeaningfulLine(clean),
+          subtitle: "",
+          audience: "",
+          scenario: "",
+          sections: [{ heading: "整理结果", body: clean }],
+          must_preserve: [clean],
+          key_numbers: [],
+          forbidden_elements: [],
+          style_intent: "",
+          density_notes: "未识别为 JSON，可以继续手动整理字段。",
+          original_content: workbenchState.raw_content
+        },
+        warning: "未识别为 JSON，可以继续手动整理字段。"
+      };
+    }
+  }
+
+  function parseSectionsText(text) {
+    return String(text || "").split(/\n{2,}/).map(function (block) {
+      var clean = block.trim();
+      var parts;
+      if (!clean) {
+        return null;
+      }
+      parts = clean.split(/[:：]/);
+      if (parts.length > 1) {
+        return {
+          heading: parts.shift().replace(/^\d+[\.\s、]*/, "").trim(),
+          body: parts.join("：").trim()
+        };
+      }
+      return {
+        heading: clean.replace(/^\d+[\.\s、]*/, "").trim(),
+        body: ""
+      };
+    }).filter(Boolean);
+  }
+
+  function listFromLooseText(text) {
+    return String(text || "").split(/[\n,，;；]+/).map(function (item) {
+      return item.trim();
+    }).filter(Boolean);
+  }
+
+  function setWorkbenchStep(step) {
+    workbenchState.step = step;
+    document.querySelectorAll("[data-workbench-step]").forEach(function (item) {
+      item.classList.toggle("active", Number(item.dataset.workbenchStep) === step);
+    });
+    byId("workbenchStageStructure").hidden = !workbenchState.structuring_request;
+    byId("workbenchStageReview").hidden = !workbenchState.recommended_prompt;
+  }
+
+  function renderWorkbenchReviewFields() {
+    var structured = workbenchState.structured_content || {};
+    byId("workbenchTitle").value = structured.title || "";
+    byId("workbenchSubtitle").value = structured.subtitle || "";
+    byId("workbenchSections").value = (structured.sections || []).map(sectionText).join("\n\n");
+    byId("workbenchMustPreserve").value = (structured.must_preserve || []).join("\n");
+    byId("workbenchForbidden").value = (structured.forbidden_elements || []).join("，");
+    byId("workbenchStyleIntent").value = structured.style_intent || "";
+  }
+
+  function renderStyleVariants() {
+    var container = byId("workbenchStyleVariants");
+    container.classList.toggle("collapsed", !workbenchState.variants_expanded);
+    container.innerHTML = workbenchState.style_variants.map(function (variant) {
+      return '<div class="style-variant-card"><div><h4>' + escapeHtml(variant.template_name) +
+        '</h4><p>' + escapeHtml(variant.use_case) + '</p></div><button type="button" class="secondary-button" data-copy-style="' +
+        escapeHtml(variant.template_id) + '">复制</button></div>';
+    }).join("");
+  }
+
+  function renderWorkbench() {
+    var hasRaw = workbenchState.raw_content.trim().length > 0;
+    var isLongRaw = workbenchState.raw_content.length > 1800 || workbenchState.raw_content.split(/\n/).length > 22;
+    byId("buildStructuringRequestBtn").disabled = !hasRaw;
+    byId("workbenchRawHint").textContent = hasRaw ?
+      (isLongRaw ? "内容较长，后续会优先调整版式密度，而不是删除正文。" : "内容已准备好，可以生成 Codex 拆解请求。") :
+      "先粘贴一段内容。";
+    setPill(byId("workbenchRawStatus"), hasRaw ? "已输入" : "待输入", hasRaw ? "ready" : "warning");
+    byId("workbenchStructuringRequest").value = workbenchState.structuring_request;
+    byId("workbenchStructuredInput").value = workbenchState.structured_input;
+    byId("workbenchRecommendedPrompt").value = workbenchState.recommended_prompt ? workbenchState.recommended_prompt.positive_prompt : "";
+    setPill(byId("workbenchStructureStatus"), workbenchState.structured_content ? "已识别" : "等待拆解", workbenchState.structured_content ? "ready" : "warning");
+    setPill(byId("workbenchPromptStatus"), workbenchState.recommended_prompt ? "已生成" : "未生成", workbenchState.recommended_prompt ? "ready" : "warning");
+    renderWorkbenchReviewFields();
+    renderStyleVariants();
+    setWorkbenchStep(workbenchState.step);
+  }
+
+  function copyTextToClipboard(text) {
+    if (typeof navigator !== "undefined" && navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).catch(function () {
+        fallbackCopyTextToClipboard(text);
+      });
+      return;
+    }
+    fallbackCopyTextToClipboard(text);
+  }
+
+  function fallbackCopyTextToClipboard(text) {
+    var textarea = document.createElement("textarea");
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand("copy");
+    textarea.remove();
+  }
+
+  function regenerateWorkbenchPromptFromStructured() {
+    if (!workbenchState.structured_content) {
+      return;
+    }
+    var result = applyWorkbenchStructuredResult(workbenchState.structured_content, workbenchState.raw_content);
+    workbenchState.structured_content = result.structured_content;
+    workbenchState.recommended_prompt = result.recommended_prompt;
+    workbenchState.style_variants = result.style_variants;
+  }
+
+  function clearWorkbenchDerivedState() {
+    workbenchState.structuring_request = "";
+    workbenchState.structured_input = "";
+    workbenchState.structured_content = null;
+    workbenchState.recommended_prompt = null;
+    workbenchState.style_variants = [];
+    workbenchState.variants_expanded = false;
+  }
+
+  function resetWorkbenchHelperText() {
+    byId("workbenchStructuredHint").textContent = "优先粘贴 JSON；如果 Codex 返回 Markdown，也可以继续手动整理。";
+    byId("toggleStyleVariantsBtn").textContent = "展开查看 6 个风格版本";
+  }
+
+  function workbenchTemplateUseCase(templateId) {
+    var useCases = {
+      "citrus-editorial": "适合偏轻、偏编辑感的商业内容，强调纸感、纹理和清晰信息主体。",
+      "market-slate": "推荐默认风格，适合稳妥的客户沟通、专业汇报和市场分析。",
+      "atelier-rose": "适合需要更高端、更尊贵的金融、资管或保险主题。",
+      "harbor-mint": "适合解释机制、流程、保障结构或技术型内容。",
+      "ink-copper": "适合深色高管汇报和强叙事页面，但会更有舞台感。",
+      "orchard-lab": "适合研究档案、证据拆解和干净但有特色的分析页。"
+    };
+    return useCases[templateId] || "可作为替代视觉方向测试。";
+  }
+
+  function updateWorkbenchStructuredFromReviewFields() {
+    if (!workbenchState.structured_content) {
+      return;
+    }
+    workbenchState.structured_content.title = byId("workbenchTitle").value;
+    workbenchState.structured_content.subtitle = byId("workbenchSubtitle").value;
+    workbenchState.structured_content.sections = parseSectionsText(byId("workbenchSections").value);
+    workbenchState.structured_content.must_preserve = listFromLooseText(byId("workbenchMustPreserve").value);
+    workbenchState.structured_content.forbidden_elements = listFromLooseText(byId("workbenchForbidden").value);
+    workbenchState.structured_content.style_intent = byId("workbenchStyleIntent").value;
+    workbenchState.structured_content.original_content = workbenchState.raw_content || workbenchState.structured_content.original_content;
+    regenerateWorkbenchPromptFromStructured();
+    renderWorkbench();
+  }
+
+  function loadWorkbenchSample() {
+    var sample = [
+      "【主标题】",
+      "星河安康计划：香港重疾险“性价比之王”，让保障回归纯粹",
+      "（副标：160年保险世家诚意之作，重疾保障与财富增值兼得）",
+      "",
+      "1. 极致性价比：亲民费率 + 分红升值",
+      "现金价值双驱动：20/25年交，缴费期满现金价值保证回本，并有额外非保证分红。",
+      "",
+      "2. 核心赔付强：最高700%的守护力",
+      "多次赔付条款优，最高可理赔7次。",
+      "",
+      "3. 保障无死角：全面覆盖+定向加护",
+      "涵盖71种重疾+90种早期疾病+27种儿童疾病+38种复杂手术。",
+      "",
+      "4. 品牌硬实力：百年星河，安心托付",
+      "星河保障1865年成立于加拿大，深耕香港130余年。"
+    ].join("\n");
+    workbenchState.raw_content = sample;
+    clearWorkbenchDerivedState();
+    resetWorkbenchHelperText();
+    byId("workbenchRawContent").value = sample;
+    renderWorkbench();
+  }
+
+  function contentNotes(page) {
+    return page.content_inputs && page.content_inputs.notes ? page.content_inputs.notes : "";
+  }
+
+  function promptContextText(page) {
+    return [
+      state.brief.topic,
+      state.brief.goal,
+      state.brief.scenario,
+      state.brief.audience,
+      page.title,
+      page.objective,
+      page.visual_role,
+      page.layout_variant,
+      contentNotes(page)
+    ].filter(Boolean).join(" ");
+  }
+
+  function hasAny(text, words) {
+    return words.some(function (word) {
+      return text.indexOf(word) !== -1;
+    });
+  }
+
+  function isDataComparisonPage(page) {
+    var text = promptContextText(page).toLowerCase();
+    return page.type === "data" || hasAny(text, ["comparison", "compare", "对比", "比较"]);
+  }
+
+  function subjectProportionRule(page, language) {
+    if (language === "zh-CN") {
+      var zhRule = "主体比例：用户最需要阅读和理解的核心信息主体必须占据 60-70% 的视觉注意力；装饰、纹理、图标和背景图形不能挤压正文与关键信息。";
+      if (isDataComparisonPage(page)) {
+        zhRule += " 如果本页是数据对比页，核心数据对比应占据 60-70% 的视觉注意力。";
+      }
+      return zhRule;
+    }
+    var enRule = "Subject proportion: the core information the viewer needs to read and understand must occupy 60-70% of visual attention; decoration, texture, icons, and background graphics must not compress body copy or key information.";
+    if (isDataComparisonPage(page)) {
+      enRule += " If this is a data-comparison page, the core data comparison should occupy 60-70% of visual attention.";
+    }
+    return enRule;
+  }
+
+  function metaphorRule(page, language) {
+    if (language === "zh-CN") {
+      return "视觉隐喻规则：允许与主题直接相关的具象化视觉隐喻；必须由用户内容和页面目标自然决定，不要根据关键词套用固定物件清单；必须服务内容，不能变成无关装饰。";
+    }
+    return "Visual metaphor rule: subject-relevant concrete metaphors are allowed; choose them from the user's content and page objective, do not apply fixed object lists based on keywords, and do not let them become unrelated decoration.";
+  }
+
+  function colorGuidance(template, colors, language) {
+    if (language === "zh-CN") {
+      return "色彩使用规则：" + templateText(template, "color_rules", "zh-CN") + "。调色角色：背景 " + colors.background + "，面板 " + colors.surface + "，正文 " + colors.text + "，弱化文字 " + colors.muted_text + "，主色 " + colors.primary + "，辅色 " + colors.secondary + "，强调色 " + colors.accent + "。色彩比例：背景和留白约 70-80%，主结构色约 15-20%，强调色不超过 5%；强调色只用于关键数字、细线、节点或小面积高亮，不能大面积铺满。";
+    }
+    return "Color usage rules: " + template.color_rules + ". Palette roles: background " + colors.background + ", surface " + colors.surface + ", text " + colors.text + ", muted text " + colors.muted_text + ", primary " + colors.primary + ", secondary " + colors.secondary + ", accent " + colors.accent + ". Color proportion: background and whitespace about 70-80%, main structural color about 15-20%, accent color no more than 5%; use accents only for key numbers, fine lines, nodes, or small highlights, never as large fields.";
+  }
+
+  function promptTextPolicy(page, language) {
+    var notes = contentNotes(page);
+    if (language === "zh-CN") {
+      return "内容规则：默认必须完整呈现用户提供的正文内容。不得自行摘要、缩略、删除信息点或只保留重点；只有用户明确要求压缩、提炼、摘要或精简时才可压缩。输入结构标签处理：把【主标题】、【副标题】、【四大核心】、主标题、副标：、Subtitle:、括号、项目符号和编号识别为排版结构提示，不要把“主标题”“副标：”或包裹用的【】、括号原样显示；应把其后的内容转成干净的标题、副标题、分区标题、条目或正文。内容过密时，优先调整版式密度和减少装饰，而不是删除正文；用多栏、分区、表格式、附录式或小字号但可读的方式承载完整信息。内容输入：" + (notes || "使用页面目标生成精简中文标签。");
+    }
+    return "Content rules: if the user provided full body copy, the default is to place the full body copy into the slide image; do not summarize, shorten, delete information points, or keep only highlights unless the user explicitly asks for compression, extraction, summary, or a concise version. Raw input structure labels handling: treat labels and wrappers such as [Main title], [Subtitle], [Core sections], Main title, Subtitle:, 副标：, Chinese brackets, parentheses, bullets, and numbering as layout instructions, not visible slide copy. Do not render those raw input structure labels or wrapper brackets; convert the following content into clean title, subtitle, section heading, item, or body text. If content is dense, adjust layout density and reduce decoration before deleting body copy; use readable multi-column, sectioned, table-like, appendix-style, or small-but-legible layout treatment to carry the full information. Content input: " + (notes || "Use the page objective to create concise labels.");
+  }
+
+  function buildPositivePrompt(page, language) {
+    var template = activePromptTemplate();
+    var colors = activePaletteColors();
+    var topic = state.brief.topic || state.project.name;
+    var audience = state.brief.audience || "business audience";
+    var scenario = state.brief.scenario || "presentation";
+    var goal = state.brief.goal || page.objective;
+    var parts = language === "zh-CN" ? [
+      "你是一名资深商业视觉设计师，正在为 PowerPoint 可用页面创建一张纯 AI 整页完成稿演示图。",
+      "硬规则：不要规划单独的 HTML/PPT 叠加层；生成图本身必须是完整 finished page；以上生成说明不是可见文字；图片里只呈现用户提供的标题、正文、数字和必要标签；不要添加用户未提供的结论、免责声明、评分、来源、模板名或内部指令文字。",
+      "输出：" + state.output.aspect_ratio + " 比例；支持时以 4K 为目标；即使工具控制最终像素尺寸，也要追求投影级清晰细节。",
+      "页面内容：这是一张面向 " + audience + " 的 " + scenario + " 演示页，主题是 " + topic + "，目标是 " + goal + "。页面标题必须呈现为《" + page.title + "》。页面需要服务这个目标：" + page.objective + "。整体气质接近 " + page.visual_role + "，信息密度为 " + page.density + "。",
+      promptTextPolicy(page, language),
+      "视觉要求：成图应像一张可直接用于演示的单页 PPT。先建立清晰的信息结构，再加入材质、背景线稿或轻量装饰。每页应有一个明确主视觉锚点、3-5 个有序信息组、清晰标题区和稳定阅读路径。完整正文页优先保证阅读结构，不追求复杂背景或大面积装饰。",
+      "信息架构：让主洞察视觉上占主导，把支持证据组织到清晰的次级模块，使用隐形对齐、可读层级和清楚的疏密对比。",
+      subjectProportionRule(page, language),
+      metaphorRule(page, language),
+      "图表几何：如果使用圆环图、环形图、圆形节点或比较圆，必须保持正圆，不要透视拉扁、椭圆化或倾斜变形。",
+      "视觉风格：" + templateText(template, "art_direction", "zh-CN") + "。构图语法：" + templateText(template, "composition", "zh-CN") + "。",
+      colorGuidance(template, colors, language),
+      "字体规则：高对比标题、克制正文标签、一致层级，避免过小不可读说明，避免随机多余文字。",
+      "保持演示页属性：看起来像 finished slide，而不是海报、网页 hero、通用广告、应用截图或模板图库样张。"
+    ] : [
+      "Act as a senior business visual designer creating a pure AI whole-slide finished presentation image for a PowerPoint-ready slide.",
+      "Hard rules: Do not plan a separate HTML/PPT overlay; the generated image itself must be the complete finished page. These generation instructions are not visible slide text. Only show user-provided titles, body copy, numbers, and necessary labels. Do not add user-unprovided conclusions, disclaimers, ratings, sources, template names, or internal instruction text.",
+      "Output: " + state.output.aspect_ratio + " aspect ratio; 4K target when supported; crisp projection-ready detail even when the tool controls final pixel dimensions.",
+      "Page content: this is a " + scenario + " presentation slide for " + audience + ". The topic is " + topic + ", and the goal is " + goal + ". The visible page title must be \"" + page.title + "\". The page should serve this objective: " + page.objective + ". The overall feel is close to " + page.visual_role + ", with " + page.density + " information density.",
+      promptTextPolicy(page, language),
+      "Visual requirements: the result should look like a one-page PPT slide ready for presentation use. Establish clear information structure first, then add material depth, background linework, or light decoration. Each page should have one clear visual anchor, 3-5 ordered information groups, a clear title area, and a stable reading path. Full-copy pages should prioritize reading structure over complex backgrounds or large decoration.",
+      "Information architecture: make the main insight visually dominant, organize supporting evidence into clear secondary modules, use invisible alignment, readable hierarchy, and clear dense/sparse contrast.",
+      subjectProportionRule(page, language),
+      metaphorRule(page, language),
+      "Chart geometry: if donut charts, ring charts, circular nodes, or comparison circles appear, keep them as perfect circles, not flattened ellipses, tilted perspective rings, or distorted ovals.",
+      "Visual style: " + template.art_direction + ". Composition grammar: " + template.composition + ".",
+      colorGuidance(template, colors, language),
+      "Typography: high-contrast title, restrained body labels, consistent hierarchy, no tiny unreadable captions, no random extra words.",
+      "Keep the page presentation-native: looks like a finished slide, not a poster, web hero, generic advertisement, app screenshot, or template gallery mockup."
+    ];
+    return parts.join(" ");
+  }
+
+  function buildNegativePrompt(language) {
+    var base = language === "zh-CN" ? [
+      "乱码文字",
+      "扭曲字体",
+      "过小不可读文字",
+      "编造数字",
+      "误导性图表",
+      "虚假 logo",
+      "水印",
+      "输入结构标签上屏",
+      "模板名上屏",
+      "低清细节",
+      "库存信息图风格",
+      "廉价模板感",
+      "廉价双栏模板感",
+      "机械左右并列大框"
+    ] : [
+      "garbled text",
+      "warped typography",
+      "tiny unreadable text",
+      "invented numbers",
+      "misleading chart",
+      "fake logos",
+      "watermark",
+      "raw input labels as visible text",
+      "visible template names",
+      "low-resolution details",
+      "stock infographic style",
+      "cheap template look",
+      "cheap two-column template",
+      "mechanical side-by-side boxes"
+    ];
+    (state.theme.imagery.forbidden_elements || []).forEach(function (item) {
+      if (item) {
+        base.push(item);
+      }
+    });
+    var seen = {};
+    return base.filter(function (item) {
+      var key = item.toLowerCase();
+      if (seen[key]) {
+        return false;
+      }
+      seen[key] = true;
+      return true;
+    }).join(", ");
+  }
+
+  function buildReferenceNotes(page, language) {
+    if (language === "zh-CN") {
+      return "模板：" + state.theme.palette.preset_id + "；Logo 策略：" + page.logo_policy + "；纯 AI 整页 finished slide，不使用 HTML/PPT overlay。";
+    }
+    return "Template: " + state.theme.palette.preset_id + "; logo policy: " + page.logo_policy + "; pure AI whole-slide finished slide, no HTML/PPT overlay.";
+  }
+
+  function promptPurpose(page, language) {
+    if (language === "zh-CN") {
+      return "为" + tFor("type." + page.type, language) + "创建纯 AI 整页 PPT 成图。";
+    }
+    return "Create the pure AI whole-slide finished image for the " + toTitle(page.type) + " page.";
+  }
+
+  function buildPromptVariants(page) {
+    return {
+      "zh-CN": {
+        purpose: promptPurpose(page, "zh-CN"),
+        positive_prompt: buildPositivePrompt(page, "zh-CN"),
+        negative_prompt: buildNegativePrompt("zh-CN"),
+        reference_notes: buildReferenceNotes(page, "zh-CN")
+      },
+      en: {
+        purpose: promptPurpose(page, "en"),
+        positive_prompt: buildPositivePrompt(page, "en"),
+        negative_prompt: buildNegativePrompt("en"),
+        reference_notes: buildReferenceNotes(page, "en")
+      }
+    };
+  }
+
+  function activePromptLanguage() {
+    return currentLanguage === "en" ? "en" : "zh-CN";
+  }
+
+  function updatePromptField(prompt, field, value) {
+    if (!prompt) {
+      return;
+    }
+    prompt[field] = value;
+    if (["purpose", "positive_prompt", "negative_prompt", "reference_notes"].indexOf(field) !== -1) {
+      prompt.prompt_variants = prompt.prompt_variants || { "zh-CN": {}, en: {} };
+      prompt.prompt_variants[activePromptLanguage()] = prompt.prompt_variants[activePromptLanguage()] || {};
+      prompt.prompt_variants[activePromptLanguage()][field] = value;
+    }
+    markPromptEdited(prompt);
   }
 
   function optionLabel(value) {
@@ -865,31 +1586,21 @@
   function makePromptForPage(page, previous) {
     var confirmedAt = previous && previous.confirmed_at ? previous.confirmed_at : "";
     var status = previous && previous.status ? previous.status : "draft";
-    var positiveParts = currentLanguage === "zh-CN" ? [
-      state.theme.imagery.style_direction,
-      "用于" + typeLabel(page.type) + "演示页面",
-      "主题：" + (state.brief.topic || state.project.name),
-      "版式角色：" + page.visual_role,
-      "干净构图，高级编辑光线，可用留白"
-    ] : [
-      state.theme.imagery.style_direction,
-      "for a " + page.type + " presentation slide",
-      "topic: " + (state.brief.topic || state.project.name),
-      "layout role: " + page.visual_role,
-      "clean composition, premium editorial lighting, usable whitespace"
-    ];
+    var promptVariants = buildPromptVariants(page);
+    var activeVariant = currentLanguage === "en" ? promptVariants.en : promptVariants["zh-CN"];
     return {
       prompt_id: page.image_prompt_refs[0] || ("prompt-" + page.page_id),
       page_id: page.page_id,
       page_type: page.type,
-      purpose: currentLanguage === "zh-CN" ? "为" + typeLabel(page.type) + "创建图像素材。" : "Create the image asset for the " + toTitle(page.type) + " page.",
+      purpose: activeVariant.purpose,
       aspect_ratio: state.output.aspect_ratio,
-      positive_prompt: positiveParts.filter(Boolean).join("; "),
-      negative_prompt: state.theme.imagery.forbidden_elements.join(", "),
-      reference_notes: currentLanguage === "zh-CN" ? "匹配配色 " + state.theme.palette.preset_id + " 和 logo 策略 " + page.logo_policy + "。" : "Match palette " + state.theme.palette.preset_id + " and logo policy " + page.logo_policy + ".",
+      positive_prompt: activeVariant.positive_prompt,
+      negative_prompt: activeVariant.negative_prompt,
+      reference_notes: activeVariant.reference_notes,
+      prompt_variants: promptVariants,
       generation_params: {
         model_hint: "image-generation-capable",
-        size: state.output.aspect_ratio === "4:3" ? "1536x1152" : "1792x1024",
+        size: state.output.aspect_ratio === "4:3" ? "2048x1536 or 4K equivalent when supported" : "3840x2160 preferred when supported",
         seed: null
       },
       status: status,
@@ -910,6 +1621,7 @@
         prompt.positive_prompt = existing.positive_prompt;
         prompt.negative_prompt = existing.negative_prompt;
         prompt.reference_notes = existing.reference_notes;
+        prompt.prompt_variants = existing.prompt_variants || prompt.prompt_variants;
         prompt.generation_params = copy(existing.generation_params);
       }
       return prompt;
@@ -1125,7 +1837,7 @@
       prompts: state.prompts.filter(function (prompt) {
         return prompt.status === "confirmed";
       }).map(function (prompt) {
-        return {
+        var exportedPrompt = {
           prompt_id: prompt.prompt_id,
           page_id: prompt.page_id,
           page_type: prompt.page_type,
@@ -1140,6 +1852,10 @@
             confirmed_at: prompt.confirmed_at || nowIso()
           }
         };
+        if (prompt.prompt_variants && prompt.prompt_variants["zh-CN"] && prompt.prompt_variants.en) {
+          exportedPrompt.prompt_variants = copy(prompt.prompt_variants);
+        }
+        return exportedPrompt;
       })
     };
   }
@@ -1348,6 +2064,7 @@
     renderLab();
     renderPrompts();
     renderQa();
+    renderWorkbench();
   }
 
   function bindGlobalControls() {
@@ -1437,6 +2154,85 @@
     bindLab();
     bindPromptEditor();
     bindExport();
+  }
+
+  function bindWorkbench() {
+    byId("openAdvancedConsoleBtn").addEventListener("click", function () {
+      byId("simpleWorkbench").hidden = true;
+      byId("advancedConsole").hidden = false;
+      renderAll();
+    });
+    byId("workbenchRawContent").addEventListener("input", function (event) {
+      var nextRaw = event.target.value;
+      if (nextRaw !== workbenchState.raw_content) {
+        clearWorkbenchDerivedState();
+        resetWorkbenchHelperText();
+        workbenchState.step = 1;
+      }
+      workbenchState.raw_content = event.target.value;
+      renderWorkbench();
+    });
+    byId("buildStructuringRequestBtn").addEventListener("click", function () {
+      clearWorkbenchDerivedState();
+      resetWorkbenchHelperText();
+      workbenchState.structuring_request = buildWorkbenchStructuringRequest(workbenchState.raw_content);
+      workbenchState.step = 2;
+      renderWorkbench();
+    });
+    byId("copyStructuringRequestBtn").addEventListener("click", function () {
+      copyTextToClipboard(workbenchState.structuring_request);
+    });
+    byId("workbenchStructuredInput").addEventListener("input", function (event) {
+      workbenchState.structured_input = event.target.value;
+    });
+    byId("applyStructuredResultBtn").addEventListener("click", function () {
+      var parsed = parseWorkbenchStructuredInput(workbenchState.structured_input);
+      workbenchState.structured_content = parsed.value;
+      byId("workbenchStructuredHint").textContent = parsed.warning || "结构化结果已识别。";
+      if (!parsed.value) {
+        renderWorkbench();
+        return;
+      }
+      regenerateWorkbenchPromptFromStructured();
+      workbenchState.step = 3;
+      renderAll();
+      renderWorkbench();
+    });
+    byId("copyRecommendedPromptBtn").addEventListener("click", function () {
+      if (workbenchState.recommended_prompt) {
+        copyTextToClipboard(workbenchState.recommended_prompt.positive_prompt);
+      }
+    });
+    byId("toggleStyleVariantsBtn").addEventListener("click", function () {
+      workbenchState.variants_expanded = !workbenchState.variants_expanded;
+      byId("toggleStyleVariantsBtn").textContent = workbenchState.variants_expanded ? "收起 6 个风格版本" : "展开查看 6 个风格版本";
+      renderWorkbench();
+    });
+    byId("workbenchStyleVariants").addEventListener("click", function (event) {
+      var button = event.target.closest("[data-copy-style]");
+      var variant;
+      if (!button) {
+        return;
+      }
+      variant = workbenchState.style_variants.find(function (item) {
+        return item.template_id === button.dataset.copyStyle;
+      });
+      if (variant) {
+        copyTextToClipboard(variant.positive_prompt);
+      }
+    });
+    ["workbenchTitle", "workbenchSubtitle", "workbenchSections", "workbenchMustPreserve", "workbenchForbidden", "workbenchStyleIntent"].forEach(function (id) {
+      byId(id).addEventListener("change", updateWorkbenchStructuredFromReviewFields);
+    });
+    byId("loadWorkbenchSampleBtn").addEventListener("click", loadWorkbenchSample);
+    byId("clearWorkbenchBtn").addEventListener("click", function () {
+      workbenchState.step = 1;
+      workbenchState.raw_content = "";
+      clearWorkbenchDerivedState();
+      byId("workbenchRawContent").value = "";
+      resetWorkbenchHelperText();
+      renderWorkbench();
+    });
   }
 
   function bindPageEditor() {
@@ -1538,8 +2334,7 @@
         if (!prompt) {
           return;
         }
-        prompt[promptFields[id]] = event.target.value;
-        markPromptEdited(prompt);
+        updatePromptField(prompt, promptFields[id], event.target.value);
         renderAll();
       });
     });
@@ -1649,18 +2444,31 @@
   }
 
   function init() {
+    bindWorkbench();
     bindGlobalControls();
     generateSevenTypeMap();
+    renderWorkbench();
   }
 
   window.__tastecraftConsole = {
     buildDeckSpec: buildDeckSpec,
     buildPromptPack: buildPromptPack,
+    buildWorkbenchStructuringRequestForTest: buildWorkbenchStructuringRequest,
+    applyWorkbenchStructuredResultForTest: applyWorkbenchStructuredResult,
     qaState: qaState,
     setStateForTest: function (nextState) {
       Object.keys(nextState || {}).forEach(function (key) {
         state[key] = copy(nextState[key]);
       });
+    },
+    regeneratePromptsForTest: function (preserveStatus) {
+      syncPromptsFromPages(Boolean(preserveStatus));
+    },
+    updatePromptFieldForTest: function (promptId, field, value) {
+      var prompt = state.prompts.find(function (item) {
+        return item.prompt_id === promptId;
+      });
+      updatePromptField(prompt, field, value);
     },
     getState: function () {
       return copy(state);

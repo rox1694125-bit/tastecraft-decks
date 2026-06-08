@@ -215,7 +215,7 @@ Browser smoke tests:
 
 Manual review:
 
-- Use the Sun Life dense insurance copy as a stress test.
+- Use the Starlight Mutual dense insurance copy as a stress test.
 - Confirm the user sees one main action at each stage.
 - Confirm advanced controls are discoverable but not visually dominant.
 
