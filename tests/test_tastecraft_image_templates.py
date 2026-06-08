@@ -49,9 +49,16 @@ class TasteCraftImageTemplateTests(unittest.TestCase):
             self.assertGreaterEqual(len(template["selection_signals"]), 2)
             self.assertTrue(template["use_case_zh"])
 
-    def test_custom_template_file_is_git_managed_but_empty_by_default(self) -> None:
+    def test_custom_template_file_is_git_managed_and_contains_glory_drafts(self) -> None:
         custom = validate_templates.load_json(ROOT / "assets" / "tastecraft-image" / "custom-templates.json")
-        self.assertEqual(custom["templates"], [])
+        templates = custom["templates"]
+        self.assertEqual(
+            {template["name_zh"] for template in templates},
+            {"Glory传承绿｜抽象材质", "Glory传承绿｜空间路演"},
+        )
+        self.assertTrue(all(template["status"] == "draft" for template in templates))
+        self.assertTrue(all(template["palette"]["primary"] == "#0F6F68" for template in templates))
+        self.assertTrue(all(template["palette"]["accent"] == "#20B2AA" for template in templates))
 
     def test_validator_rejects_missing_required_fields(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
