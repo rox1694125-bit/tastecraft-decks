@@ -1,6 +1,6 @@
 ---
 name: tastecraft-image
-description: "Use when 用户粘贴完整 slide 内容，需要将其转换为 Codex 图片 prompt，经明确确认后生成 PPT-ready 的 16:9 finished-slide 图片。"
+description: "Use when 用户粘贴完整 slide 内容，需要转换为 Codex 图片 prompt；或提供 PPT 样图，需要学习风格、反解析审美优点并沉淀模板草案。"
 ---
 
 # TasteCraft Image
@@ -14,6 +14,13 @@ Turn complete user-provided slide content into one confirmed Codex image prompt,
 - **Structure before style / 结构先于风格**: identify the title, subtitle, content modules, required body text, key numbers, page purpose, density, and explicit constraints before choosing a template or visual direction.
 - **Visuals serve the argument / 视觉服务论证**: every visual device must clarify the message, reading path, hierarchy, comparison, or emphasis. Do not add decoration only to make the image feel premium.
 - **One explicit confirmation / 一次明确确认**: produce the recommended template and full prompt first, then generate only after the user gives action wording that clearly asks for image generation.
+
+## Mode Selection
+
+- `content-to-prompt`: use when the user provides slide content and wants a Codex image prompt or generated PPT-ready image.
+- `style-learning` / `样图风格学习`: use when the user provides or references a PPT image and asks to learn the style, reverse-analyze it, explain why it works, or turn it into a reusable template draft.
+
+Common `style-learning` triggers include "学习这张图的风格", "反解析这张 PPT 图", "从这个样例提炼模板", "总结这张图为什么好看", and "把这张图沉淀成模板".
 
 ## Load Before Work
 
@@ -42,6 +49,19 @@ Turn complete user-provided slide content into one confirmed Codex image prompt,
 11. Review the generated image against the Image Review checklist before reporting completion.
 
 If the actual image-generation prompt changes after confirmation, such as a retry prompt, shortened prompt, or reformatted prompt for tool stability, record that final prompt. The log must let the user recover the exact prompt that produced each image.
+
+## Style-Learning Workflow
+
+Style-learning is not image replication. It extracts transferable aesthetic principles, information architecture, color/material treatment, and template guidance. It must not produce a 1:1 reconstruction prompt, exact coordinate map, logo extraction, character likeness, or reference-specific copy instruction.
+
+When using `style-learning`, output these fixed sections:
+
+1. `审美分析`: main temperament, layout structure, color/material direction, typography and hierarchy, main visual strategy, and the 3-5 strengths worth learning.
+2. `迁移判断`: suitable content types, unsuitable content types, reusable elements, elements that should not be hard-applied, and the boundary from 1:1 replication.
+3. `模板草案`: a draft custom-template schema with direct Chinese naming, use cases, selection signals, art direction, composition, color rules, palette, avoid rules, density fit, and `status: draft`.
+4. `测试建议`: the best first content type, suitable density, whether to use existing or synthetic test content, and visual risks to inspect after generation.
+
+Template names generated from reference images must be direct, Chinese-first, and include a primary color or style cue. Avoid abstract names that ordinary users cannot understand.
 
 ## Confirmation Rules
 
@@ -106,10 +126,19 @@ When the user describes a new template in natural language:
 
 A real image test is not a prerequisite for saving a custom template.
 
+## Style-Learning Save Rules
+
+Only save a style-learning result when the user explicitly says to save it, such as "保存到模板", "保存这个模板", or "把这个样图学习结果保存下来". Weak approval such as "方向可以" or "挺好" is not enough to write project files.
+
+When saving, append the machine-usable draft template to `assets/tastecraft-image/custom-templates.json` and append the analysis record to `docs/project-log/style-learning/YYYY-MM-DD-style-learning.jsonl`.
+
+Do not save the source image. Do not save exact coordinates, copy-this-layout instructions, proprietary logos, identifiable brand elements, or descriptions that enable close replication of a copyrighted reference image.
+
 ## Logging
 
 - Record every prompt as `draft_prompt`.
 - Record every generated image as `generated_image` and include the exact `imagegen_prompt` used for that image.
+- Record saved reference-image learning sessions as `style_learning` JSONL records under `docs/project-log/style-learning/`; these records preserve aesthetic analysis and template reasoning but never the source image itself.
 - Use the daily TasteCraft Image JSONL ledger and daily TasteCraft Image Markdown summary under `docs/project-log/`.
 - The JSONL ledger intentionally preserves the full generated prompt text, including the user-provided content embedded in that prompt, so it can be reviewed later.
 - The Markdown summary should stay compact: title, status, template, image path, prompt-saved marker, feedback, or review summary rather than full prompt text.

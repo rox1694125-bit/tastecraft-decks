@@ -46,6 +46,28 @@ class TasteCraftImageTemplateTests(unittest.TestCase):
         ):
             self.assertIn(required, skill)
 
+    def test_skill_documents_style_learning_mode_and_boundaries(self) -> None:
+        skill = (ROOT / "skills" / "tastecraft-image" / "SKILL.md").read_text(encoding="utf-8")
+        frontmatter = skill.split("---", 2)[1]
+
+        for required in (
+            "PPT 样图",
+            "学习风格",
+        ):
+            self.assertIn(required, frontmatter)
+
+        for required in (
+            "style-learning",
+            "样图风格学习",
+            "审美分析",
+            "迁移判断",
+            "模板草案",
+            "测试建议",
+            "not image replication",
+            "Do not save the source image",
+        ):
+            self.assertIn(required, skill)
+
     def test_builtin_templates_are_valid_and_named_for_users(self) -> None:
         result = validate_templates.validate_repo(ROOT)
         self.assertEqual(result.errors, [], "\n".join(result.errors))
