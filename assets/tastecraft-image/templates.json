@@ -30,10 +30,10 @@
         "accent": "#C9A646"
       },
       "avoid": [
-        "unrelated lifestyle props",
-        "visible template labels",
-        "decorative overload",
-        "scrapbook clutter"
+        "off-topic editorial decoration",
+        "visual elements that compete with the body copy",
+        "template or system labels visible in the image",
+        "overly casual styling that weakens business credibility"
       ],
       "default_density_fit": "medium"
     },
@@ -66,10 +66,10 @@
         "accent": "#E76F51"
       },
       "avoid": [
-        "unrelated world maps",
-        "awkward stock-line decorations",
-        "default dashboard chrome",
-        "decorative gauges"
+        "unsupported analytical context not provided by the user",
+        "generic dashboard conventions that flatten the message",
+        "decorative data marks that are not tied to the content",
+        "visual density that crowds out the main text"
       ],
       "default_density_fit": "high"
     },
@@ -103,10 +103,10 @@
         "accent": "#B98A44"
       },
       "avoid": [
-        "romantic decoration",
-        "lifestyle scenes",
-        "hospitality cues",
-        "visible template labels"
+        "prestige cues that feel decorative rather than content-serving",
+        "lifestyle associations that weaken financial seriousness",
+        "template or system labels visible in the image",
+        "ornamentation that competes with trust and readability"
       ],
       "default_density_fit": "high"
     },
@@ -140,10 +140,10 @@
         "accent": "#BFA15A"
       },
       "avoid": [
-        "ordinary executive dashboard",
-        "fake UI screens",
-        "decorative spectacle",
-        "unexplained technical ornaments"
+        "technical decoration without explanatory purpose",
+        "interface-like framing that makes the slide look like software",
+        "process graphics that do not map to the user content",
+        "visual complexity that obscures the mechanism"
       ],
       "default_density_fit": "medium"
     },
@@ -176,10 +176,10 @@
         "accent": "#D4B36A"
       },
       "avoid": [
-        "pure black stage",
-        "nightclub glow",
-        "large saturated red or blue fields",
-        "decorative spectacle"
+        "stage effects that overpower the message",
+        "high-drama styling that weakens executive restraint",
+        "large saturated color fields that reduce readability",
+        "decorative spectacle without content function"
       ],
       "default_density_fit": "low_to_medium"
     },
@@ -213,10 +213,10 @@
         "accent": "#C2A24D"
       },
       "avoid": [
-        "fake dossier metrics",
-        "visible template labels",
-        "irrelevant lab badges",
-        "decorative clutter"
+        "fabricated evidence labels or metrics",
+        "research motifs that imply unsupported sources",
+        "template or system labels visible in the image",
+        "decorative analysis marks that are not grounded in the content"
       ],
       "default_density_fit": "high"
     }

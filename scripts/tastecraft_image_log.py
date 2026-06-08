@@ -47,8 +47,11 @@ def validate_event(event: dict[str, Any]) -> None:
         if missing:
             raise ValueError(f"draft_prompt missing required fields: {', '.join(missing)}")
 
-    if status == "generated_image" and not event.get("image_path"):
-        raise ValueError("generated_image requires image_path")
+    if status == "generated_image":
+        if not event.get("image_path"):
+            raise ValueError("generated_image requires image_path")
+        if not event.get("imagegen_prompt"):
+            raise ValueError("generated_image requires imagegen_prompt")
 
 
 def _single_line(value: Any) -> str:
@@ -68,6 +71,7 @@ def markdown_line(event: dict[str, Any]) -> str:
         parts.append("prompt: saved in JSONL")
     elif status == "generated_image":
         parts.append(f"image: `{_single_line(event.get('image_path', ''))}`")
+        parts.append("imagegen_prompt: saved in JSONL")
     elif status == "feedback":
         feedback = event.get("feedback", event.get("notes", ""))
         if feedback:

@@ -557,11 +557,18 @@ class TasteCraftImageLogTests(unittest.TestCase):
             self.assertIn("MGIUL 24核心特点和附加保险", summary)
             self.assertIn("draft_prompt", summary)
 
-    def test_generated_image_requires_image_path(self) -> None:
+    def test_generated_image_requires_image_path_and_imagegen_prompt(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             with self.assertRaises(ValueError):
                 tastecraft_image_log.append_event(root, {"status": "generated_image"}, date="2026-06-08")
+
+            with self.assertRaises(ValueError):
+                tastecraft_image_log.append_event(
+                    root,
+                    {"status": "generated_image", "image_path": "/tmp/example.png"},
+                    date="2026-06-08",
+                )
 
 
 if __name__ == "__main__":
@@ -618,8 +625,11 @@ def validate_event(event: dict[str, Any]) -> None:
         for field in ("title", "template_id", "template_name_zh", "prompt_zh", "prompt_en"):
             if not event.get(field):
                 raise ValueError(f"draft_prompt event missing {field}")
-    if status == "generated_image" and not event.get("image_path"):
-        raise ValueError("generated_image event missing image_path")
+    if status == "generated_image":
+        if not event.get("image_path"):
+            raise ValueError("generated_image event missing image_path")
+        if not event.get("imagegen_prompt"):
+            raise ValueError("generated_image event missing imagegen_prompt")
 
 
 def markdown_line(event: dict[str, Any]) -> str:
@@ -724,7 +734,7 @@ Default output is a single 16:9 finished-slide image prompt. Generate an image o
 6. Log the prompt as `draft_prompt`.
 7. Wait for explicit generation confirmation.
 8. After confirmation, call image generation with the Chinese primary prompt unless the user explicitly chooses another variant.
-9. Log the image as `generated_image` with its saved path.
+9. Log the image as `generated_image` with its saved path and the exact `imagegen_prompt` sent to the image model.
 
 ## Confirmation Rules
 
@@ -794,11 +804,11 @@ Real image testing is not required before saving a custom template.
 
 Every prompt generation should be logged as `draft_prompt`.
 
-Every image generation should be logged as `generated_image`.
+Every image generation should be logged as `generated_image`, including the exact `imagegen_prompt` used for that image. Retry or shortened prompts must be logged as the actual prompt that produced the image, not only as the earlier draft.
 
 Use the daily TasteCraft Image JSONL ledger as the machine ledger and the daily TasteCraft Image Markdown summary as the human-readable summary under `docs/project-log/`.
 
-Do not log hidden internal reasoning. Log only a recommendation summary: content type, density level, recommended template, alternatives, readability risk, confirmation state, image path, and feedback summary.
+Do not log hidden internal reasoning. Log the visible image-generation prompt and a recommendation summary: content type, density level, recommended template, alternatives, readability risk, confirmation state, image path, and feedback summary.
 
 ## Image Review
 

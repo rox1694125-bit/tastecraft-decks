@@ -31,8 +31,10 @@ Turn complete user-provided slide content into one confirmed Codex image prompt,
 6. Record the draft with log type `draft_prompt` before image generation is requested. The JSONL event should preserve the generated prompt text so the user can inspect it later; do not log hidden reasoning.
 7. Wait for explicit generation confirmation.
 8. After confirmation, generate the image using the Chinese primary prompt by default unless the user explicitly chooses the English variant.
-9. Record the generated result with log type `generated_image`.
+9. Record the generated result with log type `generated_image`, including the exact `imagegen_prompt` that was sent to the image model.
 10. Review the generated image against the Image Review checklist before reporting completion.
+
+If the actual image-generation prompt changes after confirmation, such as a retry prompt, shortened prompt, or reformatted prompt for tool stability, record that final prompt. The log must let the user recover the exact prompt that produced each image.
 
 ## Confirmation Rules
 
@@ -56,7 +58,7 @@ Do not treat weak approval or direction feedback as permission to generate. Phra
 
 ## Template Selection
 
-Select templates by content type, density, seriousness, page purpose, industry relevance, and visual risk. Do not use fixed object routing such as "insurance equals shield", "Hong Kong equals skyline", or "finance equals ledger". Concrete metaphors are allowed only when they naturally emerge from the user's content and the page objective.
+Select templates by content type, density, seriousness, page purpose, industry relevance, and visual risk. Do not use fixed one-to-one mappings from industry keywords to visual objects. Concrete metaphors are allowed only when they naturally emerge from the user's content and the page objective.
 
 Prefer templates that protect legibility and hierarchy over templates with impressive decoration. If an industry visual could add stereotype risk, unsupported claims, or visual noise, choose a more neutral composition.
 
@@ -72,11 +74,13 @@ Every image prompt must specify:
 - Keep the full body text by default; make it the main focus of the visual system.
 - Decoration must serve the content, improve hierarchy, and never compete with or obscure the text.
 
-The Chinese primary prompt should be directly usable for Codex image generation and should include layout, typography, color, material, density handling, and avoid rules.
+The Chinese primary prompt should be directly usable for Codex image generation and should include layout, typography, color, material, density handling, and abstract avoid principles.
+
+Avoid rules should stay principle-level by default: prevent unsupported, off-topic, distracting, or content-competing visuals. Do not generate long concrete object blacklists unless the user explicitly provides forbidden elements or asks to prevent a specific failure from a previous image.
 
 ## English Variant
 
-Provide an English variant that mirrors the generation instructions, composition, style, density handling, and avoid rules. Keep the user's Chinese title and body text in Chinese. Do not translate the supplied slide content unless the user explicitly asks for translation.
+Provide an English variant that mirrors the generation instructions, composition, style, density handling, and abstract avoid principles. Keep the user's Chinese title and body text in Chinese. Do not translate the supplied slide content unless the user explicitly asks for translation.
 
 ## Custom Templates
 
@@ -95,10 +99,10 @@ A real image test is not a prerequisite for saving a custom template.
 ## Logging
 
 - Record every prompt as `draft_prompt`.
-- Record every generated image as `generated_image`.
+- Record every generated image as `generated_image` and include the exact `imagegen_prompt` used for that image.
 - Use the daily TasteCraft Image JSONL ledger and daily TasteCraft Image Markdown summary under `docs/project-log/`.
 - The JSONL ledger intentionally preserves the full generated prompt text, including the user-provided content embedded in that prompt, so it can be reviewed later.
-- The Markdown summary should stay compact: title, status, template, image path, feedback, or review summary rather than full prompt text.
+- The Markdown summary should stay compact: title, status, template, image path, prompt-saved marker, feedback, or review summary rather than full prompt text.
 - Log recommendation summary, selected template, alternatives, aspect ratio, prompt language, confirmation phrase, generated image reference, and review result when available.
 - Because logs are git-managed project files, check for private or customer-identifying information before commit or push.
 - Do not log hidden reasoning, private chain-of-thought, or unrelated conversation details.

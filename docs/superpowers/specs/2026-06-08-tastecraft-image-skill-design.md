@@ -213,6 +213,7 @@ Every generated prompt is logged immediately as `draft_prompt`.
 After image generation, the skill appends `generated_image` with:
 
 - generated image path;
+- exact `imagegen_prompt` sent to the image model;
 - prompt version;
 - template ID and visible template name;
 - aspect ratio;
@@ -221,7 +222,7 @@ After image generation, the skill appends `generated_image` with:
 - user feedback summary, when available;
 - next revision direction, when available.
 
-The log should save a recommendation summary, not hidden internal reasoning.
+The log should save the exact visible prompt sent to image generation and a recommendation summary, not hidden internal reasoning.
 
 Useful recommendation summary fields:
 

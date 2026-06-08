@@ -62,7 +62,7 @@ class TasteCraftImageLogTests(unittest.TestCase):
             self.assertIn("prompt: saved in JSONL", markdown)
             self.assertNotIn("生成一张专业可信的示例保障产品图。", markdown)
 
-    def test_generated_image_requires_image_path(self) -> None:
+    def test_generated_image_requires_image_path_and_imagegen_prompt(self) -> None:
         event = {
             "status": "generated_image",
             "title": "星河安康计划",
@@ -70,6 +70,31 @@ class TasteCraftImageLogTests(unittest.TestCase):
         }
         with self.assertRaises(ValueError):
             tastecraft_image_log.validate_event(event)
+
+        event["image_path"] = "/tmp/example.png"
+        with self.assertRaises(ValueError):
+            tastecraft_image_log.validate_event(event)
+
+    def test_generated_image_preserves_actual_prompt_in_jsonl_only(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            event = {
+                "status": "generated_image",
+                "title": "星河安康计划",
+                "template_id": "market-slate",
+                "template_name_zh": "蓝绿稳健汇报",
+                "image_path": "/tmp/example.png",
+                "imagegen_prompt": "这是最终实际送入生图模型的完整 prompt。",
+            }
+
+            paths = tastecraft_image_log.append_event(root, event, date="2026-06-08")
+
+            payload = json.loads(paths["jsonl"].read_text(encoding="utf-8").splitlines()[0])
+            self.assertEqual(payload["imagegen_prompt"], "这是最终实际送入生图模型的完整 prompt。")
+
+            markdown = paths["markdown"].read_text(encoding="utf-8")
+            self.assertIn("imagegen_prompt: saved in JSONL", markdown)
+            self.assertNotIn("这是最终实际送入生图模型的完整 prompt。", markdown)
 
     def test_date_must_be_yyyy_mm_dd(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
