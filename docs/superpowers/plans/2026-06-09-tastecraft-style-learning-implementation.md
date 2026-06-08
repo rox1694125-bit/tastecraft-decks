@@ -53,7 +53,7 @@ Run:
 python3 -m unittest tests.test_tastecraft_image_templates.TasteCraftImageTemplateTests.test_skill_documents_style_learning_mode_and_boundaries
 ```
 
-Expected: `FAIL` because `SKILL.md` does not yet mention `style-learning` and the image-replication boundary.
+Expected: `FAIL` because `skills/tastecraft-image/SKILL.md` does not yet mention `style-learning` and the image-replication boundary.
 
 - [ ] **Step 3: Commit nothing**
 
